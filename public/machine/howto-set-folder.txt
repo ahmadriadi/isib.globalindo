@@ -1,0 +1,3 @@
+sudo usermod -a -G www-data namauser
+sudo chgrp www-data /home/namauser/public_html/public/machine
+sudo chmod g+rwxs /home/namauser/public_html/public/machine 

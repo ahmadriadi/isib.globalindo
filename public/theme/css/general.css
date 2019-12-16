@@ -1,0 +1,81 @@
+/*******THUMB*********/
+.thumb{
+    background-image:url("../images/pic_bg.png");
+    background-repeat:no-repeat;
+    background-position: center;
+    width:115px;
+    height:115px;
+    position:relative;
+    float:left;
+    text-align:center;
+}
+.pic_thumb{
+    padding:10px;
+}
+.pic_thumb img{
+    width:95px;
+}
+.thumb .status{
+    background-image:url("../images/status_bg.png");
+    background-repeat:no-repeat;
+    background-position: top left;
+    z-index:5;
+    position:absolute;
+    width:310px;
+    height:210px;
+    margin:85px 0 0 60px;
+    padding-top:80px;
+    font-size: medium;
+}
+.thumb input{
+    margin-left:auto;
+    margin-right:auto;
+}
+/*******end thumb*****/
+
+/*******start status****/
+.thumb_with_status{
+    height:300px;
+}
+/*******end status*****/
+
+
+/******start upload profilepic*****/
+.change_button{
+    width:110px;
+    z-index:10;
+    text-align:center;
+    position: absolute;
+}
+
+.form_profile_pic{
+    z-index:10;
+    position: absolute;
+    margin-left:120px;
+    padding:10px;
+}
+/******end upload profilepic*****/
+
+/****start cropping*****/
+
+.box_shadowed{
+    background-color: #FFFFFF;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 3px 3px 15px #BBBBBB;
+    color: #444444;
+    font-weight: bold;
+    padding: 5px 5px;
+    position:absolute;
+    z-index:15;
+    margin-top:20px;
+    display:none;
+}
+
+.box_shadowed_close{
+    float:right;
+    position: relative;
+    margin-right:0;
+    margin-bottom:0;
+}
+/****end cropping****/
