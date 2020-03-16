@@ -2800,8 +2800,8 @@
                                                 <label for="jobloc"><b>Working Location</b> / <i class='transindo'>Lokasi Kerja</i></label>
                                                 <div class="controls">
                                                     <select class="span12 fsjob" id="jobloc">
-                                                        <option value="KAPUK">KAPUK</option>
-                                                        <option value="BITUNG">BITUNG</option>
+                                                        <option value="1">Kantor</option>
+                                                        <option value="2">Laur Kantor</option>
                                                     </select>
                                                 </div>
                                             </div>

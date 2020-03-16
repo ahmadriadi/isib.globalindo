@@ -50,9 +50,9 @@ class Home extends CI_Controller {
         $data['default']['location'][0]['display'] = 'ALL';
         $data['default']['location'][0]['selected'] = "SELECTED";
         $data['default']['location'][1]['value'] = '1';
-        $data['default']['location'][1]['display'] = 'KAPUK';
+        $data['default']['location'][1]['display'] = 'Kantor';
         $data['default']['location'][2]['value'] = '2';
-        $data['default']['location'][2]['display'] = 'BITUNG';
+        $data['default']['location'][2]['display'] = 'Laur Kantor';
 
         $idmenu = "124";
         $data['buttons'] = $this->uac->get_btnaccess($this->User, $idmenu);

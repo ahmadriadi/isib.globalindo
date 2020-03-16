@@ -113,7 +113,7 @@
     <form>
     <input type="button" value="Print this page" onClick="window.print()">
     </form>
-    <h3 align="center">PT TRIAS INDRA SAPUTRA</h3>
+    <h3 align="center">GLOBALINDO</h3>
     <p align="center">Organization Chart</p>
     <div align="center" id="oc_container"></div>
 </body>

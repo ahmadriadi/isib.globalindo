@@ -1,50 +1,41 @@
--- phpMyAdmin SQL Dump
--- version 4.2.11
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Generation Time: Dec 14, 2019 at 10:12 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+/*
+SQLyog Community v13.0.1 (64 bit)
+MySQL - 5.6.21 : Database - isib_public
+*********************************************************************
+*/
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `isib_public`
---
-CREATE DATABASE IF NOT EXISTS `isib_public` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`isib_public` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
 USE `isib_public`;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `appointments`
---
+/*Table structure for table `appointments` */
 
 DROP TABLE IF EXISTS `appointments`;
-CREATE TABLE IF NOT EXISTS `appointments` (
-`id` int(11) NOT NULL,
+
+CREATE TABLE `appointments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL DEFAULT '',
   `start_time` datetime DEFAULT NULL,
-  `is_reminded` tinyint(1) NOT NULL DEFAULT '0'
+  `is_reminded` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `appointments` */
 
---
--- Table structure for table `country`
---
+/*Table structure for table `country` */
 
 DROP TABLE IF EXISTS `country`;
-CREATE TABLE IF NOT EXISTS `country` (
-`country_id` int(5) NOT NULL,
+
+CREATE TABLE `country` (
+  `country_id` int(5) NOT NULL AUTO_INCREMENT,
   `iso2` char(2) DEFAULT NULL,
   `short_name` varchar(80) NOT NULL DEFAULT '',
   `long_name` varchar(80) NOT NULL DEFAULT '',
@@ -52,274 +43,270 @@ CREATE TABLE IF NOT EXISTS `country` (
   `numcode` varchar(6) DEFAULT NULL,
   `un_member` varchar(12) DEFAULT NULL,
   `calling_code` varchar(8) DEFAULT NULL,
-  `cctld` varchar(5) DEFAULT NULL
+  `cctld` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`country_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=251 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `country`
---
+/*Data for the table `country` */
 
-INSERT INTO `country` (`country_id`, `iso2`, `short_name`, `long_name`, `iso3`, `numcode`, `un_member`, `calling_code`, `cctld`) VALUES
-(1, 'AF', 'Afghanistan', 'Islamic Republic of Afghanistan', 'AFG', '004', 'yes', '93', '.af'),
-(2, 'AX', 'Aland Islands', '&Aring;land Islands', 'ALA', '248', 'no', '358', '.ax'),
-(3, 'AL', 'Albania', 'Republic of Albania', 'ALB', '008', 'yes', '355', '.al'),
-(4, 'DZ', 'Algeria', 'People''s Democratic Republic of Algeria', 'DZA', '012', 'yes', '213', '.dz'),
-(5, 'AS', 'American Samoa', 'American Samoa', 'ASM', '016', 'no', '1+684', '.as'),
-(6, 'AD', 'Andorra', 'Principality of Andorra', 'AND', '020', 'yes', '376', '.ad'),
-(7, 'AO', 'Angola', 'Republic of Angola', 'AGO', '024', 'yes', '244', '.ao'),
-(8, 'AI', 'Anguilla', 'Anguilla', 'AIA', '660', 'no', '1+264', '.ai'),
-(9, 'AQ', 'Antarctica', 'Antarctica', 'ATA', '010', 'no', '672', '.aq'),
-(10, 'AG', 'Antigua and Barbuda', 'Antigua and Barbuda', 'ATG', '028', 'yes', '1+268', '.ag'),
-(11, 'AR', 'Argentina', 'Argentine Republic', 'ARG', '032', 'yes', '54', '.ar'),
-(12, 'AM', 'Armenia', 'Republic of Armenia', 'ARM', '051', 'yes', '374', '.am'),
-(13, 'AW', 'Aruba', 'Aruba', 'ABW', '533', 'no', '297', '.aw'),
-(14, 'AU', 'Australia', 'Commonwealth of Australia', 'AUS', '036', 'yes', '61', '.au'),
-(15, 'AT', 'Austria', 'Republic of Austria', 'AUT', '040', 'yes', '43', '.at'),
-(16, 'AZ', 'Azerbaijan', 'Republic of Azerbaijan', 'AZE', '031', 'yes', '994', '.az'),
-(17, 'BS', 'Bahamas', 'Commonwealth of The Bahamas', 'BHS', '044', 'yes', '1+242', '.bs'),
-(18, 'BH', 'Bahrain', 'Kingdom of Bahrain', 'BHR', '048', 'yes', '973', '.bh'),
-(19, 'BD', 'Bangladesh', 'People''s Republic of Bangladesh', 'BGD', '050', 'yes', '880', '.bd'),
-(20, 'BB', 'Barbados', 'Barbados', 'BRB', '052', 'yes', '1+246', '.bb'),
-(21, 'BY', 'Belarus', 'Republic of Belarus', 'BLR', '112', 'yes', '375', '.by'),
-(22, 'BE', 'Belgium', 'Kingdom of Belgium', 'BEL', '056', 'yes', '32', '.be'),
-(23, 'BZ', 'Belize', 'Belize', 'BLZ', '084', 'yes', '501', '.bz'),
-(24, 'BJ', 'Benin', 'Republic of Benin', 'BEN', '204', 'yes', '229', '.bj'),
-(25, 'BM', 'Bermuda', 'Bermuda Islands', 'BMU', '060', 'no', '1+441', '.bm'),
-(26, 'BT', 'Bhutan', 'Kingdom of Bhutan', 'BTN', '064', 'yes', '975', '.bt'),
-(27, 'BO', 'Bolivia', 'Plurinational State of Bolivia', 'BOL', '068', 'yes', '591', '.bo'),
-(28, 'BQ', 'Bonaire, Sint Eustatius and Saba', 'Bonaire, Sint Eustatius and Saba', 'BES', '535', 'no', '599', '.bq'),
-(29, 'BA', 'Bosnia and Herzegovina', 'Bosnia and Herzegovina', 'BIH', '070', 'yes', '387', '.ba'),
-(30, 'BW', 'Botswana', 'Republic of Botswana', 'BWA', '072', 'yes', '267', '.bw'),
-(31, 'BV', 'Bouvet Island', 'Bouvet Island', 'BVT', '074', 'no', 'NONE', '.bv'),
-(32, 'BR', 'Brazil', 'Federative Republic of Brazil', 'BRA', '076', 'yes', '55', '.br'),
-(33, 'IO', 'British Indian Ocean Territory', 'British Indian Ocean Territory', 'IOT', '086', 'no', '246', '.io'),
-(34, 'BN', 'Brunei', 'Brunei Darussalam', 'BRN', '096', 'yes', '673', '.bn'),
-(35, 'BG', 'Bulgaria', 'Republic of Bulgaria', 'BGR', '100', 'yes', '359', '.bg'),
-(36, 'BF', 'Burkina Faso', 'Burkina Faso', 'BFA', '854', 'yes', '226', '.bf'),
-(37, 'BI', 'Burundi', 'Republic of Burundi', 'BDI', '108', 'yes', '257', '.bi'),
-(38, 'KH', 'Cambodia', 'Kingdom of Cambodia', 'KHM', '116', 'yes', '855', '.kh'),
-(39, 'CM', 'Cameroon', 'Republic of Cameroon', 'CMR', '120', 'yes', '237', '.cm'),
-(40, 'CA', 'Canada', 'Canada', 'CAN', '124', 'yes', '1', '.ca'),
-(41, 'CV', 'Cape Verde', 'Republic of Cape Verde', 'CPV', '132', 'yes', '238', '.cv'),
-(42, 'KY', 'Cayman Islands', 'The Cayman Islands', 'CYM', '136', 'no', '1+345', '.ky'),
-(43, 'CF', 'Central African Republic', 'Central African Republic', 'CAF', '140', 'yes', '236', '.cf'),
-(44, 'TD', 'Chad', 'Republic of Chad', 'TCD', '148', 'yes', '235', '.td'),
-(45, 'CL', 'Chile', 'Republic of Chile', 'CHL', '152', 'yes', '56', '.cl'),
-(46, 'CN', 'China', 'People''s Republic of China', 'CHN', '156', 'yes', '86', '.cn'),
-(47, 'CX', 'Christmas Island', 'Christmas Island', 'CXR', '162', 'no', '61', '.cx'),
-(48, 'CC', 'Cocos (Keeling) Islands', 'Cocos (Keeling) Islands', 'CCK', '166', 'no', '61', '.cc'),
-(49, 'CO', 'Colombia', 'Republic of Colombia', 'COL', '170', 'yes', '57', '.co'),
-(50, 'KM', 'Comoros', 'Union of the Comoros', 'COM', '174', 'yes', '269', '.km'),
-(51, 'CG', 'Congo', 'Republic of the Congo', 'COG', '178', 'yes', '242', '.cg'),
-(52, 'CK', 'Cook Islands', 'Cook Islands', 'COK', '184', 'some', '682', '.ck'),
-(53, 'CR', 'Costa Rica', 'Republic of Costa Rica', 'CRI', '188', 'yes', '506', '.cr'),
-(54, 'CI', 'Cote d''ivoire (Ivory Coast)', 'Republic of C&ocirc;te D''Ivoire (Ivory Coast)', 'CIV', '384', 'yes', '225', '.ci'),
-(55, 'HR', 'Croatia', 'Republic of Croatia', 'HRV', '191', 'yes', '385', '.hr'),
-(56, 'CU', 'Cuba', 'Republic of Cuba', 'CUB', '192', 'yes', '53', '.cu'),
-(57, 'CW', 'Curacao', 'Cura&ccedil;ao', 'CUW', '531', 'no', '599', '.cw'),
-(58, 'CY', 'Cyprus', 'Republic of Cyprus', 'CYP', '196', 'yes', '357', '.cy'),
-(59, 'CZ', 'Czech Republic', 'Czech Republic', 'CZE', '203', 'yes', '420', '.cz'),
-(60, 'CD', 'Democratic Republic of the Congo', 'Democratic Republic of the Congo', 'COD', '180', 'yes', '243', '.cd'),
-(61, 'DK', 'Denmark', 'Kingdom of Denmark', 'DNK', '208', 'yes', '45', '.dk'),
-(62, 'DJ', 'Djibouti', 'Republic of Djibouti', 'DJI', '262', 'yes', '253', '.dj'),
-(63, 'DM', 'Dominica', 'Commonwealth of Dominica', 'DMA', '212', 'yes', '1+767', '.dm'),
-(64, 'DO', 'Dominican Republic', 'Dominican Republic', 'DOM', '214', 'yes', '1+809, 8', '.do'),
-(65, 'EC', 'Ecuador', 'Republic of Ecuador', 'ECU', '218', 'yes', '593', '.ec'),
-(66, 'EG', 'Egypt', 'Arab Republic of Egypt', 'EGY', '818', 'yes', '20', '.eg'),
-(67, 'SV', 'El Salvador', 'Republic of El Salvador', 'SLV', '222', 'yes', '503', '.sv'),
-(68, 'GQ', 'Equatorial Guinea', 'Republic of Equatorial Guinea', 'GNQ', '226', 'yes', '240', '.gq'),
-(69, 'ER', 'Eritrea', 'State of Eritrea', 'ERI', '232', 'yes', '291', '.er'),
-(70, 'EE', 'Estonia', 'Republic of Estonia', 'EST', '233', 'yes', '372', '.ee'),
-(71, 'ET', 'Ethiopia', 'Federal Democratic Republic of Ethiopia', 'ETH', '231', 'yes', '251', '.et'),
-(72, 'FK', 'Falkland Islands (Malvinas)', 'The Falkland Islands (Malvinas)', 'FLK', '238', 'no', '500', '.fk'),
-(73, 'FO', 'Faroe Islands', 'The Faroe Islands', 'FRO', '234', 'no', '298', '.fo'),
-(74, 'FJ', 'Fiji', 'Republic of Fiji', 'FJI', '242', 'yes', '679', '.fj'),
-(75, 'FI', 'Finland', 'Republic of Finland', 'FIN', '246', 'yes', '358', '.fi'),
-(76, 'FR', 'France', 'French Republic', 'FRA', '250', 'yes', '33', '.fr'),
-(77, 'GF', 'French Guiana', 'French Guiana', 'GUF', '254', 'no', '594', '.gf'),
-(78, 'PF', 'French Polynesia', 'French Polynesia', 'PYF', '258', 'no', '689', '.pf'),
-(79, 'TF', 'French Southern Territories', 'French Southern Territories', 'ATF', '260', 'no', NULL, '.tf'),
-(80, 'GA', 'Gabon', 'Gabonese Republic', 'GAB', '266', 'yes', '241', '.ga'),
-(81, 'GM', 'Gambia', 'Republic of The Gambia', 'GMB', '270', 'yes', '220', '.gm'),
-(82, 'GE', 'Georgia', 'Georgia', 'GEO', '268', 'yes', '995', '.ge'),
-(83, 'DE', 'Germany', 'Federal Republic of Germany', 'DEU', '276', 'yes', '49', '.de'),
-(84, 'GH', 'Ghana', 'Republic of Ghana', 'GHA', '288', 'yes', '233', '.gh'),
-(85, 'GI', 'Gibraltar', 'Gibraltar', 'GIB', '292', 'no', '350', '.gi'),
-(86, 'GR', 'Greece', 'Hellenic Republic', 'GRC', '300', 'yes', '30', '.gr'),
-(87, 'GL', 'Greenland', 'Greenland', 'GRL', '304', 'no', '299', '.gl'),
-(88, 'GD', 'Grenada', 'Grenada', 'GRD', '308', 'yes', '1+473', '.gd'),
-(89, 'GP', 'Guadaloupe', 'Guadeloupe', 'GLP', '312', 'no', '590', '.gp'),
-(90, 'GU', 'Guam', 'Guam', 'GUM', '316', 'no', '1+671', '.gu'),
-(91, 'GT', 'Guatemala', 'Republic of Guatemala', 'GTM', '320', 'yes', '502', '.gt'),
-(92, 'GG', 'Guernsey', 'Guernsey', 'GGY', '831', 'no', '44', '.gg'),
-(93, 'GN', 'Guinea', 'Republic of Guinea', 'GIN', '324', 'yes', '224', '.gn'),
-(94, 'GW', 'Guinea-Bissau', 'Republic of Guinea-Bissau', 'GNB', '624', 'yes', '245', '.gw'),
-(95, 'GY', 'Guyana', 'Co-operative Republic of Guyana', 'GUY', '328', 'yes', '592', '.gy'),
-(96, 'HT', 'Haiti', 'Republic of Haiti', 'HTI', '332', 'yes', '509', '.ht'),
-(97, 'HM', 'Heard Island and McDonald Islands', 'Heard Island and McDonald Islands', 'HMD', '334', 'no', 'NONE', '.hm'),
-(98, 'HN', 'Honduras', 'Republic of Honduras', 'HND', '340', 'yes', '504', '.hn'),
-(99, 'HK', 'Hong Kong', 'Hong Kong', 'HKG', '344', 'no', '852', '.hk'),
-(100, 'HU', 'Hungary', 'Hungary', 'HUN', '348', 'yes', '36', '.hu'),
-(101, 'IS', 'Iceland', 'Republic of Iceland', 'ISL', '352', 'yes', '354', '.is'),
-(102, 'IN', 'India', 'Republic of India', 'IND', '356', 'yes', '91', '.in'),
-(103, 'ID', 'Indonesia', 'Republic of Indonesia', 'IDN', '360', 'yes', '62', '.id'),
-(104, 'IR', 'Iran', 'Islamic Republic of Iran', 'IRN', '364', 'yes', '98', '.ir'),
-(105, 'IQ', 'Iraq', 'Republic of Iraq', 'IRQ', '368', 'yes', '964', '.iq'),
-(106, 'IE', 'Ireland', 'Ireland', 'IRL', '372', 'yes', '353', '.ie'),
-(107, 'IM', 'Isle of Man', 'Isle of Man', 'IMN', '833', 'no', '44', '.im'),
-(108, 'IL', 'Israel', 'State of Israel', 'ISR', '376', 'yes', '972', '.il'),
-(109, 'IT', 'Italy', 'Italian Republic', 'ITA', '380', 'yes', '39', '.jm'),
-(110, 'JM', 'Jamaica', 'Jamaica', 'JAM', '388', 'yes', '1+876', '.jm'),
-(111, 'JP', 'Japan', 'Japan', 'JPN', '392', 'yes', '81', '.jp'),
-(112, 'JE', 'Jersey', 'The Bailiwick of Jersey', 'JEY', '832', 'no', '44', '.je'),
-(113, 'JO', 'Jordan', 'Hashemite Kingdom of Jordan', 'JOR', '400', 'yes', '962', '.jo'),
-(114, 'KZ', 'Kazakhstan', 'Republic of Kazakhstan', 'KAZ', '398', 'yes', '7', '.kz'),
-(115, 'KE', 'Kenya', 'Republic of Kenya', 'KEN', '404', 'yes', '254', '.ke'),
-(116, 'KI', 'Kiribati', 'Republic of Kiribati', 'KIR', '296', 'yes', '686', '.ki'),
-(117, 'XK', 'Kosovo', 'Republic of Kosovo', '---', '---', 'some', '381', ''),
-(118, 'KW', 'Kuwait', 'State of Kuwait', 'KWT', '414', 'yes', '965', '.kw'),
-(119, 'KG', 'Kyrgyzstan', 'Kyrgyz Republic', 'KGZ', '417', 'yes', '996', '.kg'),
-(120, 'LA', 'Laos', 'Lao People''s Democratic Republic', 'LAO', '418', 'yes', '856', '.la'),
-(121, 'LV', 'Latvia', 'Republic of Latvia', 'LVA', '428', 'yes', '371', '.lv'),
-(122, 'LB', 'Lebanon', 'Republic of Lebanon', 'LBN', '422', 'yes', '961', '.lb'),
-(123, 'LS', 'Lesotho', 'Kingdom of Lesotho', 'LSO', '426', 'yes', '266', '.ls'),
-(124, 'LR', 'Liberia', 'Republic of Liberia', 'LBR', '430', 'yes', '231', '.lr'),
-(125, 'LY', 'Libya', 'Libya', 'LBY', '434', 'yes', '218', '.ly'),
-(126, 'LI', 'Liechtenstein', 'Principality of Liechtenstein', 'LIE', '438', 'yes', '423', '.li'),
-(127, 'LT', 'Lithuania', 'Republic of Lithuania', 'LTU', '440', 'yes', '370', '.lt'),
-(128, 'LU', 'Luxembourg', 'Grand Duchy of Luxembourg', 'LUX', '442', 'yes', '352', '.lu'),
-(129, 'MO', 'Macao', 'The Macao Special Administrative Region', 'MAC', '446', 'no', '853', '.mo'),
-(130, 'MK', 'Macedonia', 'The Former Yugoslav Republic of Macedonia', 'MKD', '807', 'yes', '389', '.mk'),
-(131, 'MG', 'Madagascar', 'Republic of Madagascar', 'MDG', '450', 'yes', '261', '.mg'),
-(132, 'MW', 'Malawi', 'Republic of Malawi', 'MWI', '454', 'yes', '265', '.mw'),
-(133, 'MY', 'Malaysia', 'Malaysia', 'MYS', '458', 'yes', '60', '.my'),
-(134, 'MV', 'Maldives', 'Republic of Maldives', 'MDV', '462', 'yes', '960', '.mv'),
-(135, 'ML', 'Mali', 'Republic of Mali', 'MLI', '466', 'yes', '223', '.ml'),
-(136, 'MT', 'Malta', 'Republic of Malta', 'MLT', '470', 'yes', '356', '.mt'),
-(137, 'MH', 'Marshall Islands', 'Republic of the Marshall Islands', 'MHL', '584', 'yes', '692', '.mh'),
-(138, 'MQ', 'Martinique', 'Martinique', 'MTQ', '474', 'no', '596', '.mq'),
-(139, 'MR', 'Mauritania', 'Islamic Republic of Mauritania', 'MRT', '478', 'yes', '222', '.mr'),
-(140, 'MU', 'Mauritius', 'Republic of Mauritius', 'MUS', '480', 'yes', '230', '.mu'),
-(141, 'YT', 'Mayotte', 'Mayotte', 'MYT', '175', 'no', '262', '.yt'),
-(142, 'MX', 'Mexico', 'United Mexican States', 'MEX', '484', 'yes', '52', '.mx'),
-(143, 'FM', 'Micronesia', 'Federated States of Micronesia', 'FSM', '583', 'yes', '691', '.fm'),
-(144, 'MD', 'Moldava', 'Republic of Moldova', 'MDA', '498', 'yes', '373', '.md'),
-(145, 'MC', 'Monaco', 'Principality of Monaco', 'MCO', '492', 'yes', '377', '.mc'),
-(146, 'MN', 'Mongolia', 'Mongolia', 'MNG', '496', 'yes', '976', '.mn'),
-(147, 'ME', 'Montenegro', 'Montenegro', 'MNE', '499', 'yes', '382', '.me'),
-(148, 'MS', 'Montserrat', 'Montserrat', 'MSR', '500', 'no', '1+664', '.ms'),
-(149, 'MA', 'Morocco', 'Kingdom of Morocco', 'MAR', '504', 'yes', '212', '.ma'),
-(150, 'MZ', 'Mozambique', 'Republic of Mozambique', 'MOZ', '508', 'yes', '258', '.mz'),
-(151, 'MM', 'Myanmar (Burma)', 'Republic of the Union of Myanmar', 'MMR', '104', 'yes', '95', '.mm'),
-(152, 'NA', 'Namibia', 'Republic of Namibia', 'NAM', '516', 'yes', '264', '.na'),
-(153, 'NR', 'Nauru', 'Republic of Nauru', 'NRU', '520', 'yes', '674', '.nr'),
-(154, 'NP', 'Nepal', 'Federal Democratic Republic of Nepal', 'NPL', '524', 'yes', '977', '.np'),
-(155, 'NL', 'Netherlands', 'Kingdom of the Netherlands', 'NLD', '528', 'yes', '31', '.nl'),
-(156, 'NC', 'New Caledonia', 'New Caledonia', 'NCL', '540', 'no', '687', '.nc'),
-(157, 'NZ', 'New Zealand', 'New Zealand', 'NZL', '554', 'yes', '64', '.nz'),
-(158, 'NI', 'Nicaragua', 'Republic of Nicaragua', 'NIC', '558', 'yes', '505', '.ni'),
-(159, 'NE', 'Niger', 'Republic of Niger', 'NER', '562', 'yes', '227', '.ne'),
-(160, 'NG', 'Nigeria', 'Federal Republic of Nigeria', 'NGA', '566', 'yes', '234', '.ng'),
-(161, 'NU', 'Niue', 'Niue', 'NIU', '570', 'some', '683', '.nu'),
-(162, 'NF', 'Norfolk Island', 'Norfolk Island', 'NFK', '574', 'no', '672', '.nf'),
-(163, 'KP', 'North Korea', 'Democratic People''s Republic of Korea', 'PRK', '408', 'yes', '850', '.kp'),
-(164, 'MP', 'Northern Mariana Islands', 'Northern Mariana Islands', 'MNP', '580', 'no', '1+670', '.mp'),
-(165, 'NO', 'Norway', 'Kingdom of Norway', 'NOR', '578', 'yes', '47', '.no'),
-(166, 'OM', 'Oman', 'Sultanate of Oman', 'OMN', '512', 'yes', '968', '.om'),
-(167, 'PK', 'Pakistan', 'Islamic Republic of Pakistan', 'PAK', '586', 'yes', '92', '.pk'),
-(168, 'PW', 'Palau', 'Republic of Palau', 'PLW', '585', 'yes', '680', '.pw'),
-(169, 'PS', 'Palestine', 'State of Palestine (or Occupied Palestinian Territory)', 'PSE', '275', 'some', '970', '.ps'),
-(170, 'PA', 'Panama', 'Republic of Panama', 'PAN', '591', 'yes', '507', '.pa'),
-(171, 'PG', 'Papua New Guinea', 'Independent State of Papua New Guinea', 'PNG', '598', 'yes', '675', '.pg'),
-(172, 'PY', 'Paraguay', 'Republic of Paraguay', 'PRY', '600', 'yes', '595', '.py'),
-(173, 'PE', 'Peru', 'Republic of Peru', 'PER', '604', 'yes', '51', '.pe'),
-(174, 'PH', 'Phillipines', 'Republic of the Philippines', 'PHL', '608', 'yes', '63', '.ph'),
-(175, 'PN', 'Pitcairn', 'Pitcairn', 'PCN', '612', 'no', 'NONE', '.pn'),
-(176, 'PL', 'Poland', 'Republic of Poland', 'POL', '616', 'yes', '48', '.pl'),
-(177, 'PT', 'Portugal', 'Portuguese Republic', 'PRT', '620', 'yes', '351', '.pt'),
-(178, 'PR', 'Puerto Rico', 'Commonwealth of Puerto Rico', 'PRI', '630', 'no', '1+939', '.pr'),
-(179, 'QA', 'Qatar', 'State of Qatar', 'QAT', '634', 'yes', '974', '.qa'),
-(180, 'RE', 'Reunion', 'R&eacute;union', 'REU', '638', 'no', '262', '.re'),
-(181, 'RO', 'Romania', 'Romania', 'ROU', '642', 'yes', '40', '.ro'),
-(182, 'RU', 'Russia', 'Russian Federation', 'RUS', '643', 'yes', '7', '.ru'),
-(183, 'RW', 'Rwanda', 'Republic of Rwanda', 'RWA', '646', 'yes', '250', '.rw'),
-(184, 'BL', 'Saint Barthelemy', 'Saint Barth&eacute;lemy', 'BLM', '652', 'no', '590', '.bl'),
-(185, 'SH', 'Saint Helena', 'Saint Helena, Ascension and Tristan da Cunha', 'SHN', '654', 'no', '290', '.sh'),
-(186, 'KN', 'Saint Kitts and Nevis', 'Federation of Saint Christopher and Nevis', 'KNA', '659', 'yes', '1+869', '.kn'),
-(187, 'LC', 'Saint Lucia', 'Saint Lucia', 'LCA', '662', 'yes', '1+758', '.lc'),
-(188, 'MF', 'Saint Martin', 'Saint Martin', 'MAF', '663', 'no', '590', '.mf'),
-(189, 'PM', 'Saint Pierre and Miquelon', 'Saint Pierre and Miquelon', 'SPM', '666', 'no', '508', '.pm'),
-(190, 'VC', 'Saint Vincent and the Grenadines', 'Saint Vincent and the Grenadines', 'VCT', '670', 'yes', '1+784', '.vc'),
-(191, 'WS', 'Samoa', 'Independent State of Samoa', 'WSM', '882', 'yes', '685', '.ws'),
-(192, 'SM', 'San Marino', 'Republic of San Marino', 'SMR', '674', 'yes', '378', '.sm'),
-(193, 'ST', 'Sao Tome and Principe', 'Democratic Republic of S&atilde;o Tom&eacute; and Pr&iacute;ncipe', 'STP', '678', 'yes', '239', '.st'),
-(194, 'SA', 'Saudi Arabia', 'Kingdom of Saudi Arabia', 'SAU', '682', 'yes', '966', '.sa'),
-(195, 'SN', 'Senegal', 'Republic of Senegal', 'SEN', '686', 'yes', '221', '.sn'),
-(196, 'RS', 'Serbia', 'Republic of Serbia', 'SRB', '688', 'yes', '381', '.rs'),
-(197, 'SC', 'Seychelles', 'Republic of Seychelles', 'SYC', '690', 'yes', '248', '.sc'),
-(198, 'SL', 'Sierra Leone', 'Republic of Sierra Leone', 'SLE', '694', 'yes', '232', '.sl'),
-(199, 'SG', 'Singapore', 'Republic of Singapore', 'SGP', '702', 'yes', '65', '.sg'),
-(200, 'SX', 'Sint Maarten', 'Sint Maarten', 'SXM', '534', 'no', '1+721', '.sx'),
-(201, 'SK', 'Slovakia', 'Slovak Republic', 'SVK', '703', 'yes', '421', '.sk'),
-(202, 'SI', 'Slovenia', 'Republic of Slovenia', 'SVN', '705', 'yes', '386', '.si'),
-(203, 'SB', 'Solomon Islands', 'Solomon Islands', 'SLB', '090', 'yes', '677', '.sb'),
-(204, 'SO', 'Somalia', 'Somali Republic', 'SOM', '706', 'yes', '252', '.so'),
-(205, 'ZA', 'South Africa', 'Republic of South Africa', 'ZAF', '710', 'yes', '27', '.za'),
-(206, 'GS', 'South Georgia and the South Sandwich Islands', 'South Georgia and the South Sandwich Islands', 'SGS', '239', 'no', '500', '.gs'),
-(207, 'KR', 'South Korea', 'Republic of Korea', 'KOR', '410', 'yes', '82', '.kr'),
-(208, 'SS', 'South Sudan', 'Republic of South Sudan', 'SSD', '728', 'yes', '211', '.ss'),
-(209, 'ES', 'Spain', 'Kingdom of Spain', 'ESP', '724', 'yes', '34', '.es'),
-(210, 'LK', 'Sri Lanka', 'Democratic Socialist Republic of Sri Lanka', 'LKA', '144', 'yes', '94', '.lk'),
-(211, 'SD', 'Sudan', 'Republic of the Sudan', 'SDN', '729', 'yes', '249', '.sd'),
-(212, 'SR', 'Suriname', 'Republic of Suriname', 'SUR', '740', 'yes', '597', '.sr'),
-(213, 'SJ', 'Svalbard and Jan Mayen', 'Svalbard and Jan Mayen', 'SJM', '744', 'no', '47', '.sj'),
-(214, 'SZ', 'Swaziland', 'Kingdom of Swaziland', 'SWZ', '748', 'yes', '268', '.sz'),
-(215, 'SE', 'Sweden', 'Kingdom of Sweden', 'SWE', '752', 'yes', '46', '.se'),
-(216, 'CH', 'Switzerland', 'Swiss Confederation', 'CHE', '756', 'yes', '41', '.ch'),
-(217, 'SY', 'Syria', 'Syrian Arab Republic', 'SYR', '760', 'yes', '963', '.sy'),
-(218, 'TW', 'Taiwan', 'Republic of China (Taiwan)', 'TWN', '158', 'former', '886', '.tw'),
-(219, 'TJ', 'Tajikistan', 'Republic of Tajikistan', 'TJK', '762', 'yes', '992', '.tj'),
-(220, 'TZ', 'Tanzania', 'United Republic of Tanzania', 'TZA', '834', 'yes', '255', '.tz'),
-(221, 'TH', 'Thailand', 'Kingdom of Thailand', 'THA', '764', 'yes', '66', '.th'),
-(222, 'TL', 'Timor-Leste (East Timor)', 'Democratic Republic of Timor-Leste', 'TLS', '626', 'yes', '670', '.tl'),
-(223, 'TG', 'Togo', 'Togolese Republic', 'TGO', '768', 'yes', '228', '.tg'),
-(224, 'TK', 'Tokelau', 'Tokelau', 'TKL', '772', 'no', '690', '.tk'),
-(225, 'TO', 'Tonga', 'Kingdom of Tonga', 'TON', '776', 'yes', '676', '.to'),
-(226, 'TT', 'Trinidad and Tobago', 'Republic of Trinidad and Tobago', 'TTO', '780', 'yes', '1+868', '.tt'),
-(227, 'TN', 'Tunisia', 'Republic of Tunisia', 'TUN', '788', 'yes', '216', '.tn'),
-(228, 'TR', 'Turkey', 'Republic of Turkey', 'TUR', '792', 'yes', '90', '.tr'),
-(229, 'TM', 'Turkmenistan', 'Turkmenistan', 'TKM', '795', 'yes', '993', '.tm'),
-(230, 'TC', 'Turks and Caicos Islands', 'Turks and Caicos Islands', 'TCA', '796', 'no', '1+649', '.tc'),
-(231, 'TV', 'Tuvalu', 'Tuvalu', 'TUV', '798', 'yes', '688', '.tv'),
-(232, 'UG', 'Uganda', 'Republic of Uganda', 'UGA', '800', 'yes', '256', '.ug'),
-(233, 'UA', 'Ukraine', 'Ukraine', 'UKR', '804', 'yes', '380', '.ua'),
-(234, 'AE', 'United Arab Emirates', 'United Arab Emirates', 'ARE', '784', 'yes', '971', '.ae'),
-(235, 'GB', 'United Kingdom', 'United Kingdom of Great Britain and Nothern Ireland', 'GBR', '826', 'yes', '44', '.uk'),
-(236, 'US', 'United States', 'United States of America', 'USA', '840', 'yes', '1', '.us'),
-(237, 'UM', 'United States Minor Outlying Islands', 'United States Minor Outlying Islands', 'UMI', '581', 'no', 'NONE', 'NONE'),
-(238, 'UY', 'Uruguay', 'Eastern Republic of Uruguay', 'URY', '858', 'yes', '598', '.uy'),
-(239, 'UZ', 'Uzbekistan', 'Republic of Uzbekistan', 'UZB', '860', 'yes', '998', '.uz'),
-(240, 'VU', 'Vanuatu', 'Republic of Vanuatu', 'VUT', '548', 'yes', '678', '.vu'),
-(241, 'VA', 'Vatican City', 'State of the Vatican City', 'VAT', '336', 'no', '39', '.va'),
-(242, 'VE', 'Venezuela', 'Bolivarian Republic of Venezuela', 'VEN', '862', 'yes', '58', '.ve'),
-(243, 'VN', 'Vietnam', 'Socialist Republic of Vietnam', 'VNM', '704', 'yes', '84', '.vn'),
-(244, 'VG', 'Virgin Islands, British', 'British Virgin Islands', 'VGB', '092', 'no', '1+284', '.vg'),
-(245, 'VI', 'Virgin Islands, US', 'Virgin Islands of the United States', 'VIR', '850', 'no', '1+340', '.vi'),
-(246, 'WF', 'Wallis and Futuna', 'Wallis and Futuna', 'WLF', '876', 'no', '681', '.wf'),
-(247, 'EH', 'Western Sahara', 'Western Sahara', 'ESH', '732', 'no', '212', '.eh'),
-(248, 'YE', 'Yemen', 'Republic of Yemen', 'YEM', '887', 'yes', '967', '.ye'),
-(249, 'ZM', 'Zambia', 'Republic of Zambia', 'ZMB', '894', 'yes', '260', '.zm'),
-(250, 'ZW', 'Zimbabwe', 'Republic of Zimbabwe', 'ZWE', '716', 'yes', '263', '.zw');
+insert  into `country`(`country_id`,`iso2`,`short_name`,`long_name`,`iso3`,`numcode`,`un_member`,`calling_code`,`cctld`) values 
+(1,'AF','Afghanistan','Islamic Republic of Afghanistan','AFG','004','yes','93','.af'),
+(2,'AX','Aland Islands','&Aring;land Islands','ALA','248','no','358','.ax'),
+(3,'AL','Albania','Republic of Albania','ALB','008','yes','355','.al'),
+(4,'DZ','Algeria','People\'s Democratic Republic of Algeria','DZA','012','yes','213','.dz'),
+(5,'AS','American Samoa','American Samoa','ASM','016','no','1+684','.as'),
+(6,'AD','Andorra','Principality of Andorra','AND','020','yes','376','.ad'),
+(7,'AO','Angola','Republic of Angola','AGO','024','yes','244','.ao'),
+(8,'AI','Anguilla','Anguilla','AIA','660','no','1+264','.ai'),
+(9,'AQ','Antarctica','Antarctica','ATA','010','no','672','.aq'),
+(10,'AG','Antigua and Barbuda','Antigua and Barbuda','ATG','028','yes','1+268','.ag'),
+(11,'AR','Argentina','Argentine Republic','ARG','032','yes','54','.ar'),
+(12,'AM','Armenia','Republic of Armenia','ARM','051','yes','374','.am'),
+(13,'AW','Aruba','Aruba','ABW','533','no','297','.aw'),
+(14,'AU','Australia','Commonwealth of Australia','AUS','036','yes','61','.au'),
+(15,'AT','Austria','Republic of Austria','AUT','040','yes','43','.at'),
+(16,'AZ','Azerbaijan','Republic of Azerbaijan','AZE','031','yes','994','.az'),
+(17,'BS','Bahamas','Commonwealth of The Bahamas','BHS','044','yes','1+242','.bs'),
+(18,'BH','Bahrain','Kingdom of Bahrain','BHR','048','yes','973','.bh'),
+(19,'BD','Bangladesh','People\'s Republic of Bangladesh','BGD','050','yes','880','.bd'),
+(20,'BB','Barbados','Barbados','BRB','052','yes','1+246','.bb'),
+(21,'BY','Belarus','Republic of Belarus','BLR','112','yes','375','.by'),
+(22,'BE','Belgium','Kingdom of Belgium','BEL','056','yes','32','.be'),
+(23,'BZ','Belize','Belize','BLZ','084','yes','501','.bz'),
+(24,'BJ','Benin','Republic of Benin','BEN','204','yes','229','.bj'),
+(25,'BM','Bermuda','Bermuda Islands','BMU','060','no','1+441','.bm'),
+(26,'BT','Bhutan','Kingdom of Bhutan','BTN','064','yes','975','.bt'),
+(27,'BO','Bolivia','Plurinational State of Bolivia','BOL','068','yes','591','.bo'),
+(28,'BQ','Bonaire, Sint Eustatius and Saba','Bonaire, Sint Eustatius and Saba','BES','535','no','599','.bq'),
+(29,'BA','Bosnia and Herzegovina','Bosnia and Herzegovina','BIH','070','yes','387','.ba'),
+(30,'BW','Botswana','Republic of Botswana','BWA','072','yes','267','.bw'),
+(31,'BV','Bouvet Island','Bouvet Island','BVT','074','no','NONE','.bv'),
+(32,'BR','Brazil','Federative Republic of Brazil','BRA','076','yes','55','.br'),
+(33,'IO','British Indian Ocean Territory','British Indian Ocean Territory','IOT','086','no','246','.io'),
+(34,'BN','Brunei','Brunei Darussalam','BRN','096','yes','673','.bn'),
+(35,'BG','Bulgaria','Republic of Bulgaria','BGR','100','yes','359','.bg'),
+(36,'BF','Burkina Faso','Burkina Faso','BFA','854','yes','226','.bf'),
+(37,'BI','Burundi','Republic of Burundi','BDI','108','yes','257','.bi'),
+(38,'KH','Cambodia','Kingdom of Cambodia','KHM','116','yes','855','.kh'),
+(39,'CM','Cameroon','Republic of Cameroon','CMR','120','yes','237','.cm'),
+(40,'CA','Canada','Canada','CAN','124','yes','1','.ca'),
+(41,'CV','Cape Verde','Republic of Cape Verde','CPV','132','yes','238','.cv'),
+(42,'KY','Cayman Islands','The Cayman Islands','CYM','136','no','1+345','.ky'),
+(43,'CF','Central African Republic','Central African Republic','CAF','140','yes','236','.cf'),
+(44,'TD','Chad','Republic of Chad','TCD','148','yes','235','.td'),
+(45,'CL','Chile','Republic of Chile','CHL','152','yes','56','.cl'),
+(46,'CN','China','People\'s Republic of China','CHN','156','yes','86','.cn'),
+(47,'CX','Christmas Island','Christmas Island','CXR','162','no','61','.cx'),
+(48,'CC','Cocos (Keeling) Islands','Cocos (Keeling) Islands','CCK','166','no','61','.cc'),
+(49,'CO','Colombia','Republic of Colombia','COL','170','yes','57','.co'),
+(50,'KM','Comoros','Union of the Comoros','COM','174','yes','269','.km'),
+(51,'CG','Congo','Republic of the Congo','COG','178','yes','242','.cg'),
+(52,'CK','Cook Islands','Cook Islands','COK','184','some','682','.ck'),
+(53,'CR','Costa Rica','Republic of Costa Rica','CRI','188','yes','506','.cr'),
+(54,'CI','Cote d\'ivoire (Ivory Coast)','Republic of C&ocirc;te D\'Ivoire (Ivory Coast)','CIV','384','yes','225','.ci'),
+(55,'HR','Croatia','Republic of Croatia','HRV','191','yes','385','.hr'),
+(56,'CU','Cuba','Republic of Cuba','CUB','192','yes','53','.cu'),
+(57,'CW','Curacao','Cura&ccedil;ao','CUW','531','no','599','.cw'),
+(58,'CY','Cyprus','Republic of Cyprus','CYP','196','yes','357','.cy'),
+(59,'CZ','Czech Republic','Czech Republic','CZE','203','yes','420','.cz'),
+(60,'CD','Democratic Republic of the Congo','Democratic Republic of the Congo','COD','180','yes','243','.cd'),
+(61,'DK','Denmark','Kingdom of Denmark','DNK','208','yes','45','.dk'),
+(62,'DJ','Djibouti','Republic of Djibouti','DJI','262','yes','253','.dj'),
+(63,'DM','Dominica','Commonwealth of Dominica','DMA','212','yes','1+767','.dm'),
+(64,'DO','Dominican Republic','Dominican Republic','DOM','214','yes','1+809, 8','.do'),
+(65,'EC','Ecuador','Republic of Ecuador','ECU','218','yes','593','.ec'),
+(66,'EG','Egypt','Arab Republic of Egypt','EGY','818','yes','20','.eg'),
+(67,'SV','El Salvador','Republic of El Salvador','SLV','222','yes','503','.sv'),
+(68,'GQ','Equatorial Guinea','Republic of Equatorial Guinea','GNQ','226','yes','240','.gq'),
+(69,'ER','Eritrea','State of Eritrea','ERI','232','yes','291','.er'),
+(70,'EE','Estonia','Republic of Estonia','EST','233','yes','372','.ee'),
+(71,'ET','Ethiopia','Federal Democratic Republic of Ethiopia','ETH','231','yes','251','.et'),
+(72,'FK','Falkland Islands (Malvinas)','The Falkland Islands (Malvinas)','FLK','238','no','500','.fk'),
+(73,'FO','Faroe Islands','The Faroe Islands','FRO','234','no','298','.fo'),
+(74,'FJ','Fiji','Republic of Fiji','FJI','242','yes','679','.fj'),
+(75,'FI','Finland','Republic of Finland','FIN','246','yes','358','.fi'),
+(76,'FR','France','French Republic','FRA','250','yes','33','.fr'),
+(77,'GF','French Guiana','French Guiana','GUF','254','no','594','.gf'),
+(78,'PF','French Polynesia','French Polynesia','PYF','258','no','689','.pf'),
+(79,'TF','French Southern Territories','French Southern Territories','ATF','260','no',NULL,'.tf'),
+(80,'GA','Gabon','Gabonese Republic','GAB','266','yes','241','.ga'),
+(81,'GM','Gambia','Republic of The Gambia','GMB','270','yes','220','.gm'),
+(82,'GE','Georgia','Georgia','GEO','268','yes','995','.ge'),
+(83,'DE','Germany','Federal Republic of Germany','DEU','276','yes','49','.de'),
+(84,'GH','Ghana','Republic of Ghana','GHA','288','yes','233','.gh'),
+(85,'GI','Gibraltar','Gibraltar','GIB','292','no','350','.gi'),
+(86,'GR','Greece','Hellenic Republic','GRC','300','yes','30','.gr'),
+(87,'GL','Greenland','Greenland','GRL','304','no','299','.gl'),
+(88,'GD','Grenada','Grenada','GRD','308','yes','1+473','.gd'),
+(89,'GP','Guadaloupe','Guadeloupe','GLP','312','no','590','.gp'),
+(90,'GU','Guam','Guam','GUM','316','no','1+671','.gu'),
+(91,'GT','Guatemala','Republic of Guatemala','GTM','320','yes','502','.gt'),
+(92,'GG','Guernsey','Guernsey','GGY','831','no','44','.gg'),
+(93,'GN','Guinea','Republic of Guinea','GIN','324','yes','224','.gn'),
+(94,'GW','Guinea-Bissau','Republic of Guinea-Bissau','GNB','624','yes','245','.gw'),
+(95,'GY','Guyana','Co-operative Republic of Guyana','GUY','328','yes','592','.gy'),
+(96,'HT','Haiti','Republic of Haiti','HTI','332','yes','509','.ht'),
+(97,'HM','Heard Island and McDonald Islands','Heard Island and McDonald Islands','HMD','334','no','NONE','.hm'),
+(98,'HN','Honduras','Republic of Honduras','HND','340','yes','504','.hn'),
+(99,'HK','Hong Kong','Hong Kong','HKG','344','no','852','.hk'),
+(100,'HU','Hungary','Hungary','HUN','348','yes','36','.hu'),
+(101,'IS','Iceland','Republic of Iceland','ISL','352','yes','354','.is'),
+(102,'IN','India','Republic of India','IND','356','yes','91','.in'),
+(103,'ID','Indonesia','Republic of Indonesia','IDN','360','yes','62','.id'),
+(104,'IR','Iran','Islamic Republic of Iran','IRN','364','yes','98','.ir'),
+(105,'IQ','Iraq','Republic of Iraq','IRQ','368','yes','964','.iq'),
+(106,'IE','Ireland','Ireland','IRL','372','yes','353','.ie'),
+(107,'IM','Isle of Man','Isle of Man','IMN','833','no','44','.im'),
+(108,'IL','Israel','State of Israel','ISR','376','yes','972','.il'),
+(109,'IT','Italy','Italian Republic','ITA','380','yes','39','.jm'),
+(110,'JM','Jamaica','Jamaica','JAM','388','yes','1+876','.jm'),
+(111,'JP','Japan','Japan','JPN','392','yes','81','.jp'),
+(112,'JE','Jersey','The Bailiwick of Jersey','JEY','832','no','44','.je'),
+(113,'JO','Jordan','Hashemite Kingdom of Jordan','JOR','400','yes','962','.jo'),
+(114,'KZ','Kazakhstan','Republic of Kazakhstan','KAZ','398','yes','7','.kz'),
+(115,'KE','Kenya','Republic of Kenya','KEN','404','yes','254','.ke'),
+(116,'KI','Kiribati','Republic of Kiribati','KIR','296','yes','686','.ki'),
+(117,'XK','Kosovo','Republic of Kosovo','---','---','some','381',''),
+(118,'KW','Kuwait','State of Kuwait','KWT','414','yes','965','.kw'),
+(119,'KG','Kyrgyzstan','Kyrgyz Republic','KGZ','417','yes','996','.kg'),
+(120,'LA','Laos','Lao People\'s Democratic Republic','LAO','418','yes','856','.la'),
+(121,'LV','Latvia','Republic of Latvia','LVA','428','yes','371','.lv'),
+(122,'LB','Lebanon','Republic of Lebanon','LBN','422','yes','961','.lb'),
+(123,'LS','Lesotho','Kingdom of Lesotho','LSO','426','yes','266','.ls'),
+(124,'LR','Liberia','Republic of Liberia','LBR','430','yes','231','.lr'),
+(125,'LY','Libya','Libya','LBY','434','yes','218','.ly'),
+(126,'LI','Liechtenstein','Principality of Liechtenstein','LIE','438','yes','423','.li'),
+(127,'LT','Lithuania','Republic of Lithuania','LTU','440','yes','370','.lt'),
+(128,'LU','Luxembourg','Grand Duchy of Luxembourg','LUX','442','yes','352','.lu'),
+(129,'MO','Macao','The Macao Special Administrative Region','MAC','446','no','853','.mo'),
+(130,'MK','Macedonia','The Former Yugoslav Republic of Macedonia','MKD','807','yes','389','.mk'),
+(131,'MG','Madagascar','Republic of Madagascar','MDG','450','yes','261','.mg'),
+(132,'MW','Malawi','Republic of Malawi','MWI','454','yes','265','.mw'),
+(133,'MY','Malaysia','Malaysia','MYS','458','yes','60','.my'),
+(134,'MV','Maldives','Republic of Maldives','MDV','462','yes','960','.mv'),
+(135,'ML','Mali','Republic of Mali','MLI','466','yes','223','.ml'),
+(136,'MT','Malta','Republic of Malta','MLT','470','yes','356','.mt'),
+(137,'MH','Marshall Islands','Republic of the Marshall Islands','MHL','584','yes','692','.mh'),
+(138,'MQ','Martinique','Martinique','MTQ','474','no','596','.mq'),
+(139,'MR','Mauritania','Islamic Republic of Mauritania','MRT','478','yes','222','.mr'),
+(140,'MU','Mauritius','Republic of Mauritius','MUS','480','yes','230','.mu'),
+(141,'YT','Mayotte','Mayotte','MYT','175','no','262','.yt'),
+(142,'MX','Mexico','United Mexican States','MEX','484','yes','52','.mx'),
+(143,'FM','Micronesia','Federated States of Micronesia','FSM','583','yes','691','.fm'),
+(144,'MD','Moldava','Republic of Moldova','MDA','498','yes','373','.md'),
+(145,'MC','Monaco','Principality of Monaco','MCO','492','yes','377','.mc'),
+(146,'MN','Mongolia','Mongolia','MNG','496','yes','976','.mn'),
+(147,'ME','Montenegro','Montenegro','MNE','499','yes','382','.me'),
+(148,'MS','Montserrat','Montserrat','MSR','500','no','1+664','.ms'),
+(149,'MA','Morocco','Kingdom of Morocco','MAR','504','yes','212','.ma'),
+(150,'MZ','Mozambique','Republic of Mozambique','MOZ','508','yes','258','.mz'),
+(151,'MM','Myanmar (Burma)','Republic of the Union of Myanmar','MMR','104','yes','95','.mm'),
+(152,'NA','Namibia','Republic of Namibia','NAM','516','yes','264','.na'),
+(153,'NR','Nauru','Republic of Nauru','NRU','520','yes','674','.nr'),
+(154,'NP','Nepal','Federal Democratic Republic of Nepal','NPL','524','yes','977','.np'),
+(155,'NL','Netherlands','Kingdom of the Netherlands','NLD','528','yes','31','.nl'),
+(156,'NC','New Caledonia','New Caledonia','NCL','540','no','687','.nc'),
+(157,'NZ','New Zealand','New Zealand','NZL','554','yes','64','.nz'),
+(158,'NI','Nicaragua','Republic of Nicaragua','NIC','558','yes','505','.ni'),
+(159,'NE','Niger','Republic of Niger','NER','562','yes','227','.ne'),
+(160,'NG','Nigeria','Federal Republic of Nigeria','NGA','566','yes','234','.ng'),
+(161,'NU','Niue','Niue','NIU','570','some','683','.nu'),
+(162,'NF','Norfolk Island','Norfolk Island','NFK','574','no','672','.nf'),
+(163,'KP','North Korea','Democratic People\'s Republic of Korea','PRK','408','yes','850','.kp'),
+(164,'MP','Northern Mariana Islands','Northern Mariana Islands','MNP','580','no','1+670','.mp'),
+(165,'NO','Norway','Kingdom of Norway','NOR','578','yes','47','.no'),
+(166,'OM','Oman','Sultanate of Oman','OMN','512','yes','968','.om'),
+(167,'PK','Pakistan','Islamic Republic of Pakistan','PAK','586','yes','92','.pk'),
+(168,'PW','Palau','Republic of Palau','PLW','585','yes','680','.pw'),
+(169,'PS','Palestine','State of Palestine (or Occupied Palestinian Territory)','PSE','275','some','970','.ps'),
+(170,'PA','Panama','Republic of Panama','PAN','591','yes','507','.pa'),
+(171,'PG','Papua New Guinea','Independent State of Papua New Guinea','PNG','598','yes','675','.pg'),
+(172,'PY','Paraguay','Republic of Paraguay','PRY','600','yes','595','.py'),
+(173,'PE','Peru','Republic of Peru','PER','604','yes','51','.pe'),
+(174,'PH','Phillipines','Republic of the Philippines','PHL','608','yes','63','.ph'),
+(175,'PN','Pitcairn','Pitcairn','PCN','612','no','NONE','.pn'),
+(176,'PL','Poland','Republic of Poland','POL','616','yes','48','.pl'),
+(177,'PT','Portugal','Portuguese Republic','PRT','620','yes','351','.pt'),
+(178,'PR','Puerto Rico','Commonwealth of Puerto Rico','PRI','630','no','1+939','.pr'),
+(179,'QA','Qatar','State of Qatar','QAT','634','yes','974','.qa'),
+(180,'RE','Reunion','R&eacute;union','REU','638','no','262','.re'),
+(181,'RO','Romania','Romania','ROU','642','yes','40','.ro'),
+(182,'RU','Russia','Russian Federation','RUS','643','yes','7','.ru'),
+(183,'RW','Rwanda','Republic of Rwanda','RWA','646','yes','250','.rw'),
+(184,'BL','Saint Barthelemy','Saint Barth&eacute;lemy','BLM','652','no','590','.bl'),
+(185,'SH','Saint Helena','Saint Helena, Ascension and Tristan da Cunha','SHN','654','no','290','.sh'),
+(186,'KN','Saint Kitts and Nevis','Federation of Saint Christopher and Nevis','KNA','659','yes','1+869','.kn'),
+(187,'LC','Saint Lucia','Saint Lucia','LCA','662','yes','1+758','.lc'),
+(188,'MF','Saint Martin','Saint Martin','MAF','663','no','590','.mf'),
+(189,'PM','Saint Pierre and Miquelon','Saint Pierre and Miquelon','SPM','666','no','508','.pm'),
+(190,'VC','Saint Vincent and the Grenadines','Saint Vincent and the Grenadines','VCT','670','yes','1+784','.vc'),
+(191,'WS','Samoa','Independent State of Samoa','WSM','882','yes','685','.ws'),
+(192,'SM','San Marino','Republic of San Marino','SMR','674','yes','378','.sm'),
+(193,'ST','Sao Tome and Principe','Democratic Republic of S&atilde;o Tom&eacute; and Pr&iacute;ncipe','STP','678','yes','239','.st'),
+(194,'SA','Saudi Arabia','Kingdom of Saudi Arabia','SAU','682','yes','966','.sa'),
+(195,'SN','Senegal','Republic of Senegal','SEN','686','yes','221','.sn'),
+(196,'RS','Serbia','Republic of Serbia','SRB','688','yes','381','.rs'),
+(197,'SC','Seychelles','Republic of Seychelles','SYC','690','yes','248','.sc'),
+(198,'SL','Sierra Leone','Republic of Sierra Leone','SLE','694','yes','232','.sl'),
+(199,'SG','Singapore','Republic of Singapore','SGP','702','yes','65','.sg'),
+(200,'SX','Sint Maarten','Sint Maarten','SXM','534','no','1+721','.sx'),
+(201,'SK','Slovakia','Slovak Republic','SVK','703','yes','421','.sk'),
+(202,'SI','Slovenia','Republic of Slovenia','SVN','705','yes','386','.si'),
+(203,'SB','Solomon Islands','Solomon Islands','SLB','090','yes','677','.sb'),
+(204,'SO','Somalia','Somali Republic','SOM','706','yes','252','.so'),
+(205,'ZA','South Africa','Republic of South Africa','ZAF','710','yes','27','.za'),
+(206,'GS','South Georgia and the South Sandwich Islands','South Georgia and the South Sandwich Islands','SGS','239','no','500','.gs'),
+(207,'KR','South Korea','Republic of Korea','KOR','410','yes','82','.kr'),
+(208,'SS','South Sudan','Republic of South Sudan','SSD','728','yes','211','.ss'),
+(209,'ES','Spain','Kingdom of Spain','ESP','724','yes','34','.es'),
+(210,'LK','Sri Lanka','Democratic Socialist Republic of Sri Lanka','LKA','144','yes','94','.lk'),
+(211,'SD','Sudan','Republic of the Sudan','SDN','729','yes','249','.sd'),
+(212,'SR','Suriname','Republic of Suriname','SUR','740','yes','597','.sr'),
+(213,'SJ','Svalbard and Jan Mayen','Svalbard and Jan Mayen','SJM','744','no','47','.sj'),
+(214,'SZ','Swaziland','Kingdom of Swaziland','SWZ','748','yes','268','.sz'),
+(215,'SE','Sweden','Kingdom of Sweden','SWE','752','yes','46','.se'),
+(216,'CH','Switzerland','Swiss Confederation','CHE','756','yes','41','.ch'),
+(217,'SY','Syria','Syrian Arab Republic','SYR','760','yes','963','.sy'),
+(218,'TW','Taiwan','Republic of China (Taiwan)','TWN','158','former','886','.tw'),
+(219,'TJ','Tajikistan','Republic of Tajikistan','TJK','762','yes','992','.tj'),
+(220,'TZ','Tanzania','United Republic of Tanzania','TZA','834','yes','255','.tz'),
+(221,'TH','Thailand','Kingdom of Thailand','THA','764','yes','66','.th'),
+(222,'TL','Timor-Leste (East Timor)','Democratic Republic of Timor-Leste','TLS','626','yes','670','.tl'),
+(223,'TG','Togo','Togolese Republic','TGO','768','yes','228','.tg'),
+(224,'TK','Tokelau','Tokelau','TKL','772','no','690','.tk'),
+(225,'TO','Tonga','Kingdom of Tonga','TON','776','yes','676','.to'),
+(226,'TT','Trinidad and Tobago','Republic of Trinidad and Tobago','TTO','780','yes','1+868','.tt'),
+(227,'TN','Tunisia','Republic of Tunisia','TUN','788','yes','216','.tn'),
+(228,'TR','Turkey','Republic of Turkey','TUR','792','yes','90','.tr'),
+(229,'TM','Turkmenistan','Turkmenistan','TKM','795','yes','993','.tm'),
+(230,'TC','Turks and Caicos Islands','Turks and Caicos Islands','TCA','796','no','1+649','.tc'),
+(231,'TV','Tuvalu','Tuvalu','TUV','798','yes','688','.tv'),
+(232,'UG','Uganda','Republic of Uganda','UGA','800','yes','256','.ug'),
+(233,'UA','Ukraine','Ukraine','UKR','804','yes','380','.ua'),
+(234,'AE','United Arab Emirates','United Arab Emirates','ARE','784','yes','971','.ae'),
+(235,'GB','United Kingdom','United Kingdom of Great Britain and Nothern Ireland','GBR','826','yes','44','.uk'),
+(236,'US','United States','United States of America','USA','840','yes','1','.us'),
+(237,'UM','United States Minor Outlying Islands','United States Minor Outlying Islands','UMI','581','no','NONE','NONE'),
+(238,'UY','Uruguay','Eastern Republic of Uruguay','URY','858','yes','598','.uy'),
+(239,'UZ','Uzbekistan','Republic of Uzbekistan','UZB','860','yes','998','.uz'),
+(240,'VU','Vanuatu','Republic of Vanuatu','VUT','548','yes','678','.vu'),
+(241,'VA','Vatican City','State of the Vatican City','VAT','336','no','39','.va'),
+(242,'VE','Venezuela','Bolivarian Republic of Venezuela','VEN','862','yes','58','.ve'),
+(243,'VN','Vietnam','Socialist Republic of Vietnam','VNM','704','yes','84','.vn'),
+(244,'VG','Virgin Islands, British','British Virgin Islands','VGB','092','no','1+284','.vg'),
+(245,'VI','Virgin Islands, US','Virgin Islands of the United States','VIR','850','no','1+340','.vi'),
+(246,'WF','Wallis and Futuna','Wallis and Futuna','WLF','876','no','681','.wf'),
+(247,'EH','Western Sahara','Western Sahara','ESH','732','no','212','.eh'),
+(248,'YE','Yemen','Republic of Yemen','YEM','887','yes','967','.ye'),
+(249,'ZM','Zambia','Republic of Zambia','ZMB','894','yes','260','.zm'),
+(250,'ZW','Zimbabwe','Republic of Zimbabwe','ZWE','716','yes','263','.zw');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `cron01invitation`
---
+/*Table structure for table `cron01invitation` */
 
 DROP TABLE IF EXISTS `cron01invitation`;
-CREATE TABLE IF NOT EXISTS `cron01invitation` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `cron01invitation` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ParamCron` int(1) NOT NULL DEFAULT '1' COMMENT '1=All Customer, 2 = Custome Customer',
   `FlagSendEmail` int(1) NOT NULL DEFAULT '0' COMMENT '0 = Not Yet Send, 1= Already Send',
   `ScheduleDate` date DEFAULT NULL,
@@ -339,30 +326,30 @@ CREATE TABLE IF NOT EXISTS `cron01invitation` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `cron01invitation` */
 
---
--- Table structure for table `emailnotvalid`
---
+/*Table structure for table `emailnotvalid` */
 
 DROP TABLE IF EXISTS `emailnotvalid`;
-CREATE TABLE IF NOT EXISTS `emailnotvalid` (
-`ID` int(11) NOT NULL,
-  `InternalEmail` varchar(100) DEFAULT NULL
+
+CREATE TABLE `emailnotvalid` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `InternalEmail` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `emailnotvalid` */
 
---
--- Table structure for table `his01sendmailinvitation`
---
+/*Table structure for table `his01sendmailinvitation` */
 
 DROP TABLE IF EXISTS `his01sendmailinvitation`;
-CREATE TABLE IF NOT EXISTS `his01sendmailinvitation` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `his01sendmailinvitation` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ParamSender` varchar(10) DEFAULT NULL,
   `ScheduleDate` date DEFAULT NULL,
   `FromEmail` varchar(50) DEFAULT NULL,
@@ -380,18 +367,18 @@ CREATE TABLE IF NOT EXISTS `his01sendmailinvitation` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `his01sendmailinvitation` */
 
---
--- Table structure for table `m01personal`
---
+/*Table structure for table `m01personal` */
 
 DROP TABLE IF EXISTS `m01personal`;
-CREATE TABLE IF NOT EXISTS `m01personal` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m01personal` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) DEFAULT NULL,
   `IDEmployeeParent` varchar(10) DEFAULT NULL,
   `IDEmployeePTL` varchar(15) DEFAULT NULL COMMENT 'IDEmployee Project Team Leader',
@@ -428,14 +415,14 @@ CREATE TABLE IF NOT EXISTS `m01personal` (
   `EditedDate` date DEFAULT NULL,
   `EditedIP` varchar(20) DEFAULT NULL,
   `F1` int(11) DEFAULT NULL,
-  `F1s1` int(1) NOT NULL DEFAULT '0',
-  `F1s2` int(1) NOT NULL DEFAULT '0',
-  `F1s3` int(1) NOT NULL DEFAULT '0',
-  `F1s4` int(1) NOT NULL DEFAULT '0',
-  `F1s5` int(1) NOT NULL DEFAULT '0',
+  `F1s1` int(1) DEFAULT '0',
+  `F1s2` int(1) DEFAULT '0',
+  `F1s3` int(1) DEFAULT '0',
+  `F1s4` int(1) DEFAULT '0',
+  `F1s5` int(1) DEFAULT '0',
   `F2` int(11) DEFAULT NULL,
   `F2f2` int(1) DEFAULT '0',
-  `F2f1` int(1) NOT NULL DEFAULT '0',
+  `F2f1` int(1) DEFAULT '0',
   `F3` int(11) DEFAULT NULL,
   `F4` int(11) DEFAULT NULL,
   `F5` int(11) DEFAULT NULL,
@@ -461,26 +448,710 @@ CREATE TABLE IF NOT EXISTS `m01personal` (
   `DeletedBy` varchar(20) DEFAULT NULL,
   `DeletedIP` varchar(20) DEFAULT NULL,
   `DeletedDate` datetime DEFAULT NULL,
-  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=701 DEFAULT CHARSET=utf8 COMMENT='versi baru m01 personal';
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1389 DEFAULT CHARSET=utf8 COMMENT='versi baru m01 personal';
 
---
--- Dumping data for table `m01personal`
---
+/*Data for the table `m01personal` */
 
-INSERT INTO `m01personal` (`ID`, `IDEmployee`, `IDEmployeeParent`, `IDEmployeePTL`, `FullName`, `NickName`, `BirthPlace`, `BirthDate`, `Gender`, `BloodType`, `Citizenship`, `Height`, `Weight`, `Religion`, `MaritalStatus`, `MarriageCertificate`, `CoupleName`, `CoupleKTP`, `FamilyMemberCertificate`, `NoKTP`, `NoAKDHK`, `NoNPWP`, `NoJamsostek`, `NoKPJ`, `BankAccount`, `LiveAddress`, `KTPAddress`, `NoHP`, `LiveAddressNoTelp`, `KTPAddressNoTelp`, `NumberChildren`, `InternalEmail`, `ExternalEmail`, `EditedBy`, `EditedDate`, `EditedIP`, `F1`, `F1s1`, `F1s2`, `F1s3`, `F1s4`, `F1s5`, `F2`, `F2f2`, `F2f1`, `F3`, `F4`, `F5`, `F6`, `F7`, `NoBPJSEmp`, `NoBPJSHlt`, `NoFamCert`, `LiveProvince`, `LiveCity`, `LiveSubdistrict`, `LiveVillage`, `LiveRW`, `LiveRT`, `KTPProvince`, `KTPCity`, `KTPSubdistrict`, `KTPVillage`, `KTPRT`, `KTPRW`, `LivePostalCode`, `KTPPostalCode`, `DeletedBy`, `DeletedIP`, `DeletedDate`, `DeleteFlag`) VALUES
-(397, '0506021112', NULL, NULL, 'AHMAD RIADI', 'RIADI', 'TANGERANG', '1989-12-16', 'M', 'A', 'INDONESIA', 168, 72, 'ISLAM', 'SINGLE', '0', '-', 'N', 'yes', '3603181612890002', '027800806JKU 43', '98.366.931.8-451.000', '-', '12043352421', '5180130440111', 'Mess PT. Trias Indra Saputra, Sentra Industri Terpadu Pantai Indah Kapuk, Jl. Dokter Kamal Muara VII Blok A No.6 Jakarta Utara 14470', 'Jl. Raya Serang KM 15, Kp. Talaga Rt/Rw. 04/01, Cikupa Tangerang Banten 15710', '089601286802', '&#039;', '&#039;', 0, 'riadi@tis.loc', 'testerdev72@gmail.com,info.riadii@gmail.com', '0506021112', '2015-06-18', '192.168.0.61', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '-', '-', '3603182805080015', 'DKI Jakarta', 'KOTA JAKARTA UTARA', 'PENJARINGAN', 'KAMAL MUARA', '', '', 'Banten', 'KABUPATEN TANGGERANG', 'CIKUPA', 'TALAGA', '04', '01', '14470', '15710', NULL, NULL, NULL, 'A'),
-(700, '0001141219', '0506021112', 'undefined', 'ADMINISTRATOR', 'ADMIN', '', '1970-01-01', 'M', 'A', '', 0, 0, 'ISLAM', 'undefined', '0', '0', '0', '0', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '0001141219', '2019-12-14', '::1', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '-', '-', '-', 'null', 'null', 'null', 'null', '', '', 'null', 'null', 'null', 'null', '', '', '', '', NULL, NULL, NULL, 'A');
+insert  into `m01personal`(`ID`,`IDEmployee`,`IDEmployeeParent`,`IDEmployeePTL`,`FullName`,`NickName`,`BirthPlace`,`BirthDate`,`Gender`,`BloodType`,`Citizenship`,`Height`,`Weight`,`Religion`,`MaritalStatus`,`MarriageCertificate`,`CoupleName`,`CoupleKTP`,`FamilyMemberCertificate`,`NoKTP`,`NoAKDHK`,`NoNPWP`,`NoJamsostek`,`NoKPJ`,`BankAccount`,`LiveAddress`,`KTPAddress`,`NoHP`,`LiveAddressNoTelp`,`KTPAddressNoTelp`,`NumberChildren`,`InternalEmail`,`ExternalEmail`,`EditedBy`,`EditedDate`,`EditedIP`,`F1`,`F1s1`,`F1s2`,`F1s3`,`F1s4`,`F1s5`,`F2`,`F2f2`,`F2f1`,`F3`,`F4`,`F5`,`F6`,`F7`,`NoBPJSEmp`,`NoBPJSHlt`,`NoFamCert`,`LiveProvince`,`LiveCity`,`LiveSubdistrict`,`LiveVillage`,`LiveRW`,`LiveRT`,`KTPProvince`,`KTPCity`,`KTPSubdistrict`,`KTPVillage`,`KTPRT`,`KTPRW`,`LivePostalCode`,`KTPPostalCode`,`DeletedBy`,`DeletedIP`,`DeletedDate`,`DeleteFlag`) values 
+(397,'0506021112',NULL,NULL,'AHMAD RIADI','RIADI','TANGERANG','1989-12-16','M','A','INDONESIA',168,72,'ISLAM','SINGLE','0','-','N','yes','3603181612890002','027800806JKU 43','98.366.931.8-451.000','-','12043352421','5180130440111','Mess PT. Trias Indra Saputra, Sentra Industri Terpadu Pantai Indah Kapuk, Jl. Dokter Kamal Muara VII Blok A No.6 Jakarta Utara 14470','Jl. Raya Serang KM 15, Kp. Talaga Rt/Rw. 04/01, Cikupa Tangerang Banten 15710','089601286802','&#039;','&#039;',0,'riadi@tis.loc','testerdev72@gmail.com,info.riadii@gmail.com','0506021112','2015-06-18','192.168.0.61',1,1,1,1,1,1,1,1,1,1,1,1,1,1,'-','-','3603182805080015','DKI Jakarta','KOTA JAKARTA UTARA','PENJARINGAN','KAMAL MUARA','','','Banten','KABUPATEN TANGGERANG','CIKUPA','TALAGA','04','01','14470','15710',NULL,NULL,NULL,'A'),
+(700,'0001141219','0506021112','undefined','ADMINISTRATOR','ADMIN','','1970-01-01','M','A','',0,0,'ISLAM','undefined','0','0','0','0','','','','','','','','','','','',0,'','','0001141219','2019-12-14','::1',1,1,1,1,1,1,1,1,1,1,1,1,1,1,'-','-','-','null','null','null','null','','','null','null','null','null','','','','',NULL,NULL,NULL,'A'),
+(701,'170230010','','','SARIMIN','','','1963-07-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716608','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(702,'190230011','','','SUPONO','','','1970-03-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570726310','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(703,'121320509','','','TRIANA YUNIARTA','','','2019-06-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570097746','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(704,'170320003','','','ARFAH','','','1972-02-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570108756','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(705,'150420005','','','SAHAD','','','1966-10-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5860270830','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(706,'170420053','','','TOHARI EKHSAN','','','1975-10-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570104904','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(707,'180420007','','','EKA NURMANSYAH','','','1969-12-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570097797','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(708,'110420004','','','MARJUKI','','','1985-03-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716152','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(709,'120420090','','','SITI SOPINGAH','','','1976-06-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570097916','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(710,'160520012','','','HALIMI','','','1969-05-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570097819','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(711,'180520013','','','WIJI ASTUTI','','','1982-02-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8840403174','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(712,'110620014','','','WAWAN SETIAWAN','','','1972-04-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2700319591','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(713,'110620015','','','YUDI SAMANTA','','','1982-11-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5940261963','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(714,'110620016','','','CHARLA','','','1979-03-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660095943','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(715,'160620017','','','AGUS MARZUKI','','','1975-08-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570126606','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(716,'160720019','','','AAN MARDIANA','','','1974-03-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3131122631','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(717,'110820021','','','PUPUNG RAMADANI','','','1987-04-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570485592','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(718,'140860015','','','GITA BAGASKARA','','','1986-10-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716683','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(719,'150820019','','','RUDI FEBRUARI','','','1973-02-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570190312','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(720,'160820058','','','ZULIANA SETEPANI','','','1989-09-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570289092','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(721,'170860017','','','SURAHMAN  G','','','1968-03-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570715041','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(722,'101280018','','','MARYANI BRG','','','1978-11-11','','','',NULL,NULL,'','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(723,'110860020','','','SANWANI','','','1984-05-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570358787','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(724,'120920034','','','RASMAITA SAMOSIR','','','1979-09-01','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','6470194501','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(725,'130920035','','','UMAR BISRI CUTTING','','','1983-12-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570169135','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(726,'140920037','','','JEFFREY LIM','','','1961-11-10','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','2300595041','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(727,'140920004','','','SETIAKAWATI','','','1980-10-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570650488','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(728,'170960025','','','IRMAN','','','1982-09-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716276','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(729,'100960028','','','SOLIKAN ARIF','','','1977-12-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716691','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(730,'101280006','','','SRI SUHARTI','','','1972-08-26','','','',NULL,NULL,'','','','','','','','','','','','7570353921','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(731,'111020042','','','ANDRI NURDIANSYAH','','','1979-04-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570289530','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(732,'111020044','','','SUANDI','','','1987-09-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5720395870','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(733,'111060034','','','CHUMAESIYAH QC BLOK F','','','1973-08-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570715032','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(734,'121030007','','','RIA SUMARNI','','','1985-09-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5500246679','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(735,'131060038','','','SAMSUL RIZAL','','','1985-10-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570724775','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(736,'111120048','','','INDRATY','','','1972-09-14','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','1681191360','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(737,'111010007','','','ROYANI','','','1979-05-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570714923','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(738,'111120055','','','MEYLIGA','','','1985-05-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570715059','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(739,'121120060','','','KUSRANI','','','1977-01-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570391784','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(740,'131160068','','','SITI MARIYAH','','','1968-04-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570404339','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(741,'131160069','','','ABDULLAH','','','1981-05-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570383951','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(742,'101280001','','','NAWIAH','','','1983-06-05','','','',NULL,NULL,'','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(743,'111220101','','','RAWATI DAELY','','','1977-01-23','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','1087635279','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(744,'141260167','','','SITI TARWIYATI','','','1984-09-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570328144','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(745,'141260210','','','UMI KULSUM','','','1991-10-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570411165','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(746,'141220112','','','ERIYANCE','','','1969-02-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6890848255','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(747,'151260189','','','SRI WAHYUNI','','','1989-05-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660090518','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(748,'101280026','','','ENDANG FALUFI','','','1974-05-16','','','',NULL,NULL,'','','','','','','','','','','','7570483891','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(749,'191260268','','','FITRI YULIANI (QC CUT)','','','1985-07-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660091026','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(750,'120901175','','','YULIE CHRISTIE HALIM','','','1989-06-05','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','5390119731','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(751,'191260326','','','JINEM','','','1970-07-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570489695','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(752,'111260366','','','YADI','','','1995-03-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570491410','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(753,'111260382','','','NURHALIPAH','','','1977-04-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570489784','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(754,'111260402','','','PUJI ARYANI (CUT)','','','1986-05-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5490730747','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(755,'111380044','','','RENCING','','','1970-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660098128','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(756,'111360456','','','RISPI YADI','','','1990-07-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570349346','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(757,'141260209','','','RATIKA','','','1980-09-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570385784','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(758,'141260185','','','DEDE SUMARNI','','','1968-06-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570485797','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(759,'121380057','','','MUSLIHAH BT.M. CHALIRI','','','1982-02-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470339584','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(760,'121360495','','','AKHMAD SHALAHUDDIN','','','1983-04-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660093118','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(761,'121320149','','','SHELLA NOVIANTY SOESANTO','','','1991-06-20','','','',NULL,NULL,'BUDHA','','','','','','','','','','','7570476593','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(762,'121320163','','','KARTINI SIBORO','','','1975-05-01','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','8010026076','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(763,'121320171','','','SUSILAWATI','','','1984-04-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4070267727','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(764,'121320175','','','IRVAN ANDRIYANTO','','','1986-03-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310485855','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(765,'121360689','','','IYIN/DILAH','','','1967-06-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570523532','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(766,'121360693','','','SOPIYAH','','','1974-12-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660094246','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(767,'121380117','','','IRWAN SUWANDI','','','1982-07-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660098225','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(768,'121380107','','','HERNIAH','','','1982-12-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4081341561','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(769,'160560008','','','SUKARTA','','','1980-07-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716187','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(770,'121360738','','','MOCHAMAD NOVA LIYADI','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470397355','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(771,'121320189','','','ABDUL MARWAN','','','1985-10-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660095412','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(772,'121380127','','','MISDAWATI BR SIMAMORA','','','1980-10-11','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','7570516994','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(773,'121360789','','','SAFITRIANI','','','1989-05-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4240285199','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(774,'121360788','','','SUWARTI','','','1981-05-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660094289','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(775,'111020043','','','ENDIN','','','1982-11-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570719437','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(776,'121320228','','','MARTINUS WING WISNU JATMIKO','','','1977-08-20','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','8105245901','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(777,'121360816','','','NURLELA','','','1971-08-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570157480','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(778,'111260397','','','MARYANI','','','1994-09-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570495407','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(779,'160760012','','','JUWARI','','','1966-09-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716594','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(780,'121360838','','','SITI KOMARIAH','','','1995-03-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570544335','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(781,'121360847','','','ADI SURETNO','','','1977-09-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470398734','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(782,'121360871','','','ROHAYATI','','','1995-10-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570068835','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(783,'121360876','','','VERAWATI','','','1984-04-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470253817','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(784,'121320242','','','SUKAMTO','','','1982-11-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310594417','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(785,'121360877','','','KARTI','','','1975-07-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570516544','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(786,'121360791','','','NABILAH SISWAYUHNY','','','1995-06-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570543983','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(787,'121360924','','','ROFIQOH','','','1970-04-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570514134','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(788,'121360942','','','RIA AMBAR WATI','','','1989-12-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570543517','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(789,'121320251','','','DANI PUJA PERMANA','','','1979-06-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(790,'121360965','','','HERLINA ','','','2015-01-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660103296','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(791,'121360985','','','NOVI','','','1984-11-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570517605','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(792,'121361040','','','SISKA SULANDARI (CUT)','','','1992-08-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570516439','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(793,'121360996','','','JEMAH','','','1970-05-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570506174','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(794,'121360993','','','PIPIT SETIANTO','','','1995-04-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570520266','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(795,'121361037','','','TURINI','','','1985-07-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7150390316','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(796,'121320269','','','BENI SETIAWAN','','','1979-03-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570104670','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(797,'121361062','','','MISGA ENTONG','','','1989-03-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390420180','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(798,'121361061','','','SAYUTI','','','1981-04-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570515360','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(799,'121361072','','','NITA RIANI','','','1990-05-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570532949','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(800,'121361086','','','ENY RIVAWATI','','','1972-10-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660175025','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(801,'121320277','','','ARIENTA JUNIYANTI','','','1994-06-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3992255363','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(802,'121361089','','','SANIYAH','','','1979-10-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570991226','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(803,'121361093','','','NANI NURAENI','','','1973-06-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','380147025','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(804,'121361118','','','SIVIA WIJIYANTI','','','1994-02-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570528534','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(805,'121361123','','','IDA PARIDA','','','1978-07-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570529344','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(806,'121361124','','','SUGIARTI','','','1968-09-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570999308','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(807,'121361126','','','KOKOM KOMARIAH','','','1967-07-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3992274252','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(808,'121361135','','','MIFTAHUL ARIF','','','1995-10-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570532710','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(809,'121361140','','','MAYA SARI','','','1984-12-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390419785','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(810,'121361141','','','KASWATI BT IRSAD','','','1989-05-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660085492','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(811,'121361142','','','SRI YANTI','','','1974-01-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570527040','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(812,'121361143','','','EVI LIBRAWATI','','','1972-10-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570532710','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(813,'121361144','','','YULIANI HAREFA','','','1970-07-15','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','4661199827','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(814,'121361162','','','NURANI','','','1988-04-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570526124','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(815,'121361164','','','DWI ADMINI','','','1969-08-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390506394','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(816,'121361165','','','DINI KESUMAWATI','','','1985-02-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570526582','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(817,'121320280','','','KARTIKA NINGSIH','','','1984-04-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3731151090','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(818,'121361186','','','ACHMAD DJAINUDIN','','','1967-11-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4770128043','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(819,'121320298','','','MARJAN','','','1963-05-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8840605931','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(820,'161260232','','','EMA MUTIANA','','','1976-08-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570462291','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(821,'121320301','','','LESMARIDA PASARIBU','','','1975-03-09','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','5310613071','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(822,'121361250','','','PARIYATI','','','1975-12-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996414','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(823,'121320306','','','DEWI NANIK CAHYATI','','','1989-06-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1084461451','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(824,'121361251','','','MINARSIH','','','1975-12-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996333','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(825,'121361252','','','LINA','','','1972-02-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996295','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(826,'121361265','','','MANISEM','','','1973-08-20','','','',NULL,NULL,'','','','','','','','','','','','7570996261','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(827,'121320312','','','ANITA KAROLINA NAINGGOLAN','','','1989-09-11','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','1080028799','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(828,'121361271','','','IIN SURYANAH','','','1980-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996392','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(829,'121361273','','','MUJIYAH','','','1975-08-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996422','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(830,'121320315','','','LIUS SANDY','','','1987-09-19','','','',NULL,NULL,'BUDHA','','','','','','','','','','','8170721757','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(831,'121361294','','','YAYANG SURANTIKA','','','1979-09-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570995558','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(832,'121361293','','','FITRIA','','','1996-02-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570074291','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(833,'121361298','','','AMAH','','','1968-08-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390420139','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(834,'121320320','','','KUNJAYA','','','1978-06-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570097886','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(835,'140760010','','','AEP SAEPULLAH CUT','','','1985-06-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570496101','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(836,'121320325','','','FAJAR RIYAMSAH','','','1988-02-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996431','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(837,'121361345','','','SARIPUDIN GUD','','','1997-07-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390521440','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(838,'121320335','','','SEPTIAN','','','1993-09-25','','','',NULL,NULL,'BUDHA','','','','','','','','','','','8830316478','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(839,'101260351','','','SUPRIYATI','','','1987-05-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660091611','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(840,'121361398','','','SRI WINARTI','','','1984-04-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570098025','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(841,'121361406','','','NURUDIN','','','1976-12-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570097533','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(842,'121361408','','','JALI','','','1977-04-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570098327','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(843,'121320343','','','MILAWATI RAMADHANI','','','1996-09-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390901391','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(844,'121320345','','','FREDDY SYAMSUDIN SANTOSO','','','1990-06-02','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','461224724','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(845,'121361485','','','MASKINAH','','','1982-08-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390415674','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(846,'121361509','','','ABDUL AZIZ GUDANG','','','1997-06-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570153531','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(847,'121361495','','','DWI NUR CAHYANINGSIH','','','1992-10-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390420112','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(848,'121361235','','','NOOR KHOLIFAH','','','1996-10-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996317','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(849,'121320355','','','SUTOMO','','','1976-10-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1663161851','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(850,'121361533','','','NASONO SUBAKTIAR (CUT)','','','1992-04-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489551','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(851,'121361519','','','TUTIK SUGIYARTI','','','1991-02-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3861354995','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(852,'121320360','','','FAUZIAH BATU BARA','','','1979-03-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2420661455','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(853,'121361591','','','ROHAYAH BT DULAMIN','','','1978-05-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390419751','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(854,'121360676','','','MOHAMAD NURHADI','','','1997-03-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570507014','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(855,'121361360','','','DEDI SETIAWAN','','','1995-01-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570162211','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(856,'121361600','','','HERMANTO','','','1987-08-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390467992','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(857,'121361615','','','SITI KHODIJAH ( QC CUT )','','','1986-09-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390419980','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(858,'121360658','','','ANGGA ASHARI','','','1987-07-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660180134','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(859,'121361622','','','AYAT NURHAYATI','','','1972-08-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390414830','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(860,'121361670','','','NANIK OKTAVIA K','','','1976-01-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3451860591','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(861,'121320369','','','ACEP JUNAEDI','','','1986-12-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390474425','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(862,'121320370','','','WIJAYANTI INDAH PANGESTUTI','','','1992-01-21','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','2380745324','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(863,'121320372','','','RINA MARYANA','','','1977-06-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660161199','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(864,'121361699','','','NUR HASANAH','','','1982-11-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390435993','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(865,'121361709','','','SYUMANTRI','','','1978-04-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390435501','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(866,'121260427','','','SYARIFUDIN','','','1988-01-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660090887','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(867,'121361723','','','SUYONO','','','1993-01-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390469081','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(868,'121361749','','','MUSRIHA','','','1972-10-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570996317','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(869,'121361757','','','IRMA SURYANI','','','1986-04-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390437830','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(870,'121361771','','','ROHHATI HARIFAH','','','1969-05-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390461218','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(871,'121361770','','','NURMANINGSIH','','','1978-01-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390462931','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(872,'121361783','','','SRI MINIARTI','','','1971-12-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390461897','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(873,'121361785','','','BOBBY FAIZAL PURNAMA','','','1994-05-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390555549','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(874,'121361810','','','SRI WAHYUNI LOKAL 7','','','1981-05-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390458373','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(875,'121320387','','','AGUNG WAHYUDI','','','1983-03-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1663169657','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(876,'121361811','','','SUPENTI','','','1972-09-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390462869','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(877,'121361822','','','PUTRI DEWI','','','1971-09-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390462991','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(878,'121361819','','','DWI SUTANTI (CUT)','','','1988-09-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470505590','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(879,'121361818','','','ATIH BINTI RUSTAM (CUT)','','','1981-05-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390463121','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(880,'121361831','','','SUGIYATI (CUT)','','','1992-09-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660099558','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(881,'121361838','','','TRI MUHSONAH','','','1984-12-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390463687','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(882,'121320390','','','TONI HARDIANSYAH','','','1993-12-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8105325491','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(883,'121361886','','','NINA','','','1983-09-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660098934','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(884,'121361887','','','SITI JUNENGSIH','','','1970-12-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390464969','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(885,'121360874','','','EVI WIDIANTI L9','','','1967-12-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470253817','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(886,'121360632','','','RIZAL MUTOLIB','','','1988-11-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660091824','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(887,'121320393','','','DINA MARLINA','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4940099850','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(888,'121361905','','','MUJIATI','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390467534','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(889,'121361907','','','DASUPI','','','1975-04-25','','','',NULL,NULL,'','','','','','','','','','','','5310204830','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(890,'121361924','','','CEPI BURHANUDIN(CUT)','','','1978-08-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3992147901','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(891,'121320402','','','KUSRINI','','','1992-11-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390471094','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(892,'121320399','','','HULWANI','','','1989-08-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390468506','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(893,'121320401','','','LANGLANG CIPTA WICAKSONO','','','1991-08-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6560114972','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(894,'121361956','','','HIRMAN KISWANTO PURBA','','','1985-03-24','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','3990040248','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(895,'121361957','','','SUHARTANTI (CUT)','','','1982-08-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5300232746','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(896,'121361973','','','ANITA','','','1997-09-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390471124','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(897,'121361979','','','KURNIASIH','','','1974-07-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390472015','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(898,'121320409','','','RENDI WAHYU EFENDI SILALAHI','','','1990-08-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7985271151','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(899,'121362008','','','BURYATI B DAKRUP','','','1963-06-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5445036746','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(900,'121362009','','','YANI LOKAL 9','','','1969-01-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3990093074','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(901,'121362003','','','MASITOH','','','1972-05-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390473071','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(902,'121320412','','','DAVID MORAVIL','','','1977-04-24','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','3460208911','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(903,'121362050','','','RETNO SETIANINGSIH','','','1986-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390475375','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(904,'121362042','','','KUSMIASRI (CUT)','','','1977-02-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470435257','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(905,'121362068','','','DADANG SAEPUL ROHMAN','','','1974-04-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470473205','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(906,'121362071','','','ROHIMAN','','','1996-05-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3990045932','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(907,'121362081','','','EHA AMINI','','','1975-05-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5420616491','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(908,'121362082','','','NURSANTI','','','1975-04-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390481511','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(909,'121361850','','','IDAYATI','','','1975-06-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390469839','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(910,'121361566','','','RINAWATI','','','1977-06-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470352262','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(911,'121362109','','','SITI MAYSAROH','','','1993-02-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570305241','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(912,'121361897','','','MUHAMAD MUKTI (CUT SABLON)','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390471175','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(913,'191260299','','','MARYATI LOKAL 7','','','1970-01-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570473471','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(914,'121361983','','','PENI NOVIANI','','','1987-11-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390472007','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(915,'120760009','','','RAMA YANTO','','','1978-09-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570994195','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(916,'121361081','','','MEGA PERTIWI','','','1995-09-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5490829492','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(917,'121362108','','','SUSILAWATI','','','1984-06-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390483815','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(918,'121362142','','','SAHRUL HERMAWAN','','','1997-03-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390515806','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(919,'121361077','','','ANTONI','','','1989-01-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570994144','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(920,'121361708','','','SITI RUBIAH','','','1974-12-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7400956817','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(921,'121362131','','','KARMILA','','','1994-01-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390481529','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(922,'121362160','','','SUSANTI','','','1988-09-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493575','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(923,'121362139','','','SUWARNI','','','1968-09-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390483858','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(924,'121362140','','','SUMIATI','','','1964-06-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390483823','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(925,'121362161','','','YULIYANTI','','','1988-06-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(926,'121362144','','','PARSINI','','','1968-05-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390483831','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(927,'121362153','','','SITI NURROFIAH','','','1992-07-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470471032','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(928,'121362157','','','SITI HALIMAH','','','1992-08-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390482835','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(929,'121361110','','','DAHLIAH','','','1983-07-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570994039','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(930,'121362184','','','AZIZ TAKLIM','','','1991-05-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660145576','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(931,'121361845','','','VIKI ARDO IBRAHIM','','','1996-03-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390524015','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(932,'121362215','','','ROSMIATI LOK7','','','1974-08-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390482673','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(933,'121362217','','','ROZALINAH','','','1972-05-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(934,'121362218','','','YULIYANTI LOK7','','','1984-08-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(935,'121362226','','','WARNISAH','','','1995-09-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390488159','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(936,'121362206','','','AJAT SUDRAJAT','','','1989-06-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390484935','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(937,'121362237','','','OMAS','','','1994-05-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(938,'121362247','','','NIKI','','','1995-08-17','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(939,'121362271','','','IRYANTI','','','1993-03-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5490387511','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(940,'121362270','','','NURHAYATI BORONGAN','','','1980-01-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390485150','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(941,'121362252','','','NURBAYANI (QC CUT)','','','1980-03-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514362','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(942,'121362262','','','ETI RAHMAWATI','','','1977-07-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390485869','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(943,'121362259','','','NURHASANAH CUT','','','2000-07-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514745','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(944,'121362269','','','SUWARNI TANJUNG','','','1962-08-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(945,'121362280','','','YATI','','','1967-03-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3990062306','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(946,'121362291','','','PALAHHUDIN','','','1998-03-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390487331','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(947,'121362293','','','DEVI PERMATA SARI','','','2002-07-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(948,'121362302','','','TATI SUGIARTI','','','1988-08-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3130097633','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(949,'121362305','','','EEN YULYANTI','','','1973-02-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390487381','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(950,'121362313','','','ENI SETIAWATI','','','1980-10-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(951,'121362310','','','MARHATI','','','1982-05-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(952,'121320431','','','PERAWATI','','','1979-01-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','281691243','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(953,'121362339','','','ABDUL BASIT','','','1989-07-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8670204562','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(954,'121362341','','','TITIN KARTINI','','','1983-04-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390490285','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(955,'121362354','','','MUCHAMMAD AKBAR DANI','','','1990-04-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390490358','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(956,'121362352','','','LASMIATI','','','1972-05-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8790206526','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(957,'121320432','','','KISWADI','','','1987-06-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390517698','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(958,'121362362','','','WARNI','','','1974-12-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390488116','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(959,'121362364','','','SUHAIBATUL ASLAMIYAH','','','1983-06-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390490293','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(960,'121320436','','','LILIAN SUKARNO','','','1988-02-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7120429757','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(961,'121320438','','','MONALISA SIREGAR','','','1997-06-21','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','7020376290','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(962,'121320439','','','NURJANA RIZKIYAH','','','1997-06-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2530013114','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(963,'121320440','','','TRI ASTUTI','','','1987-03-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2481645176','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(964,'121361751','','','ISTIQOMAH','','','1998-04-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390438267','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(965,'121362414','','','MAISAROH PACK','','','1979-04-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5490393601','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(966,'121320441','','','OKTA PUSPITANINGTYAS','','','1985-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1520441740','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(967,'121362421','','','SITI NURAINI','','','1999-03-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310682626','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(968,'121362436','','','SURYANI','','','1976-12-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390516578','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(969,'121362429','','','SRIYATI','','','1971-12-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660187422','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(970,'121320443','','','JULI APIT MAULANA','','','1988-07-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1084725474','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(971,'121362451','','','EUIS TATI ROHAETI','','','1978-09-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390494477','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(972,'121362458','','','AHMAD NUR FADILAH','','','1998-07-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390495775','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(973,'121362460','','','RENDY PERMANA','','','1995-05-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(974,'121362468','','','ERNIWATI','','','1975-12-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5050056378','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(975,'121362476','','','ERWIN MAULANA','','','1999-07-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390494655','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(976,'121362470','','','PUJI LESTARI','','','1991-12-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390494507','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(977,'121361925','','','ERLIN BLOK F','','','1987-03-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390387913','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(978,'121362482','','','SITI RAHMAWATI','','','1997-11-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390497018','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(979,'121362486','','','DEWI PURNAMA SARI','','','1977-09-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(980,'121362489','','','PARSI','','','1979-08-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660071700','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(981,'121320449','','','DETI KURNIA','','','1990-11-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2291767160','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(982,'121362490','','','SRI RAHAYU NINGSIH','','','1998-06-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390495767','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(983,'121362472','','','ROHINAH(QC BLOK F)','','','1977-03-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390494761','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(984,'121362523','','','DWI KRISTIANTI','','','1998-02-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390498626','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(985,'121362526','','','HERNI','','','1972-07-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390500001','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(986,'121361589','','','SUHENDRA STAFF','','','1982-12-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5445081474','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(987,'121320456','','','ABDUL AZIZ OB','','','1998-10-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470446879','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(988,'121362562','','','RISKA SETIANINGSIH','','','1993-09-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390503573','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(989,'121320457','','','FRENGKY WIJAYA','','','1983-12-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4090403635','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(990,'121362580','','','NUNUK ARIYANTI (SABLON','','','1979-01-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390499975','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(991,'121320324','','','MARWANTO','','','1980-03-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2350263392','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(992,'121362576','','','SAMIRI','','','1973-03-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390498596','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(993,'121362591','','','SITI NURHAYATI','','','1978-08-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470504771','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(994,'121362600','','','RITA PURNAMA SARI PURBA (QC CUT)','','','1999-02-11','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','3990079861','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(995,'121362615','','','USMINI','','','1984-04-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660185896','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(996,'121362620','','','NUR HALIMAH GD','','','1991-11-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390504839','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(997,'121362627','','','NUR ALAMSYAH','','','1996-01-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6580514462','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(998,'121362650','','','NURMALA SARI L7','','','1989-05-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310630049','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(999,'121362651','','','SAEFUL PERAK','','','1992-03-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390503743','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1000,'121362655','','','RESMARANI','','','1979-06-09','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','1941136252','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1001,'121362662','','','DENNI SAMMI HUTAGALUNG','','','1995-02-15','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','5390509237','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1002,'121362669','','','NURMIATI','','','1969-01-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1003,'121362690','','','NANIK SUSANTI','','','1970-01-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390506173','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1004,'121362707','','','ASAFO LASE','','','1986-10-05','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','5390483734','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1005,'121320468','','','FRANSISKA WIDHARMA','','','1993-04-24','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','5390409348','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1006,'121362718','','','MOCH SETIA GUNAWAN','','','1975-06-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390516578','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1007,'121361274','','','NENENG RAHMAH','','','1974-07-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570995507','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1008,'121362737','','','SITI MARYAM','','','1988-06-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390517531','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1009,'121362749','','','RETNO WIJAYANTI','','','1990-03-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514711','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1010,'121362748','','','JUMHANA','','','1998-02-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514249','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1011,'121362747','','','MUHYI SARI FAHRUDIN','','','1999-02-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514222','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1012,'121362752','','','SRI AMBARWATI','','','1977-01-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514192','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1013,'121362767','','','M. RIFQI FASHAEL MUDZAKAR','','','2000-03-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390515792','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1014,'121362773','','','IRAWATI ARIF','','','1982-10-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514354','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1015,'121362756','','','NUR SAEP UMAR','','','1998-11-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390518741','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1016,'121362642','','','SULISTARI','','','1994-08-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390504898','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1017,'121361793','','','NITA PUSPITA','','','1984-01-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390461200','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1018,'121361532','','','DEWI KANIAWATI','','','1985-04-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390437953','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1019,'121362093','','','NURHASAN (BORONGAN)','','','1991-01-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5445133148','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1020,'121360845','','','KHOIRUL HUDA','','','1988-08-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','731123321','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1021,'121361679','','','UNGUT MAULANA','','','1986-07-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570716195','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1022,'121362725','','','RINI SUGIARTI','','','1999-02-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390510120','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1023,'121362335','','','AHMAD HELMI SETIAWAN','','','1999-04-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390496992','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1024,'121361784','','','NANI YUNINGSIH','','','1983-07-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390461412','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1025,'121362792','','','NURHOMSAH','','','1967-05-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390517523','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1026,'121362815','','','DESSY NURAQIDAH','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390517400','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1027,'121362816','','','ERITA SITEPU','','','1978-01-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390517388','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1028,'121362829','','','RUTH GRASELA FEBRIANTI MANURUNG','','','2000-02-08','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1029,'121362821','','','NURJANAH','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390522705','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1030,'121362818','','','SHINTA','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390521431','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1031,'121362834','','','EVI ERAWATI','','','1974-11-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390520044','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1032,'121362837','','','MUHAMAD THOLIB','','','1984-04-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390521261','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1033,'121320475','','','M. SAIDI ALI (OB)','','','1997-05-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390519381','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1034,'121362856','','','RIFKI','','','1994-08-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5445120887','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1035,'121362867','','','TURSINAH','','','1974-04-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390465604','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1036,'121362874','','','ONJER','','','1993-01-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390518724','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1037,'121362870','','','HARSIH','','','1972-01-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390522691','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1038,'121362710','','','ASTRIYANINGSIH','','','1986-12-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390521253','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1039,'121362317','','','ELIN MARLINA','','','1988-05-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390490374','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1040,'121361739','','','AMELIA MEILANI LOKAL 7','','','1997-05-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390438542','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1041,'121362897','','','NUR FADILAH','','','1987-12-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7580486601','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1042,'121362889','','','LILIS ROSA SARI','','','2001-02-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390519909','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1043,'121320480','','','RAYHAN','','','1987-04-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390021447','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1044,'121362907','','','ATIKAH','','','1986-06-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390521580','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1045,'121362910','','','GITA FUJI ALFA NINGRUM','','','1996-12-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390521407','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1046,'121362527','','','MOH MALIK IBRAHIM','','','1999-08-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390505096','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1047,'121362924','','','RIFAAT AULIA RAHMAN','','','1998-06-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390522713','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1048,'121362936','','','FAZHAR KURNIA ERFANI( CUT)','','','1992-03-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5490441702','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1049,'121362956','','','ERNI WATI','','','1978-06-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390522853','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1050,'121362950','','','BELLA RUMONDANG','','','2000-06-18','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','6470463846','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1051,'121362969','','','SUYATI','','','1974-07-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390525241','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1052,'121362970','','','MASUTI','','','1986-02-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7020773752','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1053,'121362535','','','LITA PUSPITA SARI','','','1993-06-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390506386','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1054,'121362977','','','EKA KANIA DEWI','','','2001-06-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470463757','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1055,'121362982','','','MUNIROH OBRAS L7','','','1958-09-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390524333','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1056,'121362985','','','EMA DAHLIA','','','1994-12-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470470125','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1057,'121362996','','','DANIEL MARBUN','','','1998-02-17','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','6470465911','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1058,'121362993','','','SUKATMA','','','1978-03-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390525348','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1059,'121362998','','','TITIN KHASANAH','','','2001-09-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390525372','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1060,'121363006','','','ADINDA LESTARI(BLOK F)','','','2001-01-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470494709','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1061,'121363005','','','TITIN MURTINI','','','1991-01-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390525283','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1062,'121363038','','','ADE NURHATI (LOKAL 7)','','','1983-04-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5445133148','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1063,'121363008','','','TARIDAWATI','','','1982-09-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470466853','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1064,'121363018','','','NENAH','','','1978-07-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470466845','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1065,'121363023','','','DEPI MARYATI','','','1997-07-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470466918','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1066,'121363024','','','IROH ASIRAH (BLOK F)','','','1977-04-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5860292591','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1067,'121363025','','','HERDIANA DWI ANGELIKA(BLOK F)','','','1999-08-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7015074191','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1068,'121363051','','','INDAH YATI','','','1976-10-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390527898','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1069,'121363027','','','EVA SARI WAHYU UTAMI (BLOK F)','','','1998-01-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1070,'121363035','','','NINA HERMAWATI (BLOK F)','','','1989-01-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1980027241','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1071,'121363037','','','MARLENI LOKAL 7','','','1977-03-11','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470491483','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1072,'121363052','','','YANTI CUT','','','1984-08-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470487982','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1073,'121363064','','','SAYEKTI','','','1977-01-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470467787','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1074,'121320489','','','WACHYUDI','','','1973-01-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470505026','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1075,'121320490','','','LESMANA SISWARA','','','1977-04-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7600064180','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1076,'121362381','','','SOLI HATI','','','1991-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390495538','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1077,'121363071','','','ASRI FITRIANI','','','1998-01-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470469003','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1078,'121363073','','','MUNANIH','','','1978-05-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470469020','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1079,'121363074','','','LITA NURHAYATI','','','1975-04-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470469038','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1080,'121363079','','','ASMANI','','','1977-09-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470469917','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1081,'121363090','','','ASNAH BT ANWAR MISTA','','','1974-06-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470474619','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1082,'121363085','','','ARYADI SUKMAWIJAYA','','','1997-02-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390533014','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1083,'121362185','','','SAPITRI','','','1993-03-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570472741','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1084,'121361578','','','WINDI AGNESIA PUTRI','','','1997-08-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390438551','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1085,'121360731','','','MUHAMMAD HAKIM','','','1989-01-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390465019','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1086,'121360823','','','SUNARTO','','','1978-12-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3991467236','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1087,'121361305','','','HAFIDZ KURNIAWAN','','','1989-06-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390497123','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1088,'121363103','','','GENDIS ARIETA (CUT SABLON)','','','1983-05-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470470168','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1089,'121363117','','','PUJI WIDODO','','','1975-02-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470469151','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1090,'121363118','','','IMAN L7','','','1980-09-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2400197621','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1091,'121363112','','','MELIYANI','','','2000-01-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390532255','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1092,'121363107','','','LINDA FADILAH','','','2000-04-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390497018','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1093,'121363130','','','NENG LILIS','','','2001-09-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470471067','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1094,'121320494','','','ANNISA BELLA RAFELLIA','','','1995-08-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3620778728','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1095,'121320496','','','AYU DHIANING TYAS','','','1992-08-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7020387631','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1096,'121363138','','','RISKA NOVI YATY','','','1995-05-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390534061','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1097,'121363144','','','MENIK','','','1978-11-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1098,'121363143','','','VINA HASANAH','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470462491','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1099,'121362469','','','YULI YULIANTI','','','1997-07-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390494434','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1100,'121361936','','','HANIFAH','','','1991-10-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390471213','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1101,'121363151','','','SUHENDRA','','','1999-08-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470472128','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1102,'121363153','','','RIZKA WIDIANTI','','','2001-06-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470472110','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1103,'121362862','','','DANIK DAMAYANTI BLOK F','','','1997-12-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390535505','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1104,'121363158','','','ANNE ANGGRAENI (QC CUTTING)','','','1996-07-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1650297241','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1105,'121363159','','','ERLIN OKTAVIANI','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470474538','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1106,'121363167','','','BAGUS MAULANA SOPAN','','','2000-07-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470473221','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1107,'121363163','','','KRISTI ARYANTI','','','1994-03-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390535513','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1108,'121363171','','','ACHMAD ROYANI (CUT SABLON)','','','1969-11-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470473582','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1109,'121363179','','','ANDRI RAMASKO SAPUTRA','','','1998-03-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470475755','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1110,'121363176','','','LIRA JULAESI SILALAHI','','','1992-07-10','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','4900148408','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1111,'121363187','','','IIS VISKA','','','1990-08-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470474627','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1112,'121363189','','','MUHAMMAD FADILAH FAJAR','','','1999-06-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470479041','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1113,'121363195','','','MASITOH (LOKAL 7)','','','1972-05-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390473071','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1114,'121363193','','','PETRIYANTI','','','1977-06-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470476824','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1115,'121363192','','','SARIPAH','','','1988-04-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470474546','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1116,'121320499','','','ADIK ZAELANI SYAFARUDIN','','','1991-08-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470473035','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1117,'121363202','','','FENTI ANGGRAINI','','','1999-02-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470475658','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1118,'121320501','','','FRISKA DERITA MANALU','','','1994-03-05','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','8660184792','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1119,'121363197','','','ERNAWATI (STEP AWAL)','','','1995-08-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5445055660','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1120,'121363199','','','EKANING FITRIA HERYANI','','','2000-01-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1121,'121363211','','','DUHERUN','','','1997-03-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470479611','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1122,'121363213','','','ADAM RAMADHAN(CUT)','','','1996-02-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4770128043','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1123,'121360938','','','CAHYANTI','','','1992-01-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470477162','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1124,'121363220','','','RUDINI(CUT)','','','1997-11-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470478886','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1125,'121362863','','','ETI MULYATI','','','1986-06-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470496582','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1126,'121320505','','','JURINI MULYADI','','','1992-06-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470475615','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1127,'121363225','','','FIRMANSYAH (CUT)','','','1990-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470478231','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1128,'121363232','','','PUJIYANTI','','','1986-04-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310679137','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1129,'121320506','','','RUDY','','','1996-11-16','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','7295002093','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1130,'121363237','','','MELDIYASRI','','','1994-08-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8870422785','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1131,'121320507','','','NURUDIN A','','','1975-10-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470476841','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1132,'121363238','','','NUNUNG HARTATI','','','1975-03-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1133,'121363241','','','ITA JUWITA','','','1999-08-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470479238','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1134,'121363240','','','LIAN SAVI PORYANTI','','','1971-09-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660192434','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1135,'121363251','','','SUMIYATI 05','','','1980-11-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470479203','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1136,'121363252','','','ULIFATUN KHASANAH','','','1995-04-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470479211','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1137,'121363255','','','ADNAN WIJAYA','','','1998-04-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390551951','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1138,'121320510','','','HERMANSYAH','','','1977-12-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470480554','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1139,'121363269','','','RENI ARYANI','','','1981-10-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7110280305','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1140,'121363266','','','FAHMI SAMSIDIK','','','1991-07-11','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1141,'121363282','','','HENDRA SUCIPTO','','','1998-07-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310765696','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1142,'121363277','','','SAHRUL ASIKIN(BLOK C)','','','1979-01-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470487486','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1143,'121363292','','','INDRIANI','','','1988-09-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8040169602','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1144,'121320511','','','EPIFANIUS TRI BAWONO','','','1998-05-12','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','7570133220','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1145,'121363212','','','AHLAN NUARI(CUT)','','','1994-09-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470479432','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1146,'121363152','','','SINTA ANGGRAINI','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390534070','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1147,'121363137','','','MEYLINDA SARI','','','0000-00-00','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1148,'121320512','','','YUDA PRATAMA','','','1993-07-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2610072731','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1149,'121320513','','','MARIA NATALIA SIMAREMARE','','','1993-12-23','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','6995008568','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1150,'121360963','','','NENG NURHAETI','','','1985-01-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570543827','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1151,'121363304','','','MELI ANDRIANI','','','1997-05-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310669263','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1152,'121362307','','','NINI KARLINA WATI','','','1995-10-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390488311','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1153,'121363133','','','TURASIH','','','1978-07-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470472268','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1154,'121363181','','','ISTIKHAROH','','','1995-11-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1155,'121361387','','','MAYSAROH','','','1981-02-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470486218','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1156,'121363221','','','MOHAMAD SOPIAN(CUT)','','','1999-03-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660173651','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1157,'121363180','','','ADE RYATSA','','','1999-12-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470479629','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1158,'121363227','','','YULIANY YOKO','','','1970-09-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390504693','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1159,'121362839','','','NURMALA','','','1977-10-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390518520','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1160,'121361397','','','KAMIRA','','','1979-12-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','70126982','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1161,'121363224','','','EUIS RIYANTI','','','1971-06-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1162,'121361191','','','MAMAN SUWITO','','','1983-05-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570995540','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1163,'121320373','','','SITI NUR FATIMAH','','','1995-07-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390469090','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1164,'121363259','','','ANTON DEDY SUJONO S','','','1981-04-20','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1165,'121363279','','','RANNU WIJAYA SETIA AJI','','','1999-04-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660134892','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1166,'121361967','','','FAIZATIN MUNAWAROH','','','1996-08-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390472031','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1167,'121363228','','','IIN ROWATI','','','2019-03-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470477995','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1168,'111060033','','','HARIYANI/KARSITI','','','1970-07-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','352774365','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1169,'121363302','','','ENOK HARYATI','','','1973-04-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660086871','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1170,'121363274','','','LUKINA','','','1974-11-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470487966','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1171,'121363042','','','MARYAM L9','','','1984-04-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470470974','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1172,'121362452','','','SITI NURLINDA','','','1984-12-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390494485','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1173,'121363059','','','ROFIKOH (BLOK F)','','','1972-02-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3990111960','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1174,'121362320','','','NATIA','','','1985-07-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390490391','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1175,'121362926','','','KUSMAWANTI','','','1986-07-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390522811','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1176,'121363120','','','FAIZATIN NIKMAH','','','1996-08-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470470567','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1177,'121362830','','','TITA SUHELMAH','','','2001-06-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390521270','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1178,'121363003','','','ERPINAH','','','2018-08-11','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470466837','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1179,'121363049','','','ROBBY ANANDA','','','1998-02-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470467931','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1180,'121363204','','','FUAD FAUDZI','','','1991-10-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390518708','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1181,'121363285','','','TITI DWI SAPUTRI','','','1993-01-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1182,'121362861','','','ENDANG','','','1985-05-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390518929','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1183,'121363307','','','SUPIANI','','','1997-05-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1184,'121363294','','','DESI NATALIA','','','2003-12-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1185,'121363298','','','AYU SRI HANDAYANI','','','2000-06-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390551632','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1186,'121363301','','','NIA YULIANTI','','','1997-06-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1187,'121363306','','','RINI MEGA SARI','','','1989-03-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570160961','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1188,'121360768','','','NONON NURHAYATI','','','1973-06-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570370230','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1189,'121363310','','','JULISTIANA','','','1994-07-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1190,'121363319','','','JUMINAH','','','1978-11-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1191,'121363315','','','NOPIYANTI','','','1987-01-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489021','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1192,'121363313','','','DWI MAHESTI','','','2001-09-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1193,'121363318','','','LEONARDO FIDYANTO','','','1994-07-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390514745','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1194,'121363320','','','TATUN FATIMAH','','','1976-05-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1195,'121363321','','','TIA YUNINGSIH','','','1982-10-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390551667','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1196,'121363326','','','EMI SUKESI','','','1984-12-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1197,'121363324','','','DAYANTI','','','1993-01-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390537061','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1198,'121363333','','','ANIPAH  HANNUM SIMANJUNTAK','','','2000-04-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390551691','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1199,'161260214','','','RIZKI WAHYUDI','','','1990-05-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1200,'121363332','','','MUHAMAD YUSUF','','','1998-06-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570153531','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1201,'121363331','','','FIQIH AKBAR','','','2000-11-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470487443','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1202,'121363338','','','SISI SAKINAH','','','1999-11-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570671566','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1203,'121363339','','','YUNARTIK','','','1976-04-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6042232692','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1204,'121363344','','','YULYANI','','','1978-07-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','30815661','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1205,'121363337','','','SIKA FAUZIAH','','','1997-11-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390551683','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1206,'121363347','','','INDAH NUR AINI','','','1992-02-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1207,'121363345','','','DELI IRMAWATI','','','1971-07-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470487494','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1208,'121363342','','','HIKMAWATI','','','1989-07-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470492391','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1209,'121363156','','','FITRIA NINGSIH (BLOK F)','','','1999-05-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390535467','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1210,'121320515','','','MUHAMMAD SYARIF','','','1995-09-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470486668','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1211,'121363340','','','ASMAWATI','','','1971-09-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489101','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1212,'121363354','','','SUCI PRATIWI','','','1994-02-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470471989','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1213,'121363356','','','DEWI NURHAYATI','','','1977-06-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1214,'121363357','','','DEVIKA SEPTA YUNIAR(CUT)','','','1996-09-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489306','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1215,'121363369','','','DENI SEPTIAN (CUT)','','','2000-09-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660224654','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1216,'121363361','','','MAIY LINDA SUSANTI','','','1990-05-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3990088411','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1217,'121363363','','','NONIH','','','1974-04-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489632','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1218,'121363371','','','MIMIN MINTRIYANI','','','2002-07-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489047','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1219,'121363373','','','ANDIANSYAH','','','2000-02-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489128','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1220,'121363364','','','WINARSIH','','','1994-06-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489241','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1221,'121363379','','','APRINA','','','1999-04-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470471041','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1222,'121363391','','','ARMAIDI','','','1984-04-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390517388','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1223,'121363389','','','ENONG FITRI SUSANTI','','','1998-02-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390554313','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1224,'121363388','','','HERUN NISA BLOK F','','','2000-10-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390554330','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1225,'121363375','','','FEBRIANTI BLOK F','','','2000-12-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489152','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1226,'121363390','','','RIA PRATIWI','','','1991-01-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390554178','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1227,'121363392','','','SUTIWEN','','','1974-08-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470490908','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1228,'121363393','','','SILVIA RAHMAWATI','','','1992-02-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1229,'121361675','','','RIA IRAWATI','','','1997-05-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470445911','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1230,'121320516','','','SRI SETIANINGRUM','','','1998-08-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7330415333','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1231,'121363398','','','MAT KHOIRI','','','2000-01-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470489071','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1232,'121363397','','','SANAH SANI','','','1980-08-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390554151','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1233,'121363403','','','FITRI ARIDHA','','','1993-07-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1234,'121363395','','','MURTOFINGAH','','','1984-02-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1235,'121363405','','','DEVI NOVITASARI','','','1995-05-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4750435586','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1236,'121363414','','','ANNISA FAJARIA( ADM )','','','2001-05-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470499654','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1237,'121363415','','','ARINI','','','2001-11-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5490461355','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1238,'121363433','','','NURKHAYATI LOOWO','','','1979-10-30','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','7570675715','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1239,'121363425','','','MUHAMMAD ANDIKA KURNIAWAN(CUT)','','','1997-06-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470490321','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1240,'121363427','','','SITI KHODIJAH BLOK C','','','1971-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660230191','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1241,'121363434','','','TOHARIAH','','','1989-07-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470490487','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1242,'121363442','','','DINARSIH','','','1979-08-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390498341','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1243,'121363432','','','IRMA TRIANA BLOK C','','','1975-01-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570681031','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1244,'121363431','','','USUP BLOK C','','','1976-09-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660224352','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1245,'121363160','','','JIHAN WIDIANTI','','','2000-03-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470490878','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1246,'121363461','','','MARNIWATI LASE','','','2000-03-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8680727059','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1247,'121363463','','','DEDE TETI PATMAWATI','','','1983-12-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493591','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1248,'121363459','','','INSRI UTAMI L7','','','2000-11-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493613','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1249,'121363462','','','NIA JUNIARTI','','','2000-06-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1250,'121363458','','','DESI FEBRIYANTI','','','2000-02-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1251,'121363287','','','TASIPAH','','','1970-12-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470496591','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1252,'121363454','','','SITI SYARAH','','','1994-09-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660224379','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1253,'121363465','','','JULFIKRI ILHAM(CUT)','','','1999-07-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493583','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1254,'121363474','','','DEFEYANTI MURNI BAGO','','','1996-12-01','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1255,'121363477','','','SRI YATUN','','','1977-09-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493699','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1256,'121363471','','','ANGGITA WULANDARI','','','2001-08-11','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660224417','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1257,'121363473','','','SUPRIHATIN','','','1979-08-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2840049747','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1258,'121361036','','','MUSLIMAH','','','1993-12-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2410025062','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1259,'121363479','','','FENI ISTIYANA','','','1998-04-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1260,'121363480','','','NURJANAH','','','2000-11-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493567','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1261,'121363483','','','OKTAVIA','','','2000-10-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493851','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1262,'121363485','','','SARININGSIH','','','1997-09-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470494695','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1263,'121363486','','','SULASTRI','','','1997-07-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1264,'121320519','','','ANDRIANSYAH','','','1994-01-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','231444539','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1265,'121363484','','','SUSANTI','','','1987-07-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1266,'121363488','','','YENI YUNINGSIH','','','1979-05-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470493711','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1267,'121363490','','','SITI NUR ROHMAH','','','2000-11-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660228722','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1268,'121363492','','','SEPTIANI ANGGA SARI','','','1998-09-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1269,'121363498','','','MAYA SIANIPAR','','','1989-10-02','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','6470494954','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1270,'121363497','','','SARTIKASARI','','','1986-09-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470495772','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1271,'121363496','','','SILVY ASRI AINURESTI','','','1999-06-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470495781','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1272,'121363499','','','SEPTRIANI','','','2001-09-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1273,'121363500','','','ANISATUN NISFA','','','2001-05-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1274,'121363501','','','EFRILITA NURIANA ESFANDIARI','','','2001-03-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','70681456','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1275,'121320520','','','NOVITA SARI','','','1988-11-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2881728151','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1276,'121363504','','','JAMILAH','','','1992-10-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1277,'121363505','','','HALIMATUSYADIAH','','','1998-11-11','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470494687','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1278,'121363506','','','DEWI LESTARI','','','1984-05-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1279,'121363508','','','WINDA RUMZANA','','','2002-07-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1280,'121363509','','','LINA ROSLIANA(BLOK F)','','','1988-12-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470496035','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1281,'121363105','','','EVI HARYANI (BLOK F)','','','1984-05-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470494679','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1282,'121363514','','','WINDA PREPEDAN','','','2001-05-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570491410','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1283,'121363512','','','HOLIDAH HANUM NASUTION','','','1978-11-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1284,'121363513','','','MARSINI','','','1976-03-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470495837','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1285,'121363518','','','SULASMI','','','1982-02-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470495811','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1286,'121363515','','','INTAN SORAYA','','','2000-12-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470499867','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1287,'121363517','','','ANDA NOVITA','','','1990-11-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1288,'121363519','','','SRI MULYATI (BLOK C)','','','1973-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470494806','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1289,'121320521','','','DIAN TRI HASTUTI','','','1990-08-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1087600939','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1290,'121363525','','','HERI SUTOYO','','','1972-11-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1291,'121320522','','','RIYANTO','','','1984-05-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8740225058','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1292,'121363528','','','MULYANIH','','','1979-01-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470495829','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1293,'121363529','','','ILHAM PREPEDAN','','','1999-04-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','2770392848','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1294,'121363533','','','WIDIASTUTI','','','1983-04-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470497201','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1295,'121363531','','','INDAH TRIWIDAYANTI','','','1982-12-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1296,'121363532','','','ETI','','','1980-10-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1297,'121363256','','','RIONALDY S.','','','1992-04-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470478321','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1298,'121363542','','','ENDANG SUPRIYATNAH','','','1980-05-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470497341','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1299,'121320523','','','AMANDA CINDY RAHMASARI','','','1998-05-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','1081620551','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1300,'121363546','','','MAIDOH','','','1985-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470497350','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1301,'121363545','','','DESI YULI YANTI','','','1996-12-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470497244','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1302,'121363552','','','DEWI','','','1984-09-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470498631','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1303,'121320524','','','HERLOLA SIMANJUNTAK','','','1995-09-27','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','3090055916','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1304,'121363550','','','NOVI CHANDRA','','','2000-11-06','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470498551','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1305,'121361095','','','NENI RUKMINI  NEW','','','1985-11-02','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570550980','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1306,'121363548','','','DIAN MINANTI','','','1991-05-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3992208748','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1307,'121363549','','','ATRISA SUCI LESTARI','','','2003-07-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1308,'121363556','','','DAWIAH','','','1974-03-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5490417020','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1309,'121363557','','','MARDIAH','','','1963-09-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470501462','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1310,'121363561','','','PITTA MENDROFA','','','2000-02-19','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','6470498542','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1311,'121363558','','','ROSITA TAMALA','','','1993-09-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470499891','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1312,'121363562','','','NURMAYANTI ZAI','','','2000-03-30','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','6470498496','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1313,'121363565','','','GILANG AKBAR PERSADA','','','1999-06-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470499841','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1314,'121320527','','','LEONARTO SILVANUS PARHUSIP','','','1992-12-05','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','8350072960','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1315,'121363574','','','MENY SUPRIATIN (BLOK C)','','','1979-08-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8660155130','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1316,'121363386','','','MUHAMMAD IRSYA DILLAH (HELPER)','','','2001-02-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470501390','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1317,'121363576','','','TETI ROMENTI NAIBAHO (BLOK C)','','','1988-09-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1318,'121363578','','','WILANDA WULANDARI','','','1992-09-13','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1319,'121363582','','','WINDI WIDIASTUTI','','','2000-07-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470501985','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1320,'121320528','','','JOKO NURYATIN','','','1997-06-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5310718914','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1321,'121363588','','','YADI (BLOK C)','','','2002-06-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470502353','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1322,'121363589','','','SUMIATI (BLOK C)','','','1972-05-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570694370','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1323,'121363590','','','BUDIMAN','','','1998-10-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470502019','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1324,'121363591','','','MUSTIN (BLOK C)','','','1983-05-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570694418','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1325,'121363593','','','ERMA WATI (CUT)','','','2002-08-22','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470502159','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1326,'121361800','','','SUSTRI YANI SURBAKTI (BB)','','','1980-12-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5390612062','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1327,'121320529','','','SRI ALIPAH','','','1985-01-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5940288403','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1328,'121363594','','','SRI ASRITA LASE(CUT)','','','2000-08-21','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','8660237781','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1329,'121320530','','','ILFINA AZAR FAUZIAH','','','1999-04-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470498577','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1330,'121363599','','','EVI HARTANTI','','','1976-06-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','5445105861','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1331,'121363603','','','ITA ZULITA','','','2001-01-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1332,'121363600','','','NENG AGUS(BLOK C','','','1969-12-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570694884','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1333,'121363605','','','PESTA NATALIA','','','1997-12-25','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','6470503929','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1334,'121363601','','','MESTI','','','1998-12-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470505468','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1335,'121363607','','','WINARSIH (LOKAL7)','','','1985-01-17','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3866017704','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1336,'121363612','','','ANI PIDIA','','','2001-09-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470503881','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1337,'121363613','','','AYU WAHYUNINGSIH(CUT)','','','2000-05-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470504038','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1338,'121361145','','','WIWIT ROHANI','','','1984-07-31','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570542847','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1339,'121363614','','','KASNIATI(CUT)','','','2001-03-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470478886','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1340,'121363615','','','YUDI HARIYANTO','','','1983-07-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570573840','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1341,'121363617','','','ISMIYATI(BLOK F)','','','1973-03-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','8840165184','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1342,'121363618','','','NENY MARLINA (QC BLOK C)','','','1972-03-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570725852','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1343,'121363619','','','SITI ANISSA GHONIMAH','','','2001-03-25','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1344,'121363624','','','ARBI HERIYANTO','','','1992-10-23','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3190105333','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1345,'121363625','','','UNIATI (QC )','','','1982-05-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470504861','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1346,'121363626','','','SUTARMI(BLOK F)','','','1975-05-08','','','',NULL,NULL,'ISLAM','','','','','','','','','','','4340130885','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1347,'121363628','','','SITI EMINAH','','','1977-06-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','6470504828','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1348,'121363629','','','SIGIT SETYANINGTYAS','','','1996-05-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1349,'121363634','','','WARTI W SASMITA','','','1977-05-15','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1350,'121363642','','','SUPARNI BLOK C','','','1976-08-30','','','',NULL,NULL,'ISLAM','','','','','','','','','','','7570725917','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1351,'121363635','','','MASRUROH','','','1984-05-14','','','',NULL,NULL,'ISLAM','','','','','','','','','','','3610358488','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1352,'121363637','','','NOVIANA DAYANTI','','','1997-11-24','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1353,'121363636','','','ARMANSYAH','','','1980-04-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1354,'121363641','','','AHMAD ASRORI','','','1996-12-29','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1355,'121363638','','','UUM UMASIH ','','','1999-02-28','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1356,'121363639','','','FASIKHATUN NISA','','','2000-01-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1357,'121363643','','','MOHAMAD FADLY SYACH','','','1997-10-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1358,'121363646','','','ELWIS YULIYANTI','','','1996-12-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1359,'121363650','','','RANI','','','1995-07-09','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1360,'121363644','','','JULIAMAN TAFONAO','','','1997-07-25','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1361,'121363647','','','WIDY INDAH SARI','','','1997-03-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1362,'121363648','','','HARYATI','','','1970-10-10','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1363,'121363653','','','ARI BISRI','','','2000-01-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1364,'121363655','','','MIMIN TARSIH','','','1978-05-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1365,'121363657','','','ROSIANA SAVITRI','','','1989-05-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1366,'121363658','','','DENI SETIAWAN','','','1994-09-26','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1367,'121363659','','','ULIYATUL ULFA (BLOK F)','','','1995-02-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1368,'121363666','','','NURMAYA','','','1985-02-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1369,'121363662','','','FENNY GUNARTI','','','1982-07-15','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1370,'121363660','','','IRFAN HOT JUNIARDI (CUTTING)','','','2000-06-28','','','',NULL,NULL,'PROTESTAN','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1371,'121363665','','','NICA JIPRISTI','','','1996-07-05','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1372,'121363663','','','DESI RINOWATI','','','1976-12-27','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1373,'121363661','','','IKHTIAR TAFONAO','','','1993-01-06','','','',NULL,NULL,'KATOLIK','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1374,'121361026','','','YULI','','','1991-04-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1375,'121363668','','','AGUS IRIYANI','','','1979-08-21','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1376,'121363667','','','SULASTRI','','','1988-01-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1377,'121363669','','','JAJANG NURJAMAN','','','1996-02-16','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1378,'121363670','','','NUR HASANAH SAPKUR QC CUT','','','2002-08-07','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1379,'121363671','','','TITA NOVARISA BLOK F','','','1997-11-19','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1380,'121363672','','','DESTIA RIANTY','','','2000-12-03','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1381,'121363673','','','TARINIH','','','1977-11-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1382,'121363365','','','WIRNA WATI DEWI BLOK C','','','1992-02-20','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1383,'121363559','','','ANIS MARSELA','','','2001-09-12','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1384,'121363664','','','TUNI HARTINI','','','1975-08-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1385,'121363675','','','ERNAWATI','','','1997-06-18','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1386,'121363677','','','ISTI CHOMAH','','','1994-04-04','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1387,'121363674','','','LISTA RIZKI APRILIANI QC LINE','','','1999-04-01','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00',''),
+(1388,'121363676','','','DIANA BELADINA','','','1997-08-11','','','',NULL,NULL,'ISLAM','','','','','','','','','','','','','','','','',NULL,'','','','0000-00-00','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'','','','','','','','','','','','','','','','','','','','0000-00-00 00:00:00','');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `m01personal_course`
---
+/*Table structure for table `m01personal_course` */
 
 DROP TABLE IF EXISTS `m01personal_course`;
-CREATE TABLE IF NOT EXISTS `m01personal_course` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m01personal_course` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) NOT NULL,
   `IDCourse` varchar(5) NOT NULL,
   `CourseProgram` varchar(30) NOT NULL,
@@ -492,25 +1163,21 @@ CREATE TABLE IF NOT EXISTS `m01personal_course` (
   `DeletedBy` varchar(20) DEFAULT NULL,
   `DeletedIP` varchar(20) DEFAULT NULL,
   `DeletedDate` datetime DEFAULT NULL,
-  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `m01personal_course`
---
+/*Data for the table `m01personal_course` */
 
-INSERT INTO `m01personal_course` (`ID`, `IDEmployee`, `IDCourse`, `CourseProgram`, `CourseFacilitator`, `City`, `Duration`, `YearFrom`, `YearUntil`, `DeletedBy`, `DeletedIP`, `DeletedDate`, `DeleteFlag`) VALUES
-(1, '0506021112', '1', 'BINTEK ENTREPRENEUR DAN KEPEMI', 'GUBERNUR BANTEN', 'SERANG', '3 hari', 2010, 2010, NULL, NULL, NULL, 'A');
+insert  into `m01personal_course`(`ID`,`IDEmployee`,`IDCourse`,`CourseProgram`,`CourseFacilitator`,`City`,`Duration`,`YearFrom`,`YearUntil`,`DeletedBy`,`DeletedIP`,`DeletedDate`,`DeleteFlag`) values 
+(1,'0506021112','1','BINTEK ENTREPRENEUR DAN KEPEMI','GUBERNUR BANTEN','SERANG','3 hari',2010,2010,NULL,NULL,NULL,'A');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `m01personal_education`
---
+/*Table structure for table `m01personal_education` */
 
 DROP TABLE IF EXISTS `m01personal_education`;
-CREATE TABLE IF NOT EXISTS `m01personal_education` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m01personal_education` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) NOT NULL,
   `IDEducation` varchar(5) NOT NULL,
   `EducationLevel` varchar(10) NOT NULL,
@@ -523,26 +1190,22 @@ CREATE TABLE IF NOT EXISTS `m01personal_education` (
   `DeletedBy` varchar(20) DEFAULT NULL,
   `DeletedIP` varchar(20) DEFAULT NULL,
   `DeletedDate` datetime DEFAULT NULL,
-  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=399 DEFAULT CHARSET=utf8;
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `m01personal_education`
---
+/*Data for the table `m01personal_education` */
 
-INSERT INTO `m01personal_education` (`ID`, `IDEmployee`, `IDEducation`, `EducationLevel`, `Course`, `SchoolName`, `City`, `YearFrom`, `YearUntil`, `Certificate`, `DeletedBy`, `DeletedIP`, `DeletedDate`, `DeleteFlag`) VALUES
-(1, '0506021112', '1', 'S1', 'TEKNIK INFORMATIKA', 'STMIK RAHARJA', 'TANGERANG', 2009, 2012, 'yes', NULL, NULL, NULL, 'A'),
-(198, '0506021112', '2', 'SMA/SMK', 'TEKNIK MESIN', 'SMK YUPPENTEK 03', 'TANGERANG', 2005, 2008, 'yes', NULL, NULL, NULL, 'A');
+insert  into `m01personal_education`(`ID`,`IDEmployee`,`IDEducation`,`EducationLevel`,`Course`,`SchoolName`,`City`,`YearFrom`,`YearUntil`,`Certificate`,`DeletedBy`,`DeletedIP`,`DeletedDate`,`DeleteFlag`) values 
+(1,'0506021112','1','S1','TEKNIK INFORMATIKA','STMIK RAHARJA','TANGERANG',2009,2012,'yes',NULL,NULL,NULL,'A'),
+(198,'0506021112','2','SMA/SMK','TEKNIK MESIN','SMK YUPPENTEK 03','TANGERANG',2005,2008,'yes',NULL,NULL,NULL,'A');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `m01personal_family`
---
+/*Table structure for table `m01personal_family` */
 
 DROP TABLE IF EXISTS `m01personal_family`;
-CREATE TABLE IF NOT EXISTS `m01personal_family` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m01personal_family` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) NOT NULL,
   `IDFamily` varchar(5) NOT NULL,
   `NoKTP` varchar(75) NOT NULL,
@@ -557,31 +1220,27 @@ CREATE TABLE IF NOT EXISTS `m01personal_family` (
   `DeletedBy` varchar(20) DEFAULT NULL,
   `DeletedIP` varchar(20) DEFAULT NULL,
   `DeletedDate` datetime DEFAULT NULL,
-  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A'
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=685 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `m01personal_family`
---
+/*Data for the table `m01personal_family` */
 
-INSERT INTO `m01personal_family` (`ID`, `IDEmployee`, `IDFamily`, `NoKTP`, `FamilyMember`, `Name`, `BirthPlace`, `BirthDate`, `Age`, `Address`, `Education`, `Occupation`, `DeletedBy`, `DeletedIP`, `DeletedDate`, `DeleteFlag`) VALUES
-(23, '0506021112', '1', '', 'father', 'SAID', NULL, NULL, 50, 'Jl. Raya Serang Km 15 kec. Cikupa - Tangerang Rt 04/ 01 kode pos 15710', 'SMP', 'Karyawan Swasta', NULL, NULL, NULL, 'A'),
-(24, '0506021112', '2', '', 'mother', 'MARYAM', '', '1970-01-01', 46, 'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710', 'SD', 'ibu Rumah Tangga', NULL, NULL, NULL, 'A'),
-(53, '0506021112', '3', '', 'sibling', 'MUHAMAD MUHLIS', NULL, NULL, 22, 'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710', 'SMK', 'Karyawan Swasta', NULL, NULL, NULL, 'A'),
-(54, '0506021112', '4', '', 'sibling', 'MUHAMAD HENDRI', NULL, NULL, 17, 'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710', 'SMA', 'Pelajar', NULL, NULL, NULL, 'A'),
-(55, '0506021112', '5', '', 'sibling', 'PUTRI', NULL, NULL, 5, 'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710', 'TK', 'Pelajar', NULL, NULL, NULL, 'A'),
-(683, '0001141219', '1', '0', 'spouse', '0', NULL, NULL, 0, '', '', '', NULL, NULL, NULL, 'A'),
-(684, '0001141219', '2', '123', 'mother', 'TEST', '', '1970-01-01', 0, '', '', '', NULL, NULL, NULL, 'A');
+insert  into `m01personal_family`(`ID`,`IDEmployee`,`IDFamily`,`NoKTP`,`FamilyMember`,`Name`,`BirthPlace`,`BirthDate`,`Age`,`Address`,`Education`,`Occupation`,`DeletedBy`,`DeletedIP`,`DeletedDate`,`DeleteFlag`) values 
+(23,'0506021112','1','','father','SAID',NULL,NULL,50,'Jl. Raya Serang Km 15 kec. Cikupa - Tangerang Rt 04/ 01 kode pos 15710','SMP','Karyawan Swasta',NULL,NULL,NULL,'A'),
+(24,'0506021112','2','','mother','MARYAM','','1970-01-01',46,'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710','SD','ibu Rumah Tangga',NULL,NULL,NULL,'A'),
+(53,'0506021112','3','','sibling','MUHAMAD MUHLIS',NULL,NULL,22,'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710','SMK','Karyawan Swasta',NULL,NULL,NULL,'A'),
+(54,'0506021112','4','','sibling','MUHAMAD HENDRI',NULL,NULL,17,'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710','SMA','Pelajar',NULL,NULL,NULL,'A'),
+(55,'0506021112','5','','sibling','PUTRI',NULL,NULL,5,'Jl Raya Serang Km 15, Kec Cikupa - Tangerang, RT 05/01 15710','TK','Pelajar',NULL,NULL,NULL,'A'),
+(683,'0001141219','1','0','spouse','0',NULL,NULL,0,'','','',NULL,NULL,NULL,'A'),
+(684,'0001141219','2','123','mother','TEST','','1970-01-01',0,'','','',NULL,NULL,NULL,'A');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `m01personal_job`
---
+/*Table structure for table `m01personal_job` */
 
 DROP TABLE IF EXISTS `m01personal_job`;
-CREATE TABLE IF NOT EXISTS `m01personal_job` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m01personal_job` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(20) DEFAULT NULL,
   `IDEmployeeParent` varchar(20) DEFAULT NULL,
   `IDEmployeePTL` varchar(15) DEFAULT NULL COMMENT 'IDEmployee Project Team Leader',
@@ -608,26 +1267,710 @@ CREATE TABLE IF NOT EXISTS `m01personal_job` (
   `DeletedBy` varchar(20) DEFAULT NULL,
   `DeletedIP` varchar(20) DEFAULT NULL,
   `DeletedDate` datetime DEFAULT NULL,
-  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=704 DEFAULT CHARSET=utf8;
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1392 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `m01personal_job`
---
+/*Data for the table `m01personal_job` */
 
-INSERT INTO `m01personal_job` (`ID`, `IDEmployee`, `IDEmployeeParent`, `IDEmployeePTL`, `Location`, `JobGroup`, `Department`, `Position`, `Unit`, `DateFirstJoin`, `DateStartProbation`, `DateEndProbation`, `DatePassProbation`, `DateNewContract`, `DateEndContract`, `DateInField`, `Status`, `HireDate`, `FlagHire`, `ResignDate`, `FlagResign`, `EmployeeStatus`, `ResignReason`, `Note`, `DeletedBy`, `DeletedIP`, `DeletedDate`, `DeleteFlag`) VALUES
-(397, '0506021112', '0267190710', NULL, 'KAPUK', 'ST', '19', 'SUPERVISOR', '', '2012-11-02', NULL, NULL, '2013-02-01', NULL, NULL, NULL, 'A', '2012-11-02', 1, NULL, '0', 'TETAP', NULL, NULL, NULL, NULL, NULL, 'A'),
-(703, '0001141219', '0506021112', 'undefined', 'KAPUK', 'ST', '1', 'DIRECTOR', '', NULL, '2019-12-14', NULL, NULL, NULL, NULL, NULL, 'A', '2019-12-14', NULL, NULL, NULL, 'TETAP', NULL, NULL, NULL, NULL, NULL, 'A');
+insert  into `m01personal_job`(`ID`,`IDEmployee`,`IDEmployeeParent`,`IDEmployeePTL`,`Location`,`JobGroup`,`Department`,`Position`,`Unit`,`DateFirstJoin`,`DateStartProbation`,`DateEndProbation`,`DatePassProbation`,`DateNewContract`,`DateEndContract`,`DateInField`,`Status`,`HireDate`,`FlagHire`,`ResignDate`,`FlagResign`,`EmployeeStatus`,`ResignReason`,`Note`,`DeletedBy`,`DeletedIP`,`DeletedDate`,`DeleteFlag`) values 
+(397,'0506021112','0267190710',NULL,'KAPUK','ST','19','SUPERVISOR','','2012-11-02',NULL,NULL,'2013-02-01',NULL,NULL,NULL,'A','2012-11-02',1,NULL,'0','TETAP',NULL,NULL,NULL,NULL,NULL,'A'),
+(703,'0001141219','0506021112','undefined','KAPUK','ST','1','DIRECTOR','',NULL,'2019-12-14',NULL,NULL,NULL,NULL,NULL,'A','2019-12-14',NULL,NULL,NULL,'TETAP',NULL,NULL,NULL,NULL,NULL,'A'),
+(704,'170230010','','','1','S','9','II B. JUNIOR SPV','','2002-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2002-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(705,'190230011','','','1','S','9','II B. JUNIOR SPV','','2002-09-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2002-09-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(706,'121320509','','','1','S','9','V A. WA.KA.DIV PEMUL','','2003-02-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2003-02-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(707,'170320003','','','1','H','12','DRIVER','','2003-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2003-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(708,'150420005','','','1','V','4','III C. SENIOR WA.KA.','','2004-05-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2004-05-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(709,'170420053','','','1','V','5','V C. SENIOR WA.KA.DI','','2004-07-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2004-07-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(710,'180420007','','','1','V','12','IV C. SENIOR KA.DEPT','','2004-08-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2004-08-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(711,'110420004','','','1','H','12','DRIVER','','2004-11-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2004-11-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(712,'120420090','','','1','V','6','IV C. SENIOR KA.DEPT','','2004-12-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2004-12-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(713,'160520012','','','1','H','12','DRIVER','','2005-06-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2005-06-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(714,'180520013','','','1','V','6','IV B. JUNIOR KA.DEPT','','2005-08-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2005-08-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(715,'110620014','','','1','H','12','DRIVER','','2006-01-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2006-01-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(716,'110620015','','','1','V','12','II A. SPV PEMULA','','2006-01-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2006-01-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(717,'110620016','','','1','V','7','II B. JUNIOR SPV','','2006-01-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2006-01-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(718,'160620017','','','1','H','12','DRIVER','','2006-06-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2006-06-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(719,'160720019','','','1','V','4','VI A. KA.DIV PEMULA','','2007-06-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2007-06-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(720,'110820021','','','1','V','4','I C. SENIOR STAFF','','2008-01-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2008-01-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(721,'140860015','','','1','H','12','DRIVER','','2008-04-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2008-04-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(722,'150820019','','','1','V','12','I C. SENIOR STAFF','','2008-05-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2008-05-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(723,'160820058','','','1','V','12','II A. SPV PEMULA','','2008-06-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2008-06-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(724,'170860017','','','1','I','12','IX A. WA.DIR PEMULA','','2008-07-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2008-07-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(725,'101280018','','','1','B','17','GOSOK','','2008-10-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2008-10-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(726,'110860020','','','1','H','9','VII D. WA.GM','','2008-11-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2008-11-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(727,'120920034','','','1','MIC','7','IV A. KA.DEPT PEMULA','','2009-02-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2009-02-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(728,'130920035','','','1','MIC','10','II B. JUNIOR SPV','','2009-03-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2009-03-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(729,'140920037','','','1','V','5','IV C. SENIOR KA.DEPT','','2009-04-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2009-04-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(730,'140920004','','','1','V','6','IV C. SENIOR KA.DEPT','','2009-04-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2009-04-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(731,'170960025','','','1','V','12','I B. JUNIOR STAFF','','2009-07-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2009-07-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(732,'100960028','','','1','H','9','HARIAN','','2009-10-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2009-10-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(733,'101280006','','','1','B','17','JAHIT','','2009-11-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2009-11-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(734,'111020042','','','1','V','4','I D. STAFF','','2010-01-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2010-01-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(735,'111020044','','','1','V','3','I D. STAFF','','2010-01-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2010-01-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(736,'111060034','','','1','H','17','HARIAN','','2010-01-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2010-01-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(737,'121030007','','','1','V','6','I D. STAFF','','2010-02-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2010-02-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(738,'131060038','','','1','V','20','I C. SENIOR STAFF','','2010-03-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2010-03-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(739,'111120048','','','1','V','7','IV A. KA.DEPT PEMULA','','2011-01-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2011-01-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(740,'111010007','','','1','V','4','I C. SENIOR STAFF','','2011-01-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2011-01-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(741,'111120055','','','1','V','7','I C. SENIOR STAFF','','2011-01-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2011-01-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(742,'121120060','','','1','V','3','II A. SPV PEMULA','','2011-02-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2011-02-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(743,'131160068','','','1','B','17','HARIAN','','2011-03-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2011-03-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(744,'131160069','','','1','H','12','HARIAN','','2011-03-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2011-03-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(745,'101280001','','','1','B','17','JAHIT','','2012-01-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-01-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(746,'111220101','','','1','V','6','IV B. JUNIOR KA.DEPT','','2012-02-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-02-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(747,'141260167','','','1','B','17','HARIAN','','2012-04-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-04-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(748,'141260210','','','1','B','17','HARIAN','','2012-04-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-04-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(749,'141220112','','','1','MIC','5','IV C. SENIOR KA.DEPT','','2012-04-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-04-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(750,'151260189','','','1','B','11','HARIAN','','2012-05-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-05-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(751,'101280026','','','1','B','17','GOSOK','','2012-09-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-09-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(752,'191260268','','','1','H','17','HARIAN','','2012-09-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-09-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(753,'120901175','','','1','V','6','V B. JUNIOR WA.KA.DI','','2012-09-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-09-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(754,'191260326','','','1','B','17','HARIAN','','2012-09-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-09-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(755,'111260366','','','1','H','12','HARIAN','','2012-11-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-11-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(756,'111260382','','','1','B','17','JAHIT','','2012-11-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-11-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(757,'111260402','','','1','H','17','HARIAN','','2012-11-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2012-11-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(758,'111380044','','','1','B','17','JAHIT','','2013-01-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-01-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(759,'111360456','','','1','H','12','DRIVER','','2013-01-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-01-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(760,'141260209','','','1','B','17','HARIAN','','2013-04-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-04-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(761,'141260185','','','1','B','17','HARIAN','','2013-04-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-04-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(762,'121380057','','','1','B','17','JAHIT','','2013-04-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-04-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(763,'121360495','','','1','H','9','HARIAN','','2013-04-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-04-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(764,'121320149','','','1','V','2','V A. WA.KA.DIV PEMUL','','2013-05-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-05-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(765,'121320163','','','1','V','2','III C. SENIOR WA.KA.','','2013-09-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-09-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(766,'121320171','','','1','MIC','6','II D. SPV','','2013-11-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-11-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(767,'121320175','','','1','S','4','II B. JUNIOR SPV','','2013-11-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-11-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(768,'121360689','','','1','B','17','HARIAN','','2013-12-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-12-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(769,'121360693','','','1','B','11','HARIAN','','2013-12-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2013-12-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(770,'121380117','','','1','B','17','JAHIT','','2014-01-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-01-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(771,'121380107','','','1','V','5','I D. STAFF','','2014-01-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-01-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(772,'160560008','','','1','V','10','I D. STAFF','','2014-01-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-01-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(773,'121360738','','','1','MIC','3','I C. SENIOR STAFF','','2014-03-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-03-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(774,'121320189','','','1','V','3','I D. STAFF','','2014-03-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-03-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(775,'121380127','','','1','B','17','HARIAN','','2014-04-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-04-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(776,'121360789','','','1','B','17','HARIAN','','2014-05-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-05-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(777,'121360788','','','1','B','17','HARIAN','','2014-05-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-05-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(778,'111020043','','','1','H','12','DRIVER','','2014-07-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-07-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(779,'121320228','','','1','V','5','II C. SENIOR SPV','','2014-08-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-08-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(780,'121360816','','','1','B','17','HARIAN','','2014-08-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-08-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(781,'111260397','','','1','S','7','II B. JUNIOR SPV','','2014-08-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-08-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(782,'160760012','','','1','S','9','I C. SENIOR STAFF','','2014-08-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-08-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(783,'121360838','','','1','B','17','HARIAN','','2014-09-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-09-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(784,'121360847','','','1','B','17','HARIAN','','2014-09-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-09-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(785,'121360871','','','1','B','17','HARIAN','','2014-09-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-09-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(786,'121360876','','','1','B','17','HARIAN','','2014-09-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-09-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(787,'121320242','','','1','V','10','II A. SPV PEMULA','','2014-09-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-09-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(788,'121360877','','','1','B','17','HARIAN','','2014-09-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-09-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(789,'121360791','','','1','B','17','HARIAN','','2014-10-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-10-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(790,'121360924','','','1','B','17','HARIAN','','2014-11-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-11-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(791,'121360942','','','1','B','17','HARIAN','','2014-11-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-11-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(792,'121320251','','','1','V','14','III D. WA.KA.DEPT','','2014-11-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-11-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(793,'121360965','','','1','B','17','HARIAN','','2014-12-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-12-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(794,'121360985','','','1','B','17','HARIAN','','2014-12-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2014-12-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(795,'121361040','','','1','H','17','HARIAN','','2015-01-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-01-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(796,'121360996','','','1','B','17','HARIAN','','2015-01-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-01-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(797,'121360993','','','1','B','17','HARIAN','','2015-01-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-01-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(798,'121361037','','','1','B','17','JAHIT','','2015-02-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-02-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(799,'121320269','','','1','MIC','20','V C. SENIOR WA.KA.DI','','2015-02-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-02-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(800,'121361062','','','1','B','17','HARIAN','','2015-02-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-02-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(801,'121361061','','','1','B','17','HARIAN','','2015-02-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-02-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(802,'121361072','','','1','B','17','HARIAN','','2015-02-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-02-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(803,'121361086','','','1','B','17','HARIAN','','2015-03-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(804,'121320277','','','1','V','7','II A. SPV PEMULA','','2015-03-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(805,'121361089','','','1','H','17','HARIAN','','2015-03-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(806,'121361093','','','1','B','17','HARIAN','','2015-03-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(807,'121361118','','','1','H','17','HARIAN','','2015-03-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(808,'121361123','','','1','H','17','HARIAN','','2015-03-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(809,'121361124','','','1','B','17','HARIAN','','2015-03-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(810,'121361126','','','1','B','17','HARIAN','','2015-03-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(811,'121361135','','','1','B','17','HARIAN','','2015-03-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(812,'121361140','','','1','B','17','HARIAN','','2015-03-31','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-03-31',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(813,'121361141','','','1','B','17','HARIAN','','2015-04-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(814,'121361142','','','1','B','17','HARIAN','','2015-04-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(815,'121361143','','','1','B','17','HARIAN','','2015-04-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(816,'121361144','','','1','B','17','HARIAN','','2015-04-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(817,'121361162','','','1','H','17','HARIAN','','2015-04-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(818,'121361164','','','1','B','17','HARIAN','','2015-04-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(819,'121361165','','','1','B','17','HARIAN','','2015-04-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(820,'121320280','','','1','V','7','I D. STAFF','','2015-04-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-04-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(821,'121361186','','','1','H','17','HARIAN','','2015-05-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-05-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(822,'121320298','','','1','S','9','III B. JUNIOR WA.KA.','','2015-06-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-06-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(823,'161260232','','','1','V','4','I C. SENIOR STAFF','','2015-07-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-07-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(824,'121320301','','','1','V','7','II A. SPV PEMULA','','2015-08-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-08-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(825,'121361250','','','1','B','17','HARIAN','','2015-08-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-08-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(826,'121320306','','','1','V','6','II A. SPV PEMULA','','2015-08-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-08-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(827,'121361251','','','1','B','17','HARIAN','','2015-08-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-08-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(828,'121361252','','','1','B','17','HARIAN','','2015-08-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-08-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(829,'121361265','','','1','B','17','HARIAN','','2015-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(830,'121320312','','','1','MIC','7','III C. SENIOR WA.KA.','','2015-09-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-09-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(831,'121361271','','','1','B','17','HARIAN','','2015-09-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-09-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(832,'121361273','','','1','B','17','HARIAN','','2015-09-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-09-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(833,'121320315','','','1','MIC','5','I D. STAFF','','2015-09-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-09-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(834,'121361294','','','1','H','17','HARIAN','','2015-09-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-09-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(835,'121361293','','','1','H','12','HARIAN','','2015-10-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-10-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(836,'121361298','','','1','H','17','HARIAN','','2015-10-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-10-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(837,'121320320','','','1','MIC','5','I D. STAFF','','2015-10-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-10-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(838,'140760010','','','1','MIC','10','I C. SENIOR STAFF','','2015-10-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-10-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(839,'121320325','','','1','MIC','3','I C. SENIOR STAFF','','2015-11-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-11-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(840,'121361345','','','1','H','12','HARIAN','','2015-11-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-11-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(841,'121320335','','','1','MIC','12','I C. SENIOR STAFF','','2015-12-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-12-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(842,'101260351','','','1','MIC','4','I B. JUNIOR STAFF','','2015-12-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2015-12-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(843,'121361398','','','1','B','17','HARIAN','','2016-01-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-01-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(844,'121361406','','','1','B','17','HARIAN','','2016-01-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-01-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(845,'121361408','','','1','B','17','HARIAN','','2016-01-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-01-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(846,'121320343','','','1','MIC','20','II A. SPV PEMULA','','2016-01-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-01-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(847,'121320345','','','1','MIC','5','IV D. KA.DEPT','','2016-02-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-02-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(848,'121361485','','','1','B','17','HARIAN','','2016-03-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-03-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(849,'121361509','','','1','H','12','HARIAN','','2016-03-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-03-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(850,'121361495','','','1','B','17','HARIAN','','2016-03-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-03-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(851,'121361235','','','1','MIC','4','II A. SPV PEMULA','','2016-03-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-03-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(852,'121320355','','','1','MIC','12','III D. WA.KA.DEPT','','2016-03-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-03-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(853,'121361533','','','1','H','17','HARIAN','','2016-03-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-03-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(854,'121361519','','','1','B','17','HARIAN','','2016-03-31','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-03-31',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(855,'121320360','','','1','MIC','5','II B. JUNIOR SPV','','2016-04-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-04-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(856,'121361591','','','1','B','17','HARIAN','','2016-05-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-05-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(857,'121360676','','','1','H','12','HARIAN','','2016-07-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-07-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(858,'121361360','','','1','H','12','HARIAN','','2016-07-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-07-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(859,'121361600','','','1','H','12','HARIAN','','2016-07-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-07-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(860,'121361615','','','1','H','17','HARIAN','','2016-07-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-07-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(861,'121360658','','','1','MIC','12','I B. JUNIOR STAFF','','2016-07-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-07-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(862,'121361622','','','1','B','17','HARIAN','','2016-07-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-07-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(863,'121361670','','','1','H','17','HARIAN','','2016-08-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-08-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(864,'121320369','','','1','MIC','4','II A. SPV PEMULA','','2016-08-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-08-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(865,'121320370','','','1','MIC','6','II B. JUNIOR SPV','','2016-08-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-08-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(866,'121320372','','','1','MIC','5','II B. JUNIOR SPV','','2016-08-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-08-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(867,'121361699','','','1','B','17','HARIAN','','2016-08-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-08-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(868,'121361709','','','1','H','18','HARIAN','','2016-08-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-08-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(869,'121260427','','','1','H','12','DRIVER','','2016-08-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-08-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(870,'121361723','','','1','H','12','HARIAN','','2016-09-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-09-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(871,'121361749','','','1','B','17','X D. DIREKTUR','','2016-09-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-09-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(872,'121361757','','','1','B','17','HARIAN','','2016-09-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-09-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(873,'121361771','','','1','B','17','HARIAN','','2016-10-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-10-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(874,'121361770','','','1','H','17','HARIAN','','2016-10-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-10-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(875,'121361783','','','1','B','17','HARIAN','','2016-10-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-10-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(876,'121361785','','','1','B','17','HARIAN','','2016-10-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-10-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(877,'121361810','','','1','B','11','HARIAN','','2016-10-31','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-10-31',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(878,'121320387','','','1','V','5','II C. SENIOR SPV','','2016-11-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(879,'121361811','','','1','B','17','HARIAN','','2016-11-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(880,'121361822','','','1','B','17','HARIAN','','2016-11-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(881,'121361819','','','1','H','10','HARIAN','','2016-11-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(882,'121361818','','','1','H','10','HARIAN','','2016-11-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(883,'121361831','','','1','H','17','HARIAN','','2016-11-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(884,'121361838','','','1','B','17','HARIAN','','2016-11-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(885,'121320390','','','1','V','5','I B. JUNIOR STAFF','','2016-11-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-11-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(886,'121361886','','','1','B','17','HARIAN','','2016-12-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-12-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(887,'121361887','','','1','B','11','HARIAN','','2016-12-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-12-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(888,'121360874','','','1','B','17','HARIAN','','2016-12-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-12-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(889,'121360632','','','1','V','20','I B. JUNIOR STAFF','','2016-12-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-12-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(890,'121320393','','','1','V','4','I C. SENIOR STAFF','','2016-12-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2016-12-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(891,'121361905','','','1','B','17','HARIAN','','2017-01-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-01-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(892,'121361907','','','1','B','17','HARIAN','','2017-01-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-01-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(893,'121361924','','','1','H','17','HARIAN','','2017-01-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-01-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(894,'121320402','','','1','B','17','HARIAN','','2017-02-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-02-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(895,'121320399','','','1','MAP','10','I D. STAFF','','2017-02-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-02-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(896,'121320401','','','1','MAP','5','III C. SENIOR WA.KA.','','2017-02-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-02-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(897,'121361956','','','1','H','12','DRIVER','','2017-02-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-02-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(898,'121361957','','','1','H','17','HARIAN','','2017-02-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-02-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(899,'121361973','','','1','H','12','HARIAN','','2017-02-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-02-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(900,'121361979','','','1','B','17','HARIAN','','2017-03-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-03-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(901,'121320409','','','1','MAP','5','I D. STAFF','','2017-03-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-03-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(902,'121362008','','','1','B','17','HARIAN','','2017-03-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-03-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(903,'121362009','','','1','B','17','HARIAN','','2017-03-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-03-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(904,'121362003','','','1','B','17','HARIAN','','2017-03-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-03-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(905,'121320412','','','1','V','5','IV B. JUNIOR KA.DEPT','','2017-04-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-04-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(906,'121362050','','','1','B','17','HARIAN','','2017-04-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-04-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(907,'121362042','','','1','H','17','HARIAN','','2017-04-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-04-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(908,'121362068','','','1','B','17','HARIAN','','2017-04-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-04-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(909,'121362071','','','1','H','12','HARIAN','','2017-04-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-04-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(910,'121362081','','','1','B','17','HARIAN','','2017-05-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-05-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(911,'121362082','','','1','B','17','HARIAN','','2017-05-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-05-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(912,'121361850','','','1','B','17','HARIAN','','2017-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(913,'121361566','','','1','B','11','HARIAN','','2017-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(914,'121362109','','','1','B','11','HARIAN','','2017-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(915,'121361897','','','1','H','17','HARIAN','','2017-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(916,'191260299','','','1','B','17','HARIAN','','2017-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(917,'121361983','','','1','B','17','HARIAN','','2017-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(918,'120760009','','','1','H','12','DRIVER','','2017-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(919,'121361081','','','1','H','17','HARIAN','','2017-07-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(920,'121362108','','','1','B','17','HARIAN','','2017-07-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(921,'121362142','','','1','H','14','HARIAN','','2017-07-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(922,'121361077','','','1','B','17','HARIAN','','2017-07-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(923,'121361708','','','1','B','17','HARIAN','','2017-07-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(924,'121362131','','','1','B','17','HARIAN','','2017-07-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(925,'121362160','','','1','B','17','HARIAN','','2017-07-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(926,'121362139','','','1','B','17','HARIAN','','2017-07-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(927,'121362140','','','1','B','17','HARIAN','','2017-07-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(928,'121362161','','','1','B','11','HARIAN','','2017-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(929,'121362144','','','1','B','17','HARIAN','','2017-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(930,'121362153','','','1','H','12','HARIAN','','2017-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(931,'121362157','','','1','B','17','HARIAN','','2017-07-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(932,'121361110','','','1','B','17','HARIAN','','2017-07-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(933,'121362184','','','1','B','17','HARIAN','','2017-07-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(934,'121361845','','','1','MAP','20','I B. JUNIOR STAFF','','2017-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(935,'121362215','','','1','B','11','HARIAN','','2017-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(936,'121362217','','','1','B','11','HARIAN','','2017-07-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(937,'121362218','','','1','B','11','HARIAN','','2017-07-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(938,'121362226','','','1','B','11','HARIAN','','2017-07-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(939,'121362206','','','1','H','12','HARIAN','','2017-07-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-07-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(940,'121362237','','','1','B','11','HARIAN','','2017-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(941,'121362247','','','1','B','11','HARIAN','','2017-08-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(942,'121362271','','','1','B','11','HARIAN','','2017-08-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(943,'121362270','','','1','B','11','HARIAN','','2017-08-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(944,'121362252','','','1','H','10','HARIAN','','2017-08-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(945,'121362262','','','1','B','17','HARIAN','','2017-08-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(946,'121362259','','','1','H','17','HARIAN','','2017-08-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(947,'121362269','','','1','B','11','HARIAN','','2017-08-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(948,'121362280','','','1','B','11','HARIAN','','2017-08-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(949,'121362291','','','1','H','12','HARIAN','','2017-08-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(950,'121362293','','','1','B','17','HARIAN','','2017-08-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(951,'121362302','','','1','B','17','HARIAN','','2017-08-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(952,'121362305','','','1','B','11','HARIAN','','2017-08-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(953,'121362313','','','1','B','11','HARIAN','','2017-08-31','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-08-31',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(954,'121362310','','','1','B','11','HARIAN','','2017-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(955,'121320431','','','1','V','4','II B. JUNIOR SPV','','2017-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(956,'121362339','','','1','B','11','HARIAN','','2017-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(957,'121362341','','','1','B','11','HARIAN','','2017-09-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(958,'121362354','','','1','H','14','HARIAN','','2017-09-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(959,'121362352','','','1','B','17','HARIAN','','2017-09-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(960,'121320432','','','1','V','4','I D. STAFF','','2017-09-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(961,'121362362','','','1','B','11','HARIAN','','2017-09-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(962,'121362364','','','1','B','11','HARIAN','','2017-09-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-09-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(963,'121320436','','','1','V','17','I C. SENIOR STAFF','','2017-10-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(964,'121320438','','','1','V','5','II A. SPV PEMULA','','2017-10-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(965,'121320439','','','1','V','5','I D. STAFF','','2017-10-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(966,'121320440','','','1','V','7','II A. SPV PEMULA','','2017-10-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(967,'121361751','','','1','V','4','I B. JUNIOR STAFF','','2017-10-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(968,'121362414','','','1','H','17','HARIAN','','2017-10-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(969,'121320441','','','1','V','5','II B. JUNIOR SPV','','2017-10-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(970,'121362421','','','1','B','11','HARIAN','','2017-10-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-10-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(971,'121362436','','','1','B','17','HARIAN','','2017-11-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(972,'121362429','','','1','B','17','HARIAN','','2017-11-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(973,'121320443','','','1','MIC','14','II A. SPV PEMULA','','2017-11-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(974,'121362451','','','1','B','17','HARIAN','','2017-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(975,'121362458','','','1','H','12','HARIAN','','2017-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(976,'121362460','','','1','H','18','HARIAN','','2017-11-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(977,'121362468','','','1','B','17','HARIAN','','2017-11-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(978,'121362476','','','1','H','12','HARIAN','','2017-11-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(979,'121362470','','','1','B','17','HARIAN','','2017-11-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-11-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(980,'121361925','','','1','H','17','HARIAN','','2017-12-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-12-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(981,'121362482','','','1','B','17','HARIAN','','2017-12-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-12-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(982,'121362486','','','1','B','17','HARIAN','','2017-12-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-12-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(983,'121362489','','','1','B','11','HARIAN','','2017-12-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-12-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(984,'121320449','','','1','V','7','I B. JUNIOR STAFF','','2017-12-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-12-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(985,'121362490','','','1','H','12','HARIAN','','2017-12-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-12-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(986,'121362472','','','1','H','12','HARIAN','','2017-12-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2017-12-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(987,'121362523','','','1','B','17','HARIAN','','2018-01-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(988,'121362526','','','1','B','17','HARIAN','','2018-01-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(989,'121361589','','','1','MIC','4','I C. SENIOR STAFF','','2018-01-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(990,'121320456','','','1','V','3','I A. STFF PEMULA','','2018-01-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(991,'121362562','','','1','B','11','HARIAN','','2018-01-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(992,'121320457','','','1','MIC','5','II C. SENIOR SPV','','2018-01-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(993,'121362580','','','1','H','17','HARIAN','','2018-01-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(994,'121320324','','','1','MIC','7','III D. WA.KA.DEPT','','2018-01-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(995,'121362576','','','1','B','17','HARIAN','','2018-01-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-01-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(996,'121362591','','','1','B','17','HARIAN','','2018-02-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-02-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(997,'121362600','','','1','H','17','HARIAN','','2018-02-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-02-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(998,'121362615','','','1','B','17','HARIAN','','2018-02-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-02-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(999,'121362620','','','1','H','12','HARIAN','','2018-02-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-02-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1000,'121362627','','','1','H','17','HARIAN','','2018-02-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-02-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1001,'121362650','','','1','H','11','HARIAN','','2018-02-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-02-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1002,'121362651','','','1','B','11','HARIAN','','2018-02-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-02-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1003,'121362655','','','1','H','17','HARIAN','','2018-03-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-03-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1004,'121362662','','','1','B','17','HARIAN','','2018-03-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-03-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1005,'121362669','','','1','B','17','HARIAN','','2018-03-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-03-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1006,'121362690','','','1','B','11','HARIAN','','2018-03-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-03-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1007,'121362707','','','1','H','10','HARIAN','','2018-04-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1008,'121320468','','','1','MIC','7','III B. JUNIOR WA.KA.','','2018-04-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1009,'121362718','','','1','H','18','HARIAN','','2018-04-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1010,'121361274','','','1','B','17','HARIAN','','2018-04-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1011,'121362737','','','1','B','17','HARIAN','','2018-04-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1012,'121362749','','','1','B','11','HARIAN','','2018-04-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1013,'121362748','','','1','H','12','HARIAN','','2018-04-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1014,'121362747','','','1','H','12','HARIAN','','2018-04-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1015,'121362752','','','1','B','17','HARIAN','','2018-04-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-04-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1016,'121362767','','','1','B','17','HARIAN','','2018-05-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-05-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1017,'121362773','','','1','H','11','HARIAN','','2018-05-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-05-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1018,'121362756','','','1','H','11','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1019,'121362642','','','1','B','17','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1020,'121361793','','','1','B','17','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1021,'121361532','','','1','B','17','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1022,'121362093','','','1','B','17','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1023,'121360845','','','1','H','9','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1024,'121361679','','','1','H','18','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1025,'121362725','','','1','B','11','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1026,'121362335','','','1','H','9','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1027,'121361784','','','1','B','17','HARIAN','','2018-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1028,'121362792','','','1','B','17','HARIAN','','2018-06-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1029,'121362815','','','1','H','17','HARIAN','','2018-06-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1030,'121362816','','','1','B','17','HARIAN','','2018-06-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-06-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1031,'121362829','','','1','B','11','HARIAN','','2018-07-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1032,'121362821','','','1','B','17','HARIAN','','2018-07-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1033,'121362818','','','1','B','17','HARIAN','','2018-07-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1034,'121362834','','','1','B','11','HARIAN','','2018-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1035,'121362837','','','1','B','17','HARIAN','','2018-07-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1036,'121320475','','','1','MAP','3','I A. STFF PEMULA','','2018-07-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1037,'121362856','','','1','B','11','HARIAN','','2018-07-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1038,'121362867','','','1','B','11','HARIAN','','2018-07-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1039,'121362874','','','1','H','12','HARIAN','','2018-07-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1040,'121362870','','','1','B','17','HARIAN','','2018-07-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1041,'121362710','','','1','B','17','HARIAN','','2018-07-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1042,'121362317','','','1','MAP','4','I B. JUNIOR STAFF','','2018-07-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1043,'121361739','','','1','MAP','4','I A. STFF PEMULA','','2018-07-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1044,'121362897','','','1','B','11','HARIAN','','2018-07-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1045,'121362889','','','1','B','17','HARIAN','','2018-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1046,'121320480','','','1','MAP','6','I C. SENIOR STAFF','','2018-07-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1047,'121362907','','','1','B','11','HARIAN','','2018-07-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1048,'121362910','','','1','B','11','HARIAN','','2018-07-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-07-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1049,'121362527','','','1','H','14','HARIAN','','2018-08-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-08-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1050,'121362924','','','1','H','18','HARIAN','','2018-08-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-08-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1051,'121362936','','','1','H','17','HARIAN','','2018-08-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-08-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1052,'121362956','','','1','B','17','HARIAN','','2018-08-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-08-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1053,'121362950','','','1','B','17','HARIAN','','2018-08-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-08-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1054,'121362969','','','1','B','11','HARIAN','','2018-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1055,'121362970','','','1','B','11','HARIAN','','2018-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1056,'121362535','','','1','B','11','HARIAN','','2018-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1057,'121362977','','','1','H','12','HARIAN','','2018-09-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1058,'121362982','','','1','B','11','HARIAN','','2018-09-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1059,'121362985','','','1','B','11','HARIAN','','2018-09-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1060,'121362996','','','1','H','14','HARIAN','','2018-09-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1061,'121362993','','','1','B','11','HARIAN','','2018-09-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1062,'121362998','','','1','B','11','HARIAN','','2018-09-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1063,'121363006','','','1','B','17','HARIAN','','2018-09-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1064,'121363005','','','1','B','17','HARIAN','','2018-09-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-09-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1065,'121363038','','','1','B','11','HARIAN','','2018-10-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1066,'121363008','','','1','B','17','HARIAN','','2018-10-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1067,'121363018','','','1','B','17','HARIAN','','2018-10-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1068,'121363023','','','1','B','11','HARIAN','','2018-10-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1069,'121363024','','','1','B','17','HARIAN','','2018-10-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1070,'121363025','','','1','B','17','HARIAN','','2018-10-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1071,'121363051','','','1','B','11','HARIAN','','2018-10-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1072,'121363027','','','1','B','17','HARIAN','','2018-10-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1073,'121363035','','','1','B','17','HARIAN','','2018-10-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1074,'121363037','','','1','H','11','HARIAN','','2018-10-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1075,'121363052','','','1','H','17','HARIAN','','2018-10-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1076,'121363064','','','1','B','17','HARIAN','','2018-10-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1077,'121320489','','','1','MAP','3','II C. SENIOR SPV','','2018-10-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-10-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1078,'121320490','','','1','MAP','3','II B. JUNIOR SPV','','2018-11-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1079,'121362381','','','1','B','11','HARIAN','','2018-11-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1080,'121363071','','','1','B','11','HARIAN','','2018-11-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1081,'121363073','','','1','B','11','HARIAN','','2018-11-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1082,'121363074','','','1','B','11','HARIAN','','2018-11-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1083,'121363079','','','1','B','17','HARIAN','','2018-11-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1084,'121363090','','','1','B','17','HARIAN','','2018-11-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1085,'121363085','','','1','B','17','HARIAN','','2018-11-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1086,'121362185','','','1','MIC','4','I A. STFF PEMULA','','2018-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1087,'121361578','','','1','MIC','4','I A. STFF PEMULA','','2018-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1088,'121360731','','','1','MIC','12','I A. STFF PEMULA','','2018-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1089,'121360823','','','1','MIC','4','I A. STFF PEMULA','','2018-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1090,'121361305','','','1','MIC','12','I A. STFF PEMULA','','2018-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1091,'121363103','','','1','H','17','HARIAN','','2018-11-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1092,'121363117','','','1','B','11','HARIAN','','2018-11-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1093,'121363118','','','1','B','11','HARIAN','','2018-11-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1094,'121363112','','','1','H','11','HARIAN','','2018-11-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1095,'121363107','','','1','B','17','HARIAN','','2018-11-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-11-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1096,'121363130','','','1','H','12','HARIAN','','2018-12-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-12-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1097,'121320494','','','1','MIC','7','I D. STAFF','','2018-12-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-12-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1098,'121320496','','','1','S','7','I C. SENIOR STAFF','','2018-12-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-12-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1099,'121363138','','','1','B','11','HARIAN','','2018-12-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-12-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1100,'121363144','','','1','B','17','HARIAN','','2018-12-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-12-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1101,'121363143','','','1','H','17','HARIAN','','2018-12-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2018-12-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1102,'121362469','','','1','B','17','HARIAN','','2019-01-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1103,'121361936','','','1','B','11','HARIAN','','2019-01-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1104,'121363151','','','1','H','12','HARIAN','','2019-01-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1105,'121363153','','','1','H','12','HARIAN','','2019-01-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1106,'121362862','','','1','B','17','HARIAN','','2019-01-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1107,'121363158','','','1','H','10','HARIAN','','2019-01-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1108,'121363159','','','1','B','17','HARIAN','','2019-01-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1109,'121363167','','','1','H','12','HARIAN','','2019-01-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1110,'121363163','','','1','B','11','HARIAN','','2019-01-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1111,'121363171','','','1','H','17','HARIAN','','2019-01-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1112,'121363179','','','1','H','12','HARIAN','','2019-01-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1113,'121363176','','','1','B','17','HARIAN','','2019-01-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1114,'121363187','','','1','B','17','HARIAN','','2019-01-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1115,'121363189','','','1','B','17','HARIAN','','2019-01-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1116,'121363195','','','1','B','11','HARIAN','','2019-01-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1117,'121363193','','','1','B','17','HARIAN','','2019-01-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1118,'121363192','','','1','B','17','HARIAN','','2019-01-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-01-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1119,'121320499','','','1','V','10','I B. JUNIOR STAFF','','2019-02-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-02-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1120,'121363202','','','1','B','11','HARIAN','','2019-02-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-02-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1121,'121320501','','','1','V','7','I B. JUNIOR STAFF','','2019-02-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-02-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1122,'121363197','','','1','H','17','HARIAN','','2019-02-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-02-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1123,'121363199','','','1','B','17','HARIAN','','2019-02-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-02-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1124,'121363211','','','1','H','12','HARIAN','','2019-03-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1125,'121363213','','','1','H','10','HARIAN','','2019-03-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1126,'121360938','','','1','B','17','HARIAN','','2019-03-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1127,'121363220','','','1','H','10','HARIAN','','2019-03-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1128,'121362863','','','1','B','17','HARIAN','','2019-03-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1129,'121320505','','','1','S','7','I A. STFF PEMULA','','2019-03-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1130,'121363225','','','1','H','17','HARIAN','','2019-03-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1131,'121363232','','','1','H','12','HARIAN','','2019-03-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1132,'121320506','','','1','MIC','7','II A. SPV PEMULA','','2019-03-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1133,'121363237','','','1','B','11','HARIAN','','2019-03-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1134,'121320507','','','1','MIC','3','I A. STFF PEMULA','','2019-03-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-03-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1135,'121363238','','','1','B','17','HARIAN','','2019-04-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1136,'121363241','','','1','B','17','HARIAN','','2019-04-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1137,'121363240','','','1','B','17','HARIAN','','2019-04-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1138,'121363251','','','1','B','11','HARIAN','','2019-04-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1139,'121363252','','','1','B','11','HARIAN','','2019-04-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1140,'121363255','','','1','H','17','HARIAN','','2019-04-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1141,'121320510','','','1','MIC','3','I A. STFF PEMULA','','2019-04-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1142,'121363269','','','1','H','17','HARIAN','','2019-04-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1143,'121363266','','','1','H','12','HARIAN','','2019-04-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-04-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1144,'121363282','','','1','H','12','DRIVER','','2019-05-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-05-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1145,'121363277','','','1','B','11','HARIAN','','2019-05-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-05-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1146,'121363292','','','1','H','11','HARIAN','','2019-05-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-05-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1147,'121320511','','','1','MIC','20','I B. JUNIOR STAFF','','2019-05-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-05-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1148,'121363212','','','1','H','10','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1149,'121363152','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1150,'121363137','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1151,'121320512','','','1','MIC','2','I D. STAFF','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1152,'121320513','','','1','MIC','2','I B. JUNIOR STAFF','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1153,'121360963','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1154,'121363304','','','1','H','12','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1155,'121362307','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1156,'121363133','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1157,'121363181','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1158,'121361387','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1159,'121363221','','','1','H','10','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1160,'121363180','','','1','H','12','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1161,'121363227','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1162,'121362839','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1163,'121361397','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1164,'121363224','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1165,'121361191','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1166,'121320373','','','1','MIC','3','I B. JUNIOR STAFF','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1167,'121363259','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1168,'121363279','','','1','H','20','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1169,'121361967','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1170,'121363228','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1171,'111060033','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1172,'121363302','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1173,'121363274','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1174,'121363042','','','1','H','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1175,'121362452','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1176,'121363059','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1177,'121362320','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1178,'121362926','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1179,'121363120','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1180,'121362830','','','1','B','11','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1181,'121363003','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1182,'121363049','','','1','H','12','DRIVER','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1183,'121363204','','','1','H','12','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1184,'121363285','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1185,'121362861','','','1','B','17','HARIAN','','2019-06-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1186,'121363307','','','1','H','12','HARIAN','','2019-06-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1187,'121363294','','','1','B','17','HARIAN','','2019-06-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1188,'121363298','','','1','B','11','HARIAN','','2019-06-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1189,'121363301','','','1','B','11','HARIAN','','2019-06-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1190,'121363306','','','1','H','12','HARIAN','','2019-06-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1191,'121360768','','','1','B','17','HARIAN','','2019-06-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1192,'121363310','','','1','H','9','HARIAN','','2019-06-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1193,'121363319','','','1','B','11','HARIAN','','2019-06-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1194,'121363315','','','1','B','17','HARIAN','','2019-06-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1195,'121363313','','','1','B','17','HARIAN','','2019-06-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1196,'121363318','','','1','H','20','HARIAN','','2019-06-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1197,'121363320','','','1','B','11','HARIAN','','2019-06-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1198,'121363321','','','1','B','11','HARIAN','','2019-06-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1199,'121363326','','','1','B','17','HARIAN','','2019-06-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1200,'121363324','','','1','B','11','HARIAN','','2019-06-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1201,'121363333','','','1','B','11','HARIAN','','2019-06-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1202,'161260214','','','1','H','9','HARIAN','','2019-06-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1203,'121363332','','','1','H','12','HARIAN','','2019-06-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1204,'121363331','','','1','H','12','HARIAN','','2019-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1205,'121363338','','','1','B','11','HARIAN','','2019-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1206,'121363339','','','1','B','11','HARIAN','','2019-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1207,'121363344','','','1','B','17','HARIAN','','2019-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1208,'121363337','','','1','B','11','HARIAN','','2019-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1209,'121363347','','','1','B','17','HARIAN','','2019-06-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1210,'121363345','','','1','B','17','HARIAN','','2019-06-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1211,'121363342','','','1','B','17','HARIAN','','2019-06-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1212,'121363156','','','1','B','17','HARIAN','','2019-06-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1213,'121320515','','','1','MIC','12','I A. STFF PEMULA','','2019-06-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1214,'121363340','','','1','B','11','HARIAN','','2019-06-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-06-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1215,'121363354','','','1','B','11','HARIAN','','2019-07-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1216,'121363356','','','1','B','11','HARIAN','','2019-07-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1217,'121363357','','','1','H','17','HARIAN','','2019-07-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1218,'121363369','','','1','H','10','HARIAN','','2019-07-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1219,'121363361','','','1','B','11','HARIAN','','2019-07-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1220,'121363363','','','1','B','11','HARIAN','','2019-07-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1221,'121363371','','','1','B','17','HARIAN','','2019-07-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1222,'121363373','','','1','H','12','HARIAN','','2019-07-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1223,'121363364','','','1','B','11','HARIAN','','2019-07-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1224,'121363379','','','1','H','12','HARIAN','','2019-07-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1225,'121363391','','','1','H','11','HARIAN','','2019-07-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1226,'121363389','','','1','B','17','HARIAN','','2019-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1227,'121363388','','','1','B','17','HARIAN','','2019-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1228,'121363375','','','1','B','17','HARIAN','','2019-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1229,'121363390','','','1','B','11','HARIAN','','2019-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1230,'121363392','','','1','B','17','HARIAN','','2019-07-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1231,'121363393','','','1','B','17','HARIAN','','2019-07-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1232,'121361675','','','1','B','17','HARIAN','','2019-07-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1233,'121320516','','','1','MIC','12','I A. STFF PEMULA','','2019-07-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1234,'121363398','','','1','H','12','HARIAN','','2019-07-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1235,'121363397','','','1','B','11','HARIAN','','2019-07-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1236,'121363403','','','1','B','17','HARIAN','','2019-07-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1237,'121363395','','','1','B','11','HARIAN','','2019-07-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1238,'121363405','','','1','B','17','HARIAN','','2019-07-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1239,'121363414','','','1','H','17','HARIAN','','2019-07-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1240,'121363415','','','1','B','17','HARIAN','','2019-07-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1241,'121363433','','','1','B','17','HARIAN','','2019-07-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1242,'121363425','','','1','H','10','HARIAN','','2019-07-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1243,'121363427','','','1','B','17','HARIAN','','2019-07-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1244,'121363434','','','1','B','17','HARIAN','','2019-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1245,'121363442','','','1','H','17','HARIAN','','2019-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1246,'121363432','','','1','B','17','HARIAN','','2019-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1247,'121363431','','','1','H','17','HARIAN','','2019-07-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1248,'121363160','','','1','B','17','HARIAN','','2019-07-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-07-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1249,'121363461','','','1','B','11','HARIAN','','2019-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1250,'121363463','','','1','B','11','HARIAN','','2019-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1251,'121363459','','','1','B','11','HARIAN','','2019-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1252,'121363462','','','1','B','11','HARIAN','','2019-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1253,'121363458','','','1','B','17','HARIAN','','2019-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1254,'121363287','','','1','B','17','HARIAN','','2019-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1255,'121363454','','','1','H','17','HARIAN','','2019-08-01','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-01',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1256,'121363465','','','1','H','17','HARIAN','','2019-08-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1257,'121363474','','','1','B','17','HARIAN','','2019-08-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1258,'121363477','','','1','B','11','HARIAN','','2019-08-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1259,'121363471','','','1','B','17','HARIAN','','2019-08-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1260,'121363473','','','1','B','17','HARIAN','','2019-08-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1261,'121361036','','','1','B','17','HARIAN','','2019-08-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1262,'121363479','','','1','B','11','HARIAN','','2019-08-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1263,'121363480','','','1','B','17','HARIAN','','2019-08-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1264,'121363483','','','1','H','12','HARIAN','','2019-08-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1265,'121363485','','','1','B','17','HARIAN','','2019-08-19','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1266,'121363486','','','1','B','11','HARIAN','','2019-08-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1267,'121320519','','','1','MAP','4','I A. STFF PEMULA','','2019-08-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1268,'121363484','','','1','B','17','HARIAN','','2019-08-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1269,'121363488','','','1','B','11','HARIAN','','2019-08-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1270,'121363490','','','1','H','17','HARIAN','','2019-08-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1271,'121363492','','','1','B','17','HARIAN','','2019-08-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1272,'121363498','','','1','B','11','HARIAN','','2019-08-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1273,'121363497','','','1','B','11','HARIAN','','2019-08-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1274,'121363496','','','1','B','11','HARIAN','','2019-08-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1275,'121363499','','','1','B','11','HARIAN','','2019-08-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1276,'121363500','','','1','B','11','HARIAN','','2019-08-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1277,'121363501','','','1','B','11','HARIAN','','2019-08-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1278,'121320520','','','1','V','7','I B. JUNIOR STAFF','','2019-08-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1279,'121363504','','','1','B','17','HARIAN','','2019-08-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1280,'121363505','','','1','B','17','HARIAN','','2019-08-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-08-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1281,'121363506','','','1','B','17','HARIAN','','2019-09-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1282,'121363508','','','1','B','17','HARIAN','','2019-09-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1283,'121363509','','','1','B','17','HARIAN','','2019-09-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1284,'121363105','','','1','B','17','HARIAN','','2019-09-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1285,'121363514','','','1','H','12','HARIAN','','2019-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1286,'121363512','','','1','B','17','HARIAN','','2019-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1287,'121363513','','','1','B','11','HARIAN','','2019-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1288,'121363518','','','1','B','11','HARIAN','','2019-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1289,'121363515','','','1','H','12','HARIAN','','2019-09-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1290,'121363517','','','1','B','11','HARIAN','','2019-09-05','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-05',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1291,'121363519','','','1','B','17','HARIAN','','2019-09-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1292,'121320521','','','1','V','6','I D. STAFF','','2019-09-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1293,'121363525','','','1','H','9','HARIAN','','2019-09-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1294,'121320522','','','1','MIC','12','I D. STAFF','','2019-09-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1295,'121363528','','','1','B','11','HARIAN','','2019-09-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1296,'121363529','','','1','H','12','HARIAN','','2019-09-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1297,'121363533','','','1','B','11','HARIAN','','2019-09-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1298,'121363531','','','1','B','11','HARIAN','','2019-09-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1299,'121363532','','','1','B','11','HARIAN','','2019-09-24','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-24',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1300,'121363256','','','1','H','12','DRIVER','','2019-09-25','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-25',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1301,'121363542','','','1','H','17','HARIAN','','2019-09-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1302,'121320523','','','1','MIC','7','I A. STFF PEMULA','','2019-09-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-09-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1303,'121363546','','','1','B','17','HARIAN','','2019-10-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1304,'121363545','','','1','B','11','HARIAN','','2019-10-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1305,'121363552','','','1','B','11','HARIAN','','2019-10-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1306,'121320524','','','1','MAP','7','I A. STFF PEMULA','','2019-10-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1307,'121363550','','','1','H','11','HARIAN','','2019-10-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1308,'121361095','','','1','B','17','HARIAN','','2019-10-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1309,'121363548','','','1','B','17','HARIAN','','2019-10-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1310,'121363549','','','1','B','11','HARIAN','','2019-10-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1311,'121363556','','','1','B','11','HARIAN','','2019-10-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1312,'121363557','','','1','B','11','HARIAN','','2019-10-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1313,'121363561','','','1','H','11','HARIAN','','2019-10-15','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-15',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1314,'121363558','','','1','B','17','HARIAN','','2019-10-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1315,'121363562','','','1','B','17','HARIAN','','2019-10-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1316,'121363565','','','1','H','12','HARIAN','','2019-10-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1317,'121320527','','','1','PASIF','5','I D. STAFF','','2019-10-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1318,'121363574','','','1','B','11','HARIAN','','2019-10-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1319,'121363386','','','1','H','17','HARIAN','','2019-10-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1320,'121363576','','','1','B','11','HARIAN','','2019-10-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1321,'121363578','','','1','B','17','HARIAN','','2019-10-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1322,'121363582','','','1','H','11','HARIAN','','2019-10-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1323,'121320528','','','1','V','6','I D. STAFF','','2019-10-31','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-10-31',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1324,'121363588','','','1','B','11','HARIAN','','2019-11-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1325,'121363589','','','1','B','11','HARIAN','','2019-11-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1326,'121363590','','','1','H','20','HARIAN','','2019-11-08','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-08',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1327,'121363591','','','1','B','11','HARIAN','','2019-11-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1328,'121363593','','','1','H','17','HARIAN','','2019-11-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1329,'121361800','','','1','B','17','HARIAN','','2019-11-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1330,'121320529','','','1','MIC','7','II A. SPV PEMULA','','2019-11-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1331,'121363594','','','1','H','17','HARIAN','','2019-11-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1332,'121320530','','','1','MAP','7','I A. STFF PEMULA','','2019-11-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1333,'121363599','','','1','B','17','HARIAN','','2019-11-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1334,'121363603','','','1','H','11','HARIAN','','2019-11-18','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-18',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1335,'121363600','','','1','H','11','HARIAN','','2019-11-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1336,'121363605','','','1','B','11','HARIAN','','2019-11-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1337,'121363601','','','1','B','17','HARIAN','','2019-11-22','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-22',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1338,'121363607','','','1','B','11','HARIAN','','2019-11-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1339,'121363612','','','1','H','17','HARIAN','','2019-11-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-11-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1340,'121363613','','','1','H','10','HARIAN','','2019-12-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1341,'121361145','','','1','B','11','HARIAN','','2019-12-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1342,'121363614','','','1','H','10','HARIAN','','2019-12-02','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-02',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1343,'121363615','','','1','H','20','HARIAN','','2019-12-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1344,'121363617','','','1','H','11','HARIAN','','2019-12-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1345,'121363618','','','1','H','11','HARIAN','','2019-12-09','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-09',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1346,'121363619','','','1','H','17','HARIAN','','2019-12-10','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-10',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1347,'121363624','','','1','H','14','HARIAN','','2019-12-11','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-11',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1348,'121363625','','','1','H','17','HARIAN','','2019-12-12','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-12',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1349,'121363626','','','1','H','11','HARIAN','','2019-12-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1350,'121363628','','','1','H','17','HARIAN','','2019-12-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1351,'121363629','','','1','H','17','HARIAN','','2019-12-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1352,'121363634','','','1','B','11','HARIAN','','2019-12-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1353,'121363642','','','1','H','11','HARIAN','','2019-12-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1354,'121363635','','','1','H','11','HARIAN','','2019-12-26','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-26',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1355,'121363637','','','1','H','17','HARIAN','','2019-12-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1356,'121363636','','','1','H','17','HARIAN','','2019-12-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2019-12-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1357,'121363641','','','1','H','20','HARIAN','','2020-01-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1358,'121363638','','','1','H','17','HARIAN','','2020-01-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1359,'121363639','','','1','H','11','HARIAN','','2020-01-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1360,'121363643','','','1','H','14','HARIAN','','2020-01-06','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-06',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1361,'121363646','','','1','H','17','HARIAN','','2020-01-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1362,'121363650','','','1','H','11','HARIAN','','2020-01-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1363,'121363644','','','1','H','20','HARIAN','','2020-01-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1364,'121363647','','','1','H','17','HARIAN','','2020-01-07','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-07',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1365,'121363648','','','1','H','17','HARIAN','','2020-01-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1366,'121363653','','','1','H','20','HARIAN','','2020-01-13','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-13',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1367,'121363655','','','1','H','11','HARIAN','','2020-01-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1368,'121363657','','','1','H','11','HARIAN','','2020-01-14','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-14',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1369,'121363658','','','1','H','11','HARIAN','','2020-01-16','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-16',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1370,'121363659','','','1','H','11','HARIAN','','2020-01-17','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1371,'121363666','','','1','H','17','HARIAN','','2020-01-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1372,'121363662','','','1','H','11','HARIAN','','2020-01-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1373,'121363660','','','1','H','17','HARIAN','','2020-01-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1374,'121363665','','','1','H','17','HARIAN','','2020-01-20','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-20',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1375,'121363663','','','1','H','11','HARIAN','','2020-01-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1376,'121363661','','','1','H','20','HARIAN','','2020-01-21','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1377,'121361026','','','1','B','17','HARIAN','','2020-01-23','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-23',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1378,'121363668','','','1','H','11','HARIAN','','2020-01-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1379,'121363667','','','1','H','11','HARIAN','','2020-01-27','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-27',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1380,'121363669','','','1','H','14','HARIAN','','2020-01-28','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-28',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1381,'121363670','','','1','H','17','HARIAN','','2020-01-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1382,'121363671','','','1','H','11','HARIAN','','2020-01-29','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1383,'121363672','','','1','H','11','HARIAN','','2020-01-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1384,'121363673','','','1','H','11','HARIAN','','2020-01-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1385,'121363365','','','1','H','11','HARIAN','','2020-01-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1386,'121363559','','','1','H','11','HARIAN','','2020-01-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1387,'121363664','','','1','H','17','HARIAN','','2020-01-30','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-01-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1388,'121363675','','','1','H','11','HARIAN','','2020-02-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-02-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1389,'121363677','','','1','H','11','HARIAN','','2020-02-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-02-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1390,'121363674','','','1','H','17','HARIAN','','2020-02-03','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-02-03',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(1391,'121363676','','','1','H','12','HARIAN','','2020-02-04','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','0000-00-00','','2020-02-04',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `m01personal_language`
---
+/*Table structure for table `m01personal_language` */
 
 DROP TABLE IF EXISTS `m01personal_language`;
-CREATE TABLE IF NOT EXISTS `m01personal_language` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m01personal_language` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) NOT NULL,
   `IDLanguage` varchar(5) NOT NULL,
   `Language` varchar(25) NOT NULL,
@@ -638,25 +1981,21 @@ CREATE TABLE IF NOT EXISTS `m01personal_language` (
   `DeletedBy` varchar(20) DEFAULT NULL,
   `DeletedIP` varchar(20) DEFAULT NULL,
   `DeletedDate` datetime DEFAULT NULL,
-  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `m01personal_language`
---
+/*Data for the table `m01personal_language` */
 
-INSERT INTO `m01personal_language` (`ID`, `IDEmployee`, `IDLanguage`, `Language`, `Reading`, `Listening`, `Conversation`, `Writing`, `DeletedBy`, `DeletedIP`, `DeletedDate`, `DeleteFlag`) VALUES
-(1, '0506021112', '1', 'INDONESIA', '100', '100', '100', '100', NULL, NULL, NULL, 'A');
+insert  into `m01personal_language`(`ID`,`IDEmployee`,`IDLanguage`,`Language`,`Reading`,`Listening`,`Conversation`,`Writing`,`DeletedBy`,`DeletedIP`,`DeletedDate`,`DeleteFlag`) values 
+(1,'0506021112','1','INDONESIA','100','100','100','100',NULL,NULL,NULL,'A');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `m01personal_workexp`
---
+/*Table structure for table `m01personal_workexp` */
 
 DROP TABLE IF EXISTS `m01personal_workexp`;
-CREATE TABLE IF NOT EXISTS `m01personal_workexp` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m01personal_workexp` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) NOT NULL,
   `IDWorkExp` varchar(5) NOT NULL,
   `CompanyName` varchar(50) NOT NULL,
@@ -667,18 +2006,18 @@ CREATE TABLE IF NOT EXISTS `m01personal_workexp` (
   `DeletedBy` varchar(20) DEFAULT NULL,
   `DeletedIP` varchar(20) DEFAULT NULL,
   `DeletedDate` datetime DEFAULT NULL,
-  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A'
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+  `DeleteFlag` varchar(1) NOT NULL DEFAULT 'A',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+/*Data for the table `m01personal_workexp` */
 
---
--- Table structure for table `m03organization`
---
+/*Table structure for table `m03organization` */
 
 DROP TABLE IF EXISTS `m03organization`;
-CREATE TABLE IF NOT EXISTS `m03organization` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `m03organization` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDStructure` int(5) NOT NULL,
   `IDStructureParent` int(5) NOT NULL,
   `RelType` varchar(2) NOT NULL,
@@ -693,52 +2032,48 @@ CREATE TABLE IF NOT EXISTS `m03organization` (
   `DeleteBy` varchar(20) NOT NULL,
   `DeleteFlag` varchar(3) NOT NULL DEFAULT 'A' COMMENT 'Jika A maka di tampilkan jika D maka tidak di tampilkan',
   `DeleteDate` datetime NOT NULL,
-  `DeleteIP` varchar(20) NOT NULL
+  `DeleteIP` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `m03organization`
---
+/*Data for the table `m03organization` */
 
-INSERT INTO `m03organization` (`ID`, `IDStructure`, `IDStructureParent`, `RelType`, `DescStructure`, `Level`, `AddedBy`, `AddedDate`, `AddedIP`, `EditedBy`, `EditedDate`, `EditedIP`, `DeleteBy`, `DeleteFlag`, `DeleteDate`, `DeleteIP`) VALUES
-(1, 1, 0, '', 'MANAGING DIRECTOR', '1', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(2, 2, 0, '', 'SECRETARY', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(3, 3, 0, '', 'OPERATIONAL DIRECTOR', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(4, 4, 0, '', 'TECHNICAL DIRECTOR', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(5, 5, 0, '', 'ASST TECHNICAL DIRECTOR & DEVELOPMENT', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(6, 6, 0, '', 'B & D BUILDING', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(7, 7, 0, '', 'B & D INDUSTRY', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(8, 8, 0, '', 'MARCOMM', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(9, 9, 0, '', 'CMS', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(10, 10, 0, '', 'BUILDING & FACILITY MANAGEMENT', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(11, 11, 0, '', 'LOGISTIC', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(12, 12, 0, '', 'HSE', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(13, 13, 0, '', 'RTC', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(14, 14, 0, '', 'HRD', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(15, 15, 0, '', 'MACHINING CENTER', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(16, 16, 0, '', 'PRODUCTION', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(17, 17, 0, '', 'IT', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(18, 18, 0, '', 'SYSDEV BUSINESS PROCESS', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(19, 19, 0, '', 'SYSDEV INTERNAL PROCESS', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(20, 20, 0, '', 'WAREHOUSE', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(21, 21, 0, '', 'ENGINEERING', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(22, 22, 0, '', 'QC', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(23, 23, 0, '', 'R & D', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(24, 24, 0, '', 'PURCHASING', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(25, 25, 0, '', 'FINANCE', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(26, 26, 0, '', 'ACCOUNTING', '3', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(27, 27, 0, '', 'PROJECT', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', ''),
-(28, 28, 0, '', 'MR - DCC', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '', '', 'A', '0000-00-00 00:00:00', '');
+insert  into `m03organization`(`ID`,`IDStructure`,`IDStructureParent`,`RelType`,`DescStructure`,`Level`,`AddedBy`,`AddedDate`,`AddedIP`,`EditedBy`,`EditedDate`,`EditedIP`,`DeleteBy`,`DeleteFlag`,`DeleteDate`,`DeleteIP`) values 
+(1,1,0,'','MANAGING DIRECTOR','1','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(2,2,0,'','SECRETARY','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(3,3,0,'','OPERATIONAL DIRECTOR','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(4,4,0,'','TECHNICAL DIRECTOR','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(5,5,0,'','ASST TECHNICAL DIRECTOR & DEVELOPMENT','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(6,6,0,'','B & D BUILDING','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(7,7,0,'','B & D INDUSTRY','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(8,8,0,'','MARCOMM','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(9,9,0,'','CMS','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(10,10,0,'','BUILDING & FACILITY MANAGEMENT','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(11,11,0,'','LOGISTIC','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(12,12,0,'','HSE','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(13,13,0,'','RTC','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(14,14,0,'','HRD','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(15,15,0,'','MACHINING CENTER','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(16,16,0,'','PRODUCTION','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(17,17,0,'','IT','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(18,18,0,'','SYSDEV BUSINESS PROCESS','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(19,19,0,'','SYSDEV INTERNAL PROCESS','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(20,20,0,'','WAREHOUSE','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(21,21,0,'','ENGINEERING','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(22,22,0,'','QC','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(23,23,0,'','R & D','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(24,24,0,'','PURCHASING','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(25,25,0,'','FINANCE','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(26,26,0,'','ACCOUNTING','3','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(27,27,0,'','PROJECT','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00',''),
+(28,28,0,'','MR - DCC','','','0000-00-00 00:00:00','','','0000-00-00 00:00:00','','','A','0000-00-00 00:00:00','');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `p01emailroot`
---
+/*Table structure for table `p01emailroot` */
 
 DROP TABLE IF EXISTS `p01emailroot`;
-CREATE TABLE IF NOT EXISTS `p01emailroot` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `p01emailroot` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(15) DEFAULT NULL,
   `RootSite` varchar(2) DEFAULT NULL COMMENT '1(Kapuk),2(Bitung)',
   `Note` text,
@@ -751,25 +2086,21 @@ CREATE TABLE IF NOT EXISTS `p01emailroot` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='email untuk konfirmasi rootcause';
 
---
--- Dumping data for table `p01emailroot`
---
+/*Data for the table `p01emailroot` */
 
-INSERT INTO `p01emailroot` (`ID`, `IDEmployee`, `RootSite`, `Note`, `AddedBy`, `AddedDate`, `AddedIP`, `EditedBy`, `EditedDate`, `EditedIP`, `DeleteBy`, `DeleteDate`, `DeleteIP`, `DeleteFlag`) VALUES
-(5, '0506021112', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'A');
+insert  into `p01emailroot`(`ID`,`IDEmployee`,`RootSite`,`Note`,`AddedBy`,`AddedDate`,`AddedIP`,`EditedBy`,`EditedDate`,`EditedIP`,`DeleteBy`,`DeleteDate`,`DeleteIP`,`DeleteFlag`) values 
+(5,'0506021112','1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `p02mailinvitation`
---
+/*Table structure for table `p02mailinvitation` */
 
 DROP TABLE IF EXISTS `p02mailinvitation`;
-CREATE TABLE IF NOT EXISTS `p02mailinvitation` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `p02mailinvitation` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `FromMail` text,
   `PasswordFromMail` text,
   `CCmail` text,
@@ -783,18 +2114,18 @@ CREATE TABLE IF NOT EXISTS `p02mailinvitation` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `p02mailinvitation` */
 
---
--- Table structure for table `r01rootcause`
---
+/*Table structure for table `r01rootcause` */
 
 DROP TABLE IF EXISTS `r01rootcause`;
-CREATE TABLE IF NOT EXISTS `r01rootcause` (
-`IDRoot` int(11) NOT NULL,
+
+CREATE TABLE `r01rootcause` (
+  `IDRoot` int(11) NOT NULL AUTO_INCREMENT,
   `RootName` varchar(60) DEFAULT NULL,
   `AddedBy` varchar(20) DEFAULT NULL,
   `AddedDate` datetime DEFAULT NULL,
@@ -805,39 +2136,35 @@ CREATE TABLE IF NOT EXISTS `r01rootcause` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`IDRoot`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `r01rootcause`
---
+/*Data for the table `r01rootcause` */
 
-INSERT INTO `r01rootcause` (`IDRoot`, `RootName`, `AddedBy`, `AddedDate`, `AddedIP`, `EditedBy`, `EditedDate`, `EditedIP`, `DeleteBy`, `DeleteDate`, `DeleteIP`, `DeleteFlag`) VALUES
-(1, 'ATTENDANCE', '0506021112', '2014-12-18 09:40:09', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(2, 'FIELDPAYROLL', '0506021112', '2014-12-18 09:40:16', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(3, 'EMPLOYEE CENTER', '0506021112', '2014-12-18 09:40:22', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(6, 'JARINGAN', '0506021112', '2014-12-18 09:41:02', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(7, 'PRINTER', '0506021112', '2014-12-18 09:41:07', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(8, 'KOMPUTER', '0506021112', '2014-12-18 09:41:27', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(9, 'REQUEST', '0506021112', '2014-12-23 15:17:28', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(11, 'EMAIL', '0506021112', '2015-01-24 10:40:49', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(12, 'UPS', '0506021112', '2015-04-27 13:58:57', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(13, 'MS.OFFICE', '0249230309', '2015-04-29 15:21:08', '192.168.0.121', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(14, 'SOFTWARE', '0249230309', '2015-04-29 15:22:04', '192.168.0.121', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(15, 'OPERATING SYSTEM &amp;#40;OS&amp;#41;', '0249230309', '2015-04-29 15:22:38', '192.168.0.121', NULL, NULL, NULL, '0249230309', '2015-04-29 15:22:53', '192.168.0.121', 'D'),
-(16, 'OPERATING SYSTEM', '0249230309', '2015-04-29 15:23:09', '192.168.0.121', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(17, 'SCANNER', '0506021112', '2015-06-29 11:27:19', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A'),
-(20, 'CCTV', '0506021112', '2015-09-10 13:10:23', '192.168.0.61', NULL, NULL, NULL, NULL, NULL, NULL, 'A');
+insert  into `r01rootcause`(`IDRoot`,`RootName`,`AddedBy`,`AddedDate`,`AddedIP`,`EditedBy`,`EditedDate`,`EditedIP`,`DeleteBy`,`DeleteDate`,`DeleteIP`,`DeleteFlag`) values 
+(1,'ATTENDANCE','0506021112','2014-12-18 09:40:09','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(2,'FIELDPAYROLL','0506021112','2014-12-18 09:40:16','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(3,'EMPLOYEE CENTER','0506021112','2014-12-18 09:40:22','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(6,'JARINGAN','0506021112','2014-12-18 09:41:02','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(7,'PRINTER','0506021112','2014-12-18 09:41:07','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(8,'KOMPUTER','0506021112','2014-12-18 09:41:27','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(9,'REQUEST','0506021112','2014-12-23 15:17:28','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(11,'EMAIL','0506021112','2015-01-24 10:40:49','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(12,'UPS','0506021112','2015-04-27 13:58:57','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(13,'MS.OFFICE','0249230309','2015-04-29 15:21:08','192.168.0.121',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(14,'SOFTWARE','0249230309','2015-04-29 15:22:04','192.168.0.121',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(15,'OPERATING SYSTEM &amp;#40;OS&amp;#41;','0249230309','2015-04-29 15:22:38','192.168.0.121',NULL,NULL,NULL,'0249230309','2015-04-29 15:22:53','192.168.0.121','D'),
+(16,'OPERATING SYSTEM','0249230309','2015-04-29 15:23:09','192.168.0.121',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(17,'SCANNER','0506021112','2015-06-29 11:27:19','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A'),
+(20,'CCTV','0506021112','2015-09-10 13:10:23','192.168.0.61',NULL,NULL,NULL,NULL,NULL,NULL,'A');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `r02currency`
---
+/*Table structure for table `r02currency` */
 
 DROP TABLE IF EXISTS `r02currency`;
-CREATE TABLE IF NOT EXISTS `r02currency` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `r02currency` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CurrencyCode` varchar(5) DEFAULT NULL,
   `CurrencyName` varchar(50) DEFAULT NULL,
   `Kurs` decimal(11,2) DEFAULT NULL,
@@ -850,46 +2177,42 @@ CREATE TABLE IF NOT EXISTS `r02currency` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `r02currency` */
 
---
--- Table structure for table `r03education`
---
+/*Table structure for table `r03education` */
 
 DROP TABLE IF EXISTS `r03education`;
-CREATE TABLE IF NOT EXISTS `r03education` (
-`ID` int(11) NOT NULL,
-  `EduName` varchar(10) DEFAULT NULL
+
+CREATE TABLE `r03education` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `EduName` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `r03education`
---
+/*Data for the table `r03education` */
 
-INSERT INTO `r03education` (`ID`, `EduName`) VALUES
-(1, 'SD'),
-(2, 'SMP'),
-(3, 'SMA/SMK'),
-(4, 'DI'),
-(5, 'DII'),
-(6, 'DIII'),
-(7, 'DIV'),
-(8, 'S1'),
-(9, 'S2'),
-(10, 'S3');
+insert  into `r03education`(`ID`,`EduName`) values 
+(1,'SD'),
+(2,'SMP'),
+(3,'SMA/SMK'),
+(4,'DI'),
+(5,'DII'),
+(6,'DIII'),
+(7,'DIV'),
+(8,'S1'),
+(9,'S2'),
+(10,'S3');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `registered`
---
+/*Table structure for table `registered` */
 
 DROP TABLE IF EXISTS `registered`;
-CREATE TABLE IF NOT EXISTS `registered` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `registered` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `User` varchar(50) DEFAULT NULL,
   `Country` varchar(10) DEFAULT NULL,
   `ZipCode` varchar(10) DEFAULT NULL,
@@ -897,18 +2220,18 @@ CREATE TABLE IF NOT EXISTS `registered` (
   `Email` varchar(60) DEFAULT NULL,
   `Phone` varchar(16) DEFAULT NULL,
   `Password` varchar(60) DEFAULT NULL,
-  `Status` varchar(2) DEFAULT 'A'
+  `Status` varchar(2) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `registered` */
 
---
--- Table structure for table `t01rootcause`
---
+/*Table structure for table `t01rootcause` */
 
 DROP TABLE IF EXISTS `t01rootcause`;
-CREATE TABLE IF NOT EXISTS `t01rootcause` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t01rootcause` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDRoot` int(11) DEFAULT NULL,
   `IDLocation` int(2) DEFAULT NULL,
   `ComplainNote` text,
@@ -951,84 +2274,85 @@ CREATE TABLE IF NOT EXISTS `t01rootcause` (
   `RejectedBy` varchar(20) DEFAULT NULL,
   `RejectedDate` datetime DEFAULT NULL,
   `RejectedIP` varchar(20) DEFAULT NULL,
-  `RejectReason` text
+  `RejectReason` text,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Table for handling problem';
 
--- --------------------------------------------------------
+/*Data for the table `t01rootcause` */
 
---
--- Table structure for table `t02rawdata`
---
+/*Table structure for table `t02rawdata` */
 
 DROP TABLE IF EXISTS `t02rawdata`;
-CREATE TABLE IF NOT EXISTS `t02rawdata` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t02rawdata` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `DataText` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT 'String Rawdata',
   `IDCard` varchar(20) DEFAULT NULL COMMENT 'No. Kartu Barcode/RFID',
   `IDEmployee` varchar(20) DEFAULT NULL COMMENT 'NIP',
   `PresenceDate` date DEFAULT NULL COMMENT 'Tanggal Kehadiran',
   `PresenceTime` time DEFAULT NULL COMMENT 'Jam Kehadiran',
   `Direction` varchar(1) DEFAULT NULL COMMENT 'Datang/Pulang',
-  `Location` varchar(1) NOT NULL COMMENT 'Lokasi Absensi'
+  `Location` varchar(1) NOT NULL COMMENT 'Lokasi Absensi',
+  PRIMARY KEY (`ID`),
+  KEY `SECONDARY` (`DataText`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `t02rawdata` */
 
---
--- Table structure for table `t02request_accessfolder`
---
+/*Table structure for table `t02request_accessfolder` */
 
 DROP TABLE IF EXISTS `t02request_accessfolder`;
-CREATE TABLE IF NOT EXISTS `t02request_accessfolder` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t02request_accessfolder` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) DEFAULT NULL,
   `CounterReq` varchar(11) DEFAULT NULL,
   `FolderAccess` varchar(60) DEFAULT NULL,
   `AccessStatus` varchar(1) DEFAULT NULL COMMENT '0(N/A), 1(R/Ol),2(R/W)',
   `FlagSend` varchar(1) NOT NULL DEFAULT '0' COMMENT '0 = Dont Send, 1= Send Data',
-  `Note` varchar(100) DEFAULT NULL
+  `Note` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `t02request_accessfolder` */
 
---
--- Table structure for table `t02request_agreement`
---
+/*Table structure for table `t02request_agreement` */
 
 DROP TABLE IF EXISTS `t02request_agreement`;
-CREATE TABLE IF NOT EXISTS `t02request_agreement` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t02request_agreement` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(11) DEFAULT NULL,
   `CounterReq` varchar(11) DEFAULT NULL,
-  `StatusAgreement` varchar(1) DEFAULT NULL COMMENT '1(Yes),0(No)'
+  `StatusAgreement` varchar(1) DEFAULT NULL COMMENT '1(Yes),0(No)',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `t02request_agreement` */
 
---
--- Table structure for table `t02request_createfolder`
---
+/*Table structure for table `t02request_createfolder` */
 
 DROP TABLE IF EXISTS `t02request_createfolder`;
-CREATE TABLE IF NOT EXISTS `t02request_createfolder` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t02request_createfolder` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) DEFAULT NULL,
   `CounterReq` varchar(11) DEFAULT NULL,
   `FolderName` varchar(60) DEFAULT NULL,
   `FolderStatus` varchar(1) DEFAULT NULL COMMENT '0(Delete), 1(Create)',
   `FlagSend` varchar(1) DEFAULT '0' COMMENT '0 = Dont Send, 1= Send Data',
-  `Note` varchar(100) DEFAULT NULL
+  `Note` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `t02request_createfolder` */
 
---
--- Table structure for table `t02request_createuser`
---
+/*Table structure for table `t02request_createuser` */
 
 DROP TABLE IF EXISTS `t02request_createuser`;
-CREATE TABLE IF NOT EXISTS `t02request_createuser` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t02request_createuser` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) DEFAULT NULL,
   `CounterReq` varchar(11) DEFAULT NULL,
   `UserID` varchar(100) DEFAULT NULL,
@@ -1036,52 +2360,52 @@ CREATE TABLE IF NOT EXISTS `t02request_createuser` (
   `InternalEmail` varchar(60) DEFAULT NULL,
   `ExternalEmail` varchar(60) DEFAULT NULL,
   `InternetStatus` varchar(1) DEFAULT NULL COMMENT '1(With Access Internet),0(No Access Internet)',
-  `FlagSend` varchar(1) NOT NULL DEFAULT '0' COMMENT '0 = Dont Send, 1= Send Data'
+  `FlagSend` varchar(1) NOT NULL DEFAULT '0' COMMENT '0 = Dont Send, 1= Send Data',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Table Form Create User';
 
--- --------------------------------------------------------
+/*Data for the table `t02request_createuser` */
 
---
--- Table structure for table `t02request_installsoftware`
---
+/*Table structure for table `t02request_installsoftware` */
 
 DROP TABLE IF EXISTS `t02request_installsoftware`;
-CREATE TABLE IF NOT EXISTS `t02request_installsoftware` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t02request_installsoftware` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) DEFAULT NULL,
   `CounterReq` varchar(11) DEFAULT NULL,
   `SoftwareName` varchar(60) DEFAULT NULL,
   `SoftwareStatus` varchar(1) DEFAULT NULL COMMENT '0(Uninstall), 1(Install)',
   `FlagSend` varchar(1) NOT NULL DEFAULT '0' COMMENT '0 = Dont Send, 1= Send Data',
-  `Note` varchar(100) DEFAULT NULL
+  `Note` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `t02request_installsoftware` */
 
---
--- Table structure for table `t02request_user`
---
+/*Table structure for table `t02request_user` */
 
 DROP TABLE IF EXISTS `t02request_user`;
-CREATE TABLE IF NOT EXISTS `t02request_user` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t02request_user` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDEmployee` varchar(10) DEFAULT NULL,
   `ComputerName` varchar(25) DEFAULT NULL,
   `NoCounter` varchar(11) DEFAULT NULL,
   `CurDate` date DEFAULT NULL,
   `StatusDoc` varchar(1) DEFAULT NULL COMMENT '0(Ignore),1(''Accept'')',
-  `FlagSend` varchar(1) NOT NULL DEFAULT '0' COMMENT '0 = Dont Send, 1= Send Data'
+  `FlagSend` varchar(1) NOT NULL DEFAULT '0' COMMENT '0 = Dont Send, 1= Send Data',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Table Form Request';
 
--- --------------------------------------------------------
+/*Data for the table `t02request_user` */
 
---
--- Table structure for table `t03customerinvitation_d`
---
+/*Table structure for table `t03customerinvitation_d` */
 
 DROP TABLE IF EXISTS `t03customerinvitation_d`;
-CREATE TABLE IF NOT EXISTS `t03customerinvitation_d` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t03customerinvitation_d` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDH` int(11) NOT NULL,
   `Gender` int(1) NOT NULL DEFAULT '1' COMMENT '1 = Mr,2 = Mrs,3=Mis,4=-',
   `VisitorName` varchar(35) DEFAULT NULL,
@@ -1097,18 +2421,18 @@ CREATE TABLE IF NOT EXISTS `t03customerinvitation_d` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `t03customerinvitation_d` */
 
---
--- Table structure for table `t03customerinvitation_h`
---
+/*Table structure for table `t03customerinvitation_h` */
 
 DROP TABLE IF EXISTS `t03customerinvitation_h`;
-CREATE TABLE IF NOT EXISTS `t03customerinvitation_h` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `t03customerinvitation_h` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CustomerName` varchar(50) DEFAULT NULL,
   `Address` text,
   `NoTelp` varchar(35) DEFAULT NULL,
@@ -1122,382 +2446,42 @@ CREATE TABLE IF NOT EXISTS `t03customerinvitation_h` (
   `DeleteBy` varchar(20) DEFAULT NULL,
   `DeleteDate` datetime DEFAULT NULL,
   `DeleteIP` varchar(20) DEFAULT NULL,
-  `DeleteFlag` varchar(1) DEFAULT 'A'
+  `DeleteFlag` varchar(1) DEFAULT 'A',
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `t03customerinvitation_h` */
 
---
--- Table structure for table `tmp01contact`
---
+/*Table structure for table `tmp01contact` */
 
 DROP TABLE IF EXISTS `tmp01contact`;
-CREATE TABLE IF NOT EXISTS `tmp01contact` (
+
+CREATE TABLE `tmp01contact` (
   `IDEmployee` varchar(50) DEFAULT NULL,
   `InternalEmail` text,
   `ExternalEmail` text,
-  `NoHP` text
+  `NoHP` text,
+  KEY `IDEmployee` (`IDEmployee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+/*Data for the table `tmp01contact` */
 
---
--- Table structure for table `tmpattachment`
---
+/*Table structure for table `tmpattachment` */
 
 DROP TABLE IF EXISTS `tmpattachment`;
-CREATE TABLE IF NOT EXISTS `tmpattachment` (
-`ID` int(11) NOT NULL,
+
+CREATE TABLE `tmpattachment` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `IDCron` varchar(11) DEFAULT NULL,
   `FileImages` text,
   `UrlImages` text,
-  `UrlPath` text
+  `UrlPath` text,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Indexes for dumped tables
---
+/*Data for the table `tmpattachment` */
 
---
--- Indexes for table `appointments`
---
-ALTER TABLE `appointments`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `country`
---
-ALTER TABLE `country`
- ADD PRIMARY KEY (`country_id`);
-
---
--- Indexes for table `cron01invitation`
---
-ALTER TABLE `cron01invitation`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `emailnotvalid`
---
-ALTER TABLE `emailnotvalid`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `his01sendmailinvitation`
---
-ALTER TABLE `his01sendmailinvitation`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m01personal`
---
-ALTER TABLE `m01personal`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m01personal_course`
---
-ALTER TABLE `m01personal_course`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m01personal_education`
---
-ALTER TABLE `m01personal_education`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m01personal_family`
---
-ALTER TABLE `m01personal_family`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m01personal_job`
---
-ALTER TABLE `m01personal_job`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m01personal_language`
---
-ALTER TABLE `m01personal_language`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m01personal_workexp`
---
-ALTER TABLE `m01personal_workexp`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `m03organization`
---
-ALTER TABLE `m03organization`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `p01emailroot`
---
-ALTER TABLE `p01emailroot`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `p02mailinvitation`
---
-ALTER TABLE `p02mailinvitation`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `r01rootcause`
---
-ALTER TABLE `r01rootcause`
- ADD PRIMARY KEY (`IDRoot`);
-
---
--- Indexes for table `r02currency`
---
-ALTER TABLE `r02currency`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `r03education`
---
-ALTER TABLE `r03education`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `registered`
---
-ALTER TABLE `registered`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t01rootcause`
---
-ALTER TABLE `t01rootcause`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t02rawdata`
---
-ALTER TABLE `t02rawdata`
- ADD PRIMARY KEY (`ID`), ADD KEY `SECONDARY` (`DataText`);
-
---
--- Indexes for table `t02request_accessfolder`
---
-ALTER TABLE `t02request_accessfolder`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t02request_agreement`
---
-ALTER TABLE `t02request_agreement`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t02request_createfolder`
---
-ALTER TABLE `t02request_createfolder`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t02request_createuser`
---
-ALTER TABLE `t02request_createuser`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t02request_installsoftware`
---
-ALTER TABLE `t02request_installsoftware`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t02request_user`
---
-ALTER TABLE `t02request_user`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t03customerinvitation_d`
---
-ALTER TABLE `t03customerinvitation_d`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `t03customerinvitation_h`
---
-ALTER TABLE `t03customerinvitation_h`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `tmp01contact`
---
-ALTER TABLE `tmp01contact`
- ADD KEY `IDEmployee` (`IDEmployee`);
-
---
--- Indexes for table `tmpattachment`
---
-ALTER TABLE `tmpattachment`
- ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `appointments`
---
-ALTER TABLE `appointments`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `country`
---
-ALTER TABLE `country`
-MODIFY `country_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=251;
---
--- AUTO_INCREMENT for table `cron01invitation`
---
-ALTER TABLE `cron01invitation`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `emailnotvalid`
---
-ALTER TABLE `emailnotvalid`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `his01sendmailinvitation`
---
-ALTER TABLE `his01sendmailinvitation`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `m01personal`
---
-ALTER TABLE `m01personal`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=701;
---
--- AUTO_INCREMENT for table `m01personal_course`
---
-ALTER TABLE `m01personal_course`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT for table `m01personal_education`
---
-ALTER TABLE `m01personal_education`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=399;
---
--- AUTO_INCREMENT for table `m01personal_family`
---
-ALTER TABLE `m01personal_family`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=685;
---
--- AUTO_INCREMENT for table `m01personal_job`
---
-ALTER TABLE `m01personal_job`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=704;
---
--- AUTO_INCREMENT for table `m01personal_language`
---
-ALTER TABLE `m01personal_language`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
---
--- AUTO_INCREMENT for table `m01personal_workexp`
---
-ALTER TABLE `m01personal_workexp`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
---
--- AUTO_INCREMENT for table `m03organization`
---
-ALTER TABLE `m03organization`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
---
--- AUTO_INCREMENT for table `p01emailroot`
---
-ALTER TABLE `p01emailroot`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `p02mailinvitation`
---
-ALTER TABLE `p02mailinvitation`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `r01rootcause`
---
-ALTER TABLE `r01rootcause`
-MODIFY `IDRoot` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
---
--- AUTO_INCREMENT for table `r02currency`
---
-ALTER TABLE `r02currency`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `r03education`
---
-ALTER TABLE `r03education`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `registered`
---
-ALTER TABLE `registered`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t01rootcause`
---
-ALTER TABLE `t01rootcause`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t02rawdata`
---
-ALTER TABLE `t02rawdata`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t02request_accessfolder`
---
-ALTER TABLE `t02request_accessfolder`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t02request_agreement`
---
-ALTER TABLE `t02request_agreement`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t02request_createfolder`
---
-ALTER TABLE `t02request_createfolder`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t02request_createuser`
---
-ALTER TABLE `t02request_createuser`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t02request_installsoftware`
---
-ALTER TABLE `t02request_installsoftware`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t02request_user`
---
-ALTER TABLE `t02request_user`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t03customerinvitation_d`
---
-ALTER TABLE `t03customerinvitation_d`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `t03customerinvitation_h`
---
-ALTER TABLE `t03customerinvitation_h`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tmpattachment`
---
-ALTER TABLE `tmpattachment`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

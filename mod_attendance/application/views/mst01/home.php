@@ -3397,8 +3397,8 @@
                                                         <label for="jobloc"><b>Working Location</b> / <i class='transindo'>Lokasi Kerja</i></label>
                                                         <div class="controls">
                                                             <select class="span12" id="jobloc">
-                                                                <option value="KAPUK">KAPUK</option>
-                                                                <option value="BITUNG">BITUNG</option>
+                                                                <option value="1">Kantor</option>
+                                                                <option value="2">Luar Kantor</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -3412,7 +3412,7 @@
                                                                 <option value="LT">LAP TETAP</option>
                                                                 <option value="LK">LAP KONTRAK</option>
 								<option value="MAG">MAGANG</option>
-								<option value="OS">MITRA KERJA</option>
+								<option value="OS">OUT SOurce</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -3456,25 +3456,32 @@
                                                             </select>
 							  ---->
 							     <select class="upper span12" id="jobpos">
-                                                                <option value="COMISSIONER">COMISSIONER</option>
-                                                                <option value="DIRECTOR">DIRECTOR</option>
-						                <option value="VICE PRESIDENT">VICE PRESIDENT</option>
-                                                                <option value="MANAGING DIRECTOR">MANAGING DIRECTOR</option>
-                                                                <option value="OPERATOR DIRECTOR">OPERATOR DIRECTOR</option>
-                                                                <option value="ASSISTANT DIRECTOR">ASSISTANT DIRECTOR</option>    
-                                                                <option value="MANAGER">MANAGER</option>
-                                                                <option value="ASSISTANT MANAGER">ASSISTANT MANAGER</option>
-                                                                <option value="SUPERVISOR">SUPERVISOR</option>
-                                                                <option value="PROJECT TEAM LEADER">PROJECT TEAM LEADER</option>
-                                                                <option value="PROJECT ENGINEER">PROJECT ENGINEER</option>
-                                                                <option value="ASSISTANT SUPERVISOR">ASSISTANT SUPERVISOR</option>
-                                                                <option value="STAFF">STAFF</option>
-                                                                <option value="SECRETARY">SECRETARY</option>                                                                
-                                                                <option value="PROJECT EXECUTIVE">PROJECT EXECUTIVE</option>                                                                
-                                                                <option value="OPERATOR">OPERATOR</option>
-								<option value="HELPER">HELPER</option>
-								<option value="MAGANG">MAGANG</option>
-								<option value="MITRA KERJA">MITRA KERJA</option>								
+                                                             <option value="DRIVER">DRIVER</option>
+                                                            <option value="GOSOK">GOSOK</option>
+                                                            <option value="HARIAN">HARIAN</option>
+                                                            <option value="I A. STFF PEMULA">I A. STFF PEMULA</option>
+                                                            <option value="I B. JUNIOR STAFF">I B. JUNIOR STAFF</option>
+                                                            <option value="I C. SENIOR STAFF">I C. SENIOR STAFF</option>
+                                                            <option value="I D. STAFF">I D. STAFF</option>
+                                                            <option value="II A. SPV PEMULA">II A. SPV PEMULA</option>
+                                                            <option value="II B. JUNIOR SPV">II B. JUNIOR SPV</option>
+                                                            <option value="II C. SENIOR SPV">II C. SENIOR SPV</option>
+                                                            <option value="II D. SPV">II D. SPV</option>
+                                                            <option value="III B. JUNIOR WA.KA.DEPT">III B. JUNIOR WA.KA.DEPT</option>
+                                                            <option value="III C. SENIOR WA.KA.DEPT">III C. SENIOR WA.KA.DEPT</option>
+                                                            <option value="III D. WA.KA.DEPT">III D. WA.KA.DEPT</option>
+                                                            <option value="IV A. KA.DEPT PEMULA">IV A. KA.DEPT PEMULA</option>
+                                                            <option value="IV B. JUNIOR KA.DEPT">IV B. JUNIOR KA.DEPT</option>
+                                                            <option value="IV C. SENIOR KA.DEPT">IV C. SENIOR KA.DEPT</option>
+                                                            <option value="IV D. KA.DEPT">IV D. KA.DEPT</option>
+                                                            <option value="IX A. WA.DIR PEMULA">IX A. WA.DIR PEMULA</option>
+                                                            <option value="JAHIT">JAHIT</option>
+                                                            <option value="V A. WA.KA.DIV PEMULA">V A. WA.KA.DIV PEMULA</option>
+                                                            <option value="V B. JUNIOR WA.KA.DIV">V B. JUNIOR WA.KA.DIV</option>
+                                                            <option value="V C. SENIOR WA.KA.DIV">V C. SENIOR WA.KA.DIV</option>
+                                                            <option value="VI A. KA.DIV PEMULA">VI A. KA.DIV PEMULA</option>
+                                                            <option value="VII D. WA.GM">VII D. WA.GM</option>
+                                                            <option value="X D. DIREKTUR">X D. DIREKTUR</option>								
                                                             </select>
                                                         </div>
                                                     </div>
