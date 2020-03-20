@@ -7,11 +7,11 @@ if (!defined('BASEPATH'))
 <link href="<?php echo $base_url ?>public/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
 <!-- <link href="<?php //echo $base_url     ?>public/theme/scripts/plugins/system/jquery-ui/development-bundle/demos/demos.css" rel="stylesheet" />
 <!-- JQueryUI -->
-<script src="<?php echo $base_url ?>public/theme/scripts/plugins/system/jquery-latest"></script>
+<script src="<?php echo $base_url ?>public/theme/scripts/plugins/system/jquery.js"></script>
 <script src="<?php echo $base_url ?>public/theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
 <!-- JQueryUI Time -->
-<link href="<?php echo $base_url ?>public/theme/scripts/plugins/time/timepicker.css" rel="stylesheet" />
-<script src="<?php echo $base_url ?>public/theme/scripts/plugins/time/timepicker.js"></script>
+<link href="<?php echo $base_url ?>public/theme/scripts/plugins/timepicker/timepicker.css" rel="stylesheet" />
+<script src="<?php echo $base_url ?>public/theme/scripts/plugins/timepicker/timepicker.js"></script>
 <!-- Bootstrap -->
 <!--<script src="<?php echo $base_url; ?>public/bootstrap/js/bootstrap.js"></script>-->
 <!-- DataTables Tables Plugin -->

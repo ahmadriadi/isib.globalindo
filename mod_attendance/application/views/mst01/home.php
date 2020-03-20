@@ -24,7 +24,7 @@
         <link href="<?php echo $base_url; ?>public/theme/scripts/plugins/tables/DataTables/media/css/DT_bootstrap.css" rel="stylesheet" />
 	
         <!-- JQuery -->
-        <script src="<?php echo $base_url; ?>public/theme/scripts/plugins/system/jquery-latest.js"></script>
+        <script src="<?php echo $base_url ?>public/theme/scripts/plugins/system/jquery.js"></script>
 
         <!-- JQueryUI -->
         <script src="<?php echo $base_url; ?>public/theme/scripts/plugins/system/jquery-ui/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -263,7 +263,11 @@
 
             }
             function loadpersonal() {
+                
+               
                 $(document).ready(function() {
+            
+               
             
                 var idemployee;
                 if (flag == 'add') {
@@ -280,7 +284,11 @@
                 else {
                      idemployee = nip;
                 }
+                
+                 
+                
                 //alert(ROOT.base_url + "mod_attendance/index.php/mst01/home/get_personal/" + idemployee);
+                
                 $.ajax({
                     url: ROOT.base_url + "mod_attendance/index.php/mst01/home/get_personal/" + idemployee,
                     data: "",
@@ -483,7 +491,7 @@
 
             function upd_ftab(tab) {
                 $.ajax({
-                    url: ROOT.base_url + "mod_attendance/index.php/mst01/home/upd_ftab",
+                    url: ROOT.base_url + "mod_attendance/index.php/mst01/home/upd_ftab"+'/'+nip,
                     data: "tab=" + tab,
                     type: "post",
                     dataType: "json",
@@ -666,8 +674,9 @@
                 $("li.tabatas.tab" + tab).removeClass("span1");
                 $("li.tabatas.tab" + tab).addClass("span3");
                 if (tab == "1") {
-                    upd_ftab("1");
                     loadpersonal();
+                    upd_ftab("1");                  
+                   
                     $(".step1").hide({
                         complete: function() {
                             $(".step1").show({
@@ -1025,7 +1034,7 @@
                         }
 
                         $("#nip").val(data.IDEmployee);
-                        $("#fullname").val(data.FullName);
+                        $("#fullaname").val(data.FullName);
                         $("input[name='statusemployee'][value='" + data.Status + "']").prop("checked", true);// for radio 
 		        $("input[name='sendmail'][value='N']").prop("checked", true);// for radio       
                         $("#tglmasuk").val(checkdate(data.HireDate));
@@ -3408,11 +3417,14 @@
                                                         <label for="jobgrp"><b>Group</b> / <i class='transindo'>Status Karyawan</i></label>
                                                         <div class="controls">
                                                             <select class="span12" id="jobgrp">
-                                                                <option value="ST">STAFF</option>
-                                                                <option value="LT">LAP TETAP</option>
-                                                                <option value="LK">LAP KONTRAK</option>
-								<option value="MAG">MAGANG</option>
-								<option value="OS">OUT SOurce</option>
+                                                                <option value="V">Vista</option>
+                                                                <option value="S">Suryatex</option>
+                                                                <option value="MIC">Megah Inti Cemerlang</option>
+								<option value="MAP">Mentari Adhi Pratama</option>
+								<option value="PASIF">Pasifik Kreasi Primajaya</option>
+								<option value="I">IPACCO</option>
+								<option value="B">Borongan</option>
+								<option value="H">Harian</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -4238,9 +4250,9 @@
 
                                                 <div class="span4">
                                                     <div class="control-group">
-                                                        <label for="fullname"><b>Fullname</b> / <i class='transindo'>Nama Lengkap</i></label>
+                                                        <label for="fullaname"><b>Fullname</b> / <i class='transindo'>Nama Lengkap</i></label>
                                                         <div class="controls">
-                                                            <input type="text" class="span12" id="fullname">   
+                                                            <input type="text" class="span12" id="fullaname">   
                                                         </div>
                                                     </div>
                                                 </div>

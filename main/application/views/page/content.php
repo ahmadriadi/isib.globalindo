@@ -554,8 +554,8 @@ function get_attinfo(){
             pictgl = tgl[2];// < 10 ? "0"+tgl[2] : tgl[2];
             urlpictin = "http://<?php echo $servername; ?>/live/photo/"+picthn+"/"+picbln+"/"+pictgl+"/"+enroll+"_1.jpg";
             urlpictout= "http://<?php echo $servername; ?>/live/photo/"+picthn+"/"+picbln+"/"+pictgl+"/"+enroll+"_0.jpg";
-            cek_gambar(urlpictin,"in");
-            cek_gambar(urlpictout,"out");
+            //cek_gambar(urlpictin,"in");
+            //cek_gambar(urlpictout,"out");
 	    //alert(urlpictin+"\n"+urlpictout);
             if (banding == 0){
 //                alert("sama");

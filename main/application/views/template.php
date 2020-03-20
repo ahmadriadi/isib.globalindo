@@ -114,9 +114,7 @@
         
         <!-- Editor TinyMCE -->
         <script type="text/javascript" src="<?php echo base_url(); ?>public/theme/scripts/plugins/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>  
-        <!--Timer : okierie => -->
-        <script type="text/javascript" src="<?php echo base_url(); ?>public/theme/scripts/plugins/timer/timer.js"></script>  
-        
+       
         <!-- Global Path --> 
         <script type="text/javascript" charset="utf-8">
             var ROOT = {

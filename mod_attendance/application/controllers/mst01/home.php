@@ -189,7 +189,6 @@ class Home extends CI_Controller {
     }
 
     function datahome($flag = '', $id = '') {
-
         error_reporting(0);
         $row = $this->pbl->get_by_id($id);
         $nip = $row->IDEmployee;
@@ -205,7 +204,7 @@ class Home extends CI_Controller {
     }
 
 //    job  =========================================================================
-    function get_job($nip) {
+    function get_job($nip='') {
         $iduser = $nip;
         $job = $this->pbl->get_job($iduser)->row();
         echo json_encode($job);
