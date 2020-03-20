@@ -65,7 +65,7 @@ class Home extends CI_Controller {
 //        $where      = array("ConfirmFlag" => "1", "CHRDFlag"    => "0", "DeleteFlag" => "A");
 //        $icphrd     = $this->task->get_incomplete($where);
         $ureport    = $this->task->get_hodconf($this->iduser);
-        $where      = "ConfirmFlag = '0' AND DeleteFlag = 'A' AND IDEmployee IN (SELECT triasnet_employee.m01personal.IDEmployee FROM triasnet_employee.m01personal WHERE triasnet_employee.m01personal.IDEmployeeParent = '$this->iduser')";
+        $where      = "ConfirmFlag = '0' AND DeleteFlag = 'A' AND IDEmployee IN (SELECT isib_employee.m01personal.IDEmployee FROM isib_employee.m01personal WHERE isib_employee.m01personal.IDEmployeeParent = '$this->iduser')";
         //get leave permit
         $lpermit    = $this->task->get_lpermit($where);
         //get official travel
@@ -157,7 +157,7 @@ class Home extends CI_Controller {
 //        $where      = array("FPgt" => "true", "FAts" => "true", "FHrd" => "false", "DeleteFlag" => "A");
 //        $leavehrd   = $this->task->get_leavereq($where);
 //        
-//        $where      = "ConfirmFlag = '0' AND DeleteFlag = 'A' AND IDEmployee IN (SELECT triasnet_employee.m01personal.IDEmployee FROM triasnet_employee.m01personal WHERE triasnet_employee.m01personal.IDEmployeeParent = '$iduser')";
+//        $where      = "ConfirmFlag = '0' AND DeleteFlag = 'A' AND IDEmployee IN (SELECT isib_employee.m01personal.IDEmployee FROM isib_employee.m01personal WHERE isib_employee.m01personal.IDEmployeeParent = '$iduser')";
 //        //get leave permit
 //        $lpermit    = $this->task->get_lpermit($where);
 //        //get official travel
